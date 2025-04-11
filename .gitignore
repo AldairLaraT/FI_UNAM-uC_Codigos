@@ -1,0 +1,16 @@
+# Ignorar carpetas temporales, caches y binarios
+*.o
+*.d
+*.out
+*.obj
+*.exe
+*.log
+*.launch
+*.tmp
+
+# Ignorar carpetas de build
+Debug/
+Release/
+.cache/
+.metadata/
+.jxbrowser.userdata/
