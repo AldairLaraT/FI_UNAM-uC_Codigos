@@ -51,7 +51,7 @@ GPIO_PortN_Init
         LDR  R1, [R0]
         ORR  R1, #0x1000
         STR  R1, [R0]                           ; Habilitación el reloj del PortN
-        NOP                                     ; Espera a que se estabilice el reloj del PortN
+        NOP                                     ; Esperar para que se estabilice el reloj del PortN
         NOP
 
     ; 2. Configurar la dirección del GPIO (GPIODIR).
