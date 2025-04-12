@@ -40,6 +40,4 @@ loop                            ; Etiqueta loop
         ADD  R0, #counter       ; R0 = R0 + counter
         B    loop               ; Saltar a loop
 
-end     B    end
-
         .end
