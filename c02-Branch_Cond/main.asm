@@ -45,6 +45,4 @@ loop                            ; Etiqueta loop
         ADD  R1, #1             ; R1 = R1 + 1
         B    loop2              ; Saltar a loop2
 
-end     B    end
-
         .end
