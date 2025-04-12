@@ -16,18 +16,6 @@ Release/
 .jxbrowser.userdata/
 
 # Proyectos pendientes para subir al repositorio
-/c01-Branch/
-/c02-Branch_Cond/
-/c03-Struct-If_Else/
-/c04-Struct-Switch_Case/
-/c05-Struct-For/
-/c06-Struct-While/
-/c07-IT/
-/c08-Stack/
-/c09-Subrutinas/
-/c10-GPIO_output-asm/
-/c11-GPIO_input-asm/
-/c12-SysTick/
 /c13-GPIO_output/
 /c14-GPIO_input/
 /c15-Interrupt/
