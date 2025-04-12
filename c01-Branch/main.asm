@@ -33,6 +33,7 @@ counter .equ 1                  ; Declaración de la constante counter = 1
 ; Código principal
 
 main:
+
         MOV  R0, #0             ; R0 = 0
 
 loop                            ; Etiqueta loop
@@ -40,4 +41,5 @@ loop                            ; Etiqueta loop
         B    loop               ; Saltar a loop
 
 end     B    end
+
         .end
