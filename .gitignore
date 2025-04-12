@@ -14,3 +14,47 @@ Release/
 .cache/
 .metadata/
 .jxbrowser.userdata/
+
+# Proyectos pendientes para subir al repositorio
+/c01-Branch/
+/c02-Branch_Cond/
+/c03-Struct-If_Else/
+/c04-Struct-Switch_Case/
+/c05-Struct-For/
+/c06-Struct-While/
+/c07-IT/
+/c08-Stack/
+/c09-Subrutinas/
+/c10-GPIO_output-asm/
+/c11-GPIO_input-asm/
+/c12-SysTick/
+/c13-GPIO_output/
+/c14-GPIO_input/
+/c15-Interrupt/
+/c16-ADC/
+/c17-ADC_temp/
+/c18-ADC_JoyStick/
+/c19-GPTM_OneShot_Periodic/
+/c20-GPTM_Capture/
+/c21-GPTM_PWM/
+/c22-UART_Tx/
+/c23-UART_Rx/
+/c24-UART_terminal/
+/c25-I2C/
+/c26-I2C_Interrupt/
+/c27-SSI/
+
+# Carpeta local
+/local/
+
+# Proyectos
+/P04-GPIO_Interrupt/
+/P05-ADC_GPTM_UART/
+
+# Tareas
+/T03-CodigoBasico_asm/
+/T04-Programa_asm/
+/T05-GPIO_asm/
+/T06-GPIO_c/
+/T08-Temporizador/
+/T09-UART_Chat/
