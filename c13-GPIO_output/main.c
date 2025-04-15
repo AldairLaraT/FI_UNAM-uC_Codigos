@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       14 de abril de 2025
+ * Fecha:       15 de abril de 2025
  * 
  * Tema 08:     Lenguaje C
  * Código 13:   GPIO: Output
@@ -26,6 +26,7 @@
  * Macros de apuntadores a registros
  */
 
+
 /**
  * Nested Vectored Interrupt Controller (NVIC) registers                                pp146   Register map
  */
@@ -35,12 +36,14 @@
 #define NVIC_ST_RELOAD_R            (*((volatile uint32_t *)0xE000E014))            /*  pp152   SysTick Reload Value */
 #define NVIC_ST_CURRENT_R           (*((volatile uint32_t *)0xE000E018))            /*  pp153   SysTick Current Value */
 
+
 /**
  * System Control (SYSCTL) registers                                                    pp247   Register map
  */
 
 #define SYSCTL_RCGCGPIO_R           (*((volatile uint32_t *)0x400FE608))            /*  pp382   GPIO Run Mode Clock Gating Control */
 #define SYSCTL_PRGPIO_R             (*((volatile uint32_t *)0x400FEA08))            /*  pp499   GPIO Peripheral Ready */
+
 
 /**
  * General-Purpose Input/Output (GPIO) registers                                        pp757   Register map
