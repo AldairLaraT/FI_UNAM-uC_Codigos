@@ -114,6 +114,7 @@
 #define GPIO_PIN_1                  0x00000002                                      /*  GPIO pin 1 */
 #define GPIO_PIN_0                  0x00000001                                      /*  GPIO pin 0 */
 
+#define SysTick_wait()              while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}   /*  Esperar a que el SysTick termine la cuenta */
 #define LED_D1_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_1)               /*  Conmutación del LED D1 (PortN[1]) */
 #define LED_D2_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_0)               /*  Conmutación del LED D2 (PortN[0]) */
 
@@ -131,27 +132,30 @@ uint32_t SysTick_Reload;                                                        
 
 void GPIO_PortN_Init(void) {
 
-    SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R12;                                       /*  Paso 1: Habilitación del reloj del GPIO PortN */
-    while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R12)) {}                               /*  Esperar para que se estabilice el reloj del GPIO PortN */
+    /*  Paso 1: Habilitar la señal de reloj del GPIO (RCGCGPIO) y esperar a que se estabilice (PRGPIO) */
+    SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R12;                                       /*  PortN => Habilitar y proveer de señal de reloj */
+    while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R12)) {}                               /*  PortN => Esperar a que se estabilice la señal de reloj */
 
-    GPIO_PORTN_DIR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
-                                                                                        //  PortN[1:0] => Data direction -> Output
+    /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
+    GPIO_PORTN_DIR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1:0] => Data direction -> Output */
 
-    GPIO_PORTN_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  Paso 9: Configurar las funciones digitales (GPIODEN) */
-                                                                                        //  PortN[1:0] => Digital functions -> Enabled
+    /*  Paso 9: Configurar las funciones digitales (GPIODEN) */
+    GPIO_PORTN_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1:0] => Digital functions -> Enabled */
+
 }
 
 
 void SysTick_Init(uint32_t SysTick_Reload) {
 
-    NVIC_ST_RELOAD_R = (SysTick_Reload & NVIC_ST_RELOAD_M);                         /*  Paso 1: Cargar el valor de cuenta del SysTick (STRELOAD) */
+    /*  Paso 1: Cargar el valor de cuenta del SysTick (STRELOAD) */
+    NVIC_ST_RELOAD_R = (SysTick_Reload & NVIC_ST_RELOAD_M);
 
-    NVIC_ST_CURRENT_R = 0;                                                          /*  Paso 2: Limpiar el valor actual del SysTick (STCURRENT) al escribir cualquier valor */
+    /*  Paso 2: Limpiar el valor actual del SysTick (STCURRENT) al escribir cualquier valor */
+    NVIC_ST_CURRENT_R = 0;
 
-    NVIC_ST_CTRL_R |= NVIC_ST_CTRL_ENABLE;                                          /*  Paso 3: Configurar el SysTick para la operación requerida (STCTRL) */
-                                                                                        //  Fuente de reloj de 4 MHz
-                                                                                        //  Interrupción deshabilitada
-                                                                                        //  Habilitación del SysTick
+    /*  Paso 3: Configurar el SysTick para la operación requerida (STCTRL) */
+    NVIC_ST_CTRL_R |= NVIC_ST_CTRL_ENABLE;                                          /*  Fuente de reloj de 4 MHz, Interrupción deshabilitada, Habilitación del SysTick */
+
 }
 
 
@@ -166,10 +170,10 @@ int main(void) {
 
     while(1) {
 
-        while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}                           /*  Esperar a que el SysTick termine la cuenta */
+        SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
         LED_D1_Toggle();                                                            /*  Conmutación del LED D1 (PortN[1]) */
 
-        while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}                           /*  Esperar a que el SysTick termine la cuenta */
+        SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
         LED_D2_Toggle();                                                            /*  Conmutación del LED D2 (PortN[0]) */
 
     }
