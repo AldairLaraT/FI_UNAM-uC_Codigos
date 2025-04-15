@@ -2,16 +2,16 @@
  * Universidad Nacional Autónoma de México (UNAM)
  * Facultad de Ingeniería | Departamento de Electrónica
  * 
- * Asignatura:	Microprocesadores y Microcontroladores
- * Profesor:	M.I. Christo Aldair Lara Tenorio
- * Fecha:		14 de abril de 2025
+ * Asignatura:  Microprocesadores y Microcontroladores
+ * Profesor:    M.I. Christo Aldair Lara Tenorio
+ * Fecha:       14 de abril de 2025
  * 
- * Tema 08:		Lenguaje C
- * Código 13:	GPIO: Output
- * Descripción:	Configuración de los GPIO del microcontrolador como salida para 
- * 				encender los LED de la tarjeta de desarrollo.
+ * Tema 08:     Lenguaje C
+ * Código 13:   GPIO: Output
+ * Descripción: Configuración de los GPIO del microcontrolador como salida para 
+ *              encender los LED de la tarjeta de desarrollo.
  * 
- * Tarjeta de desarrollo:	EK-TM4C1294XL Evaluation board
+ * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
 
 
@@ -19,7 +19,7 @@
  * Archivos de cabecera
  */
 
-#include <stdint.h>																	/*  Definición de los tamaños de tipo entero */
+#include <stdint.h>                                                                 /*  Definición de los tamaños de tipo entero */
 
 
 /*********************************************************************************
@@ -27,46 +27,46 @@
  */
 
 /**
- * Nested Vectored Interrupt Controller (NVIC) registers								pp146	Register map
+ * Nested Vectored Interrupt Controller (NVIC) registers                                pp146   Register map
  */
 
-	// System Timer (SysTick) registers
-#define NVIC_ST_CTRL_R              (*((volatile uint32_t *)0xE000E010))		    /*	pp150	SysTick Control and Status */
-#define NVIC_ST_RELOAD_R            (*((volatile uint32_t *)0xE000E014))		    /*	pp152	SysTick Reload Value */
-#define NVIC_ST_CURRENT_R           (*((volatile uint32_t *)0xE000E018))		    /*	pp153	SysTick Current Value */	
+    // System Timer (SysTick) registers
+#define NVIC_ST_CTRL_R              (*((volatile uint32_t *)0xE000E010))            /*  pp150   SysTick Control and Status */
+#define NVIC_ST_RELOAD_R            (*((volatile uint32_t *)0xE000E014))            /*  pp152   SysTick Reload Value */
+#define NVIC_ST_CURRENT_R           (*((volatile uint32_t *)0xE000E018))            /*  pp153   SysTick Current Value */
 
 /**
- * System Control (SYSCTL) registers													pp247	Register map
+ * System Control (SYSCTL) registers                                                    pp247   Register map
  */
 
-#define SYSCTL_RCGCGPIO_R           (*((volatile uint32_t *)0x400FE608))    		/*	pp382	GPIO Run Mode Clock Gating Control */
-#define SYSCTL_PRGPIO_R             (*((volatile uint32_t *)0x400FEA08))    		/*	pp499	GPIO Peripheral Ready */
+#define SYSCTL_RCGCGPIO_R           (*((volatile uint32_t *)0x400FE608))            /*  pp382   GPIO Run Mode Clock Gating Control */
+#define SYSCTL_PRGPIO_R             (*((volatile uint32_t *)0x400FEA08))            /*  pp499   GPIO Peripheral Ready */
 
 /**
- * General-Purpose Input/Output (GPIO) registers										pp757	Register map
+ * General-Purpose Input/Output (GPIO) registers                                        pp757   Register map
  */
 
-	// GPIO Port N (PortN)
-#define GPIO_PORTN_DATA_R           (*((volatile uint32_t *)0x4006400C))			/*	pp759	GPIO Data >> PortN[1..0] unmasked */
-#define GPIO_PORTN_DIR_R            (*((volatile uint32_t *)0x40064400))			/*	pp760	GPIO Direction */
-#define GPIO_PORTN_DEN_R            (*((volatile uint32_t *)0x4006451C))			/*	pp781	GPIO Digital Enable */
+    // GPIO Port N (PortN)
+#define GPIO_PORTN_DATA_R           (*((volatile uint32_t *)0x4006400C))            /*  pp759   GPIO Data >> PortN[1..0] unmasked */
+#define GPIO_PORTN_DIR_R            (*((volatile uint32_t *)0x40064400))            /*  pp760   GPIO Direction */
+#define GPIO_PORTN_DEN_R            (*((volatile uint32_t *)0x4006451C))            /*  pp781   GPIO Digital Enable */
 
 
 /*********************************************************************************
  * Macros de apoyo
  */
 
-	// Bit fields in the NVIC_ST_CTRL register                                          pp150
+    // Bit fields in the NVIC_ST_CTRL register                                          pp150
 #define NVIC_ST_CTRL_COUNT          0x00010000                                      /*  Count Flag */
 #define NVIC_ST_CTRL_CLK_SRC        0x00000004                                      /*  Clock Source */
 #define NVIC_ST_CTRL_INTEN          0x00000002                                      /*  Interrupt Enable */
 #define NVIC_ST_CTRL_ENABLE         0x00000001                                      /*  Enable */
 
-	// Bit fields in the NVIC_ST_RELOAD register                                        pp152
+    // Bit fields in the NVIC_ST_RELOAD register                                        pp152
 #define NVIC_ST_RELOAD_M            0x00FFFFFF                                      /*  Reload Value Mask */
 #define NVIC_ST_RELOAD_S            0                                               /*  Reload Value Shift */
 
-	// Bit fields in the NVIC_ST_CURRENT register                                       pp153
+    // Bit fields in the NVIC_ST_CURRENT register                                       pp153
 #define NVIC_ST_CURRENT_M           0x00FFFFFF                                      /*  Current Value Mask */
 #define NVIC_ST_CURRENT_S           0                                               /*  Current Value Shift */
 
@@ -87,7 +87,7 @@
 #define SYSCTL_RCGCGPIO_R1          0x00000002                                      /*  GPIO Port B Run Mode Clock Gating Control */
 #define SYSCTL_RCGCGPIO_R0          0x00000001                                      /*  GPIO Port A Run Mode Clock Gating Control */
 
-	// Bit fields in the SYSCTL_PRGPIO register                                         pp499
+    // Bit fields in the SYSCTL_PRGPIO register                                         pp499
 #define SYSCTL_PRGPIO_R14           0x00004000                                      /*  GPIO Port Q Peripheral Ready */
 #define SYSCTL_PRGPIO_R13           0x00002000                                      /*  GPIO Port P Peripheral Ready */
 #define SYSCTL_PRGPIO_R12           0x00001000                                      /*  GPIO Port N Peripheral Ready */
@@ -104,7 +104,7 @@
 #define SYSCTL_PRGPIO_R1            0x00000002                                      /*  GPIO Port B Peripheral Ready */
 #define SYSCTL_PRGPIO_R0            0x00000001                                      /*  GPIO Port A Peripheral Ready */
 
-	// Bit fields for the GPIO pin
+    // Bit fields for the GPIO pin
 #define GPIO_PIN_7                  0x00000080                                      /*  GPIO pin 7 */
 #define GPIO_PIN_6                  0x00000040                                      /*  GPIO pin 6 */
 #define GPIO_PIN_5                  0x00000020                                      /*  GPIO pin 5 */
@@ -122,7 +122,7 @@
  * Variables globales
  */
 
-uint32_t SysTick_Reload;															/*	Valor de carga del SysTick */
+uint32_t SysTick_Reload;                                                            /*  Valor de carga del SysTick */
 
 
 /*********************************************************************************
@@ -135,23 +135,23 @@ void GPIO_PortN_Init(void) {
     while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R12)) {}                               /*  Esperar para que se estabilice el reloj del GPIO PortN */
 
     GPIO_PORTN_DIR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
-																						// PortN[1:0] => Data direction -> Output
+                                                                                        //  PortN[1:0] => Data direction -> Output
 
     GPIO_PORTN_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  Paso 9: Configurar las funciones digitales (GPIODEN) */
-																						// PortN[1:0] => Digital functions -> Enabled
+                                                                                        //  PortN[1:0] => Digital functions -> Enabled
 }
 
 
 void SysTick_Init(uint32_t SysTick_Reload) {
 
-    NVIC_ST_RELOAD_R = (SysTick_Reload & NVIC_ST_RELOAD_M);							/*  Paso 1: Cargar el valor de cuenta del SysTick (STRELOAD) */
+    NVIC_ST_RELOAD_R = (SysTick_Reload & NVIC_ST_RELOAD_M);                         /*  Paso 1: Cargar el valor de cuenta del SysTick (STRELOAD) */
 
     NVIC_ST_CURRENT_R = 0;                                                          /*  Paso 2: Limpiar el valor actual del SysTick (STCURRENT) al escribir cualquier valor */
 
-    NVIC_ST_CTRL_R |= NVIC_ST_CTRL_ENABLE;                                          /*	Paso 3: Configurar el SysTick para la operación requerida (STCTRL) */
-																						// Fuente de reloj de 4 MHz
-																						// Interrupción deshabilitada
-																						// Habilitación del SysTick
+    NVIC_ST_CTRL_R |= NVIC_ST_CTRL_ENABLE;                                          /*  Paso 3: Configurar el SysTick para la operación requerida (STCTRL) */
+                                                                                        //  Fuente de reloj de 4 MHz
+                                                                                        //  Interrupción deshabilitada
+                                                                                        //  Habilitación del SysTick
 }
 
 
@@ -167,10 +167,10 @@ int main(void) {
     while(1) {
 
         while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}                           /*  Esperar a que el SysTick termine la cuenta */
-		LED_D1_Toggle();                                                            /*  Conmutación del LED D1 (PortN[1]) */
+        LED_D1_Toggle();                                                            /*  Conmutación del LED D1 (PortN[1]) */
 
         while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}                           /*  Esperar a que el SysTick termine la cuenta */
-		LED_D2_Toggle();                                                            /*  Conmutación del LED D2 (PortN[0]) */
+        LED_D2_Toggle();                                                            /*  Conmutación del LED D2 (PortN[0]) */
 
     }
 }
