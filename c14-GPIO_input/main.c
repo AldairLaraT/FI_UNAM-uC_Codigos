@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       14 de abril de 2025
+ * Fecha:       15 de abril de 2025
  * 
  * Tema 08:     Lenguaje C
  * Código 14:   GPIO: Input
@@ -30,10 +30,12 @@
  * Nested Vectored Interrupt Controller (NVIC) registers                                pp146   Register map
  */
 
+
     // System Timer (SysTick) registers
 #define NVIC_ST_CTRL_R              (*((volatile uint32_t *)0xE000E010))            /*  pp150   SysTick Control and Status */
 #define NVIC_ST_RELOAD_R            (*((volatile uint32_t *)0xE000E014))            /*  pp152   SysTick Reload Value */
 #define NVIC_ST_CURRENT_R           (*((volatile uint32_t *)0xE000E018))            /*  pp153   SysTick Current Value */
+
 
 /**
  * System Control (SYSCTL) registers                                                    pp247   Register map
@@ -42,14 +44,17 @@
 #define SYSCTL_RCGCGPIO_R           (*((volatile uint32_t *)0x400FE608))            /*  pp382   GPIO Run Mode Clock Gating Control */
 #define SYSCTL_PRGPIO_R             (*((volatile uint32_t *)0x400FEA08))            /*  pp499   GPIO Peripheral Ready */
 
+
 /**
  * General-Purpose Input/Output (GPIO) registers                                        pp757   Register map
  */
+
     // GPIO Port J (PortJ)
 #define GPIO_PORTJ_AHB_DATA_R       (*((volatile uint32_t *)0x40060004))            /*  pp759   GPIO Data >> PortJ[0] unmasked */
 #define GPIO_PORTJ_AHB_DIR_R        (*((volatile uint32_t *)0x40060400))            /*  pp760   GPIO Direction */
 #define GPIO_PORTJ_AHB_PUR_R        (*((volatile uint32_t *)0x40060510))            /*  pp776   GPIO Pull-Up Select */
 #define GPIO_PORTJ_AHB_DEN_R        (*((volatile uint32_t *)0x4006051C))            /*  pp781   GPIO Digital Enable */
+
     // GPIO Port N (PortN)
 #define GPIO_PORTN_DATA_R           (*((volatile uint32_t *)0x40064008))            /*  pp759   GPIO Data >> PortN[1] unmasked */
 #define GPIO_PORTN_DIR_R            (*((volatile uint32_t *)0x40064400))            /*  pp760   GPIO Direction */
@@ -119,8 +124,8 @@
 #define GPIO_PIN_0                  0x00000001                                      /*  GPIO pin 0 */
 
 #define SysTick_wait()              while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}   /*  Esperar a que el SysTick termine la cuenta */
-#define SW1_Pressed                 (!(GPIO_PORTJ_AHB_DATA_R & GPIO_PIN_0))         /*  Lectura del SW1 (PortJ[0]) => presionado */
-#define SW1_Released                (GPIO_PORTJ_AHB_DATA_R & GPIO_PIN_0)            /*  Lectura del SW1 (PortJ[0]) => no presionado */
+#define SW1_Pressed                 (!(GPIO_PORTJ_AHB_DATA_R & GPIO_PIN_0))         /*  Lectura del SW1 (PortJ[0]) => Presionado */
+#define SW1_Released                (GPIO_PORTJ_AHB_DATA_R & GPIO_PIN_0)            /*  Lectura del SW1 (PortJ[0]) => Liberado */
 #define LED_D1_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_1)               /*  Conmutación del LED D1 (PortN[1]) */
 
 
@@ -135,7 +140,7 @@ uint32_t Bounce_Delay = 100000;                                                 
  * Funciones
  */
 
- void GPIO_PortJ_Init(void) {
+void GPIO_PortJ_Init(void) {
 
     /*  Paso 1: Habilitar la señal de reloj del GPIO (RCGCGPIO) y esperar a que se estabilice (PRGPIO) */
     SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R8;                                        /*  PortJ => Habilitar y proveer de señal de reloj */
@@ -149,6 +154,7 @@ uint32_t Bounce_Delay = 100000;                                                 
 
     /*  Paso 9: Configurar las funciones digitales (GPIODEN) */
     GPIO_PORTJ_AHB_DEN_R |= GPIO_PIN_0;                                             /*  PortJ[0] => Digital functions -> Enabled */
+
 }
 
 
@@ -167,7 +173,7 @@ void GPIO_PortN_Init(void) {
 }
 
 
-void SysTick_Init_OneShot(uint32_t SysTick_Reload) {
+void SysTick_OneShot_Init(uint32_t SysTick_Reload) {
 
     /*  Paso 1: Cargar el valor de cuenta del SysTick (STRELOAD) */
     NVIC_ST_RELOAD_R = (SysTick_Reload & NVIC_ST_RELOAD_M);
@@ -178,8 +184,8 @@ void SysTick_Init_OneShot(uint32_t SysTick_Reload) {
     /*  Paso 3: Configurar el SysTick para la operación requerida (STCTRL) */
     NVIC_ST_CTRL_R |= NVIC_ST_CTRL_ENABLE;                                          /*  Fuente de reloj de 4 MHz, Interrupción deshabilitada, Habilitación del SysTick */
 
+    /*  Configurar el SysTick en modo OneShot */
     NVIC_ST_RELOAD_R = 0;                                                           /*  Limpiar el valor de cuenta del SysTick (STRELOAD) para deshabilitar al contador en el siguiente ciclo */
-    SysTick_wait();                                                                 /*  Esperar a que el SysTick termine la cuenta */
 
 }
 
@@ -195,13 +201,15 @@ int main(void) {
 
     while(1) {
 
-        while (SW1_Released) {}                                                     /*  Esperar a que se presione el SW1 (PortJ[0]) */
-        SysTick_Init_OneShot(Bounce_Delay);                                         /*  Retardo de rebote con el SysTick */
+        while (SW1_Released) {}                                                     /*  Esperar mientras esté liberado el SW1 (PortJ[0]) */
+        SysTick_OneShot_Init(Bounce_Delay);                                         /*  Inicialización del SysTick en modo OneShot para el retardo de rebote */
+        SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
 
         LED_D1_Toggle();                                                            /*  Conmutación del LED D1 (PortN[1]) */
 
-        while (SW1_Pressed) {}                                                      /*  Esperar a que se libere el SW1 (PortJ[0]) */
-        SysTick_Init_OneShot(Bounce_Delay);                                         /*  Retardo de rebote con el SysTick */
+        while (SW1_Pressed) {}                                                      /*  Esperar mientras esté presionado el SW1 (PortJ[0]) */
+        SysTick_OneShot_Init(Bounce_Delay);                                         /*  Inicialización del SysTick en modo OneShot para el retardo de rebote */
+        SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
 
     }
 }
