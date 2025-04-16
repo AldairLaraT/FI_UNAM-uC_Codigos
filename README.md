@@ -35,9 +35,9 @@ Este repositorio contiene códigos de ejemplo y ejercicios relacionados con la a
 | c12    | T06 - Puertos de entrada/salida                         | `asm`    | Temporizador SysTick                                 |
 | c13    | T08 - Lenguaje C                                        | `c`      | GPIO: Output                                         |
 | c14    | T08 - Lenguaje C                                        | `c`      | GPIO: Input                                          |
-| c15    | T09 - Periféricos                                       | `c`      | GPIO con interrupción                                |
-| c16    | T08 - Lenguaje C                                        | `c`      | GPIO: Output (modular)                               |
-| c17    | T08 - Lenguaje C                                        | `c`      | GPIO: Input (modular)                                |
+| c15    | T07 - Interrupciones y resets                           | `c`      | GPIO con interrupción                                |
+| c16    | T09 - Periféricos                                       | `c`      | GPIO: Output (modular)                               |
+| c17    | T09 - Periféricos                                       | `c`      | GPIO: Input (modular)                                |
 | c18    | T09 - Periféricos                                       | `c`      | GPIO con interrupción (modular)                      |
 | c19    | T09 - Periféricos                                       | `c`      | ADC: Potenciómetro                                   |
 | c20    | T09 - Periféricos                                       | `c`      | ADC: Sensor de temperatura del TIVA                  |
