@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       15 de abril de 2025
+ * Fecha:       16 de abril de 2025
  * 
  * Tema 07:     Interrupciones y resets
  * Código 15:   GPIO con interrupción
@@ -51,12 +51,12 @@
  */
 
     // GPIO Port F (PortF)
-#define GPIO_PORTF_AHB_DATA_R       (*((volatile uint32_t *)0x4005D3FC))            /*  pp759   GPIO Data >> PortF[7..0] unmasked */
+#define GPIO_PORTF_AHB_DATA_R       (*((volatile uint32_t *)0x4005D044))            /*  pp759   GPIO Data >> PortF[4,0] unmasked */
 #define GPIO_PORTF_AHB_DIR_R        (*((volatile uint32_t *)0x4005D400))            /*  pp760   GPIO Direction */
 #define GPIO_PORTF_AHB_DEN_R        (*((volatile uint32_t *)0x4005D51C))            /*  pp781   GPIO Digital Enable */
 
     // GPIO Port J (PortJ)
-#define GPIO_PORTJ_AHB_DATA_R       (*((volatile uint32_t *)0x400603FC))            /*  pp759   GPIO Data >> PortJ[7..0] unmasked */
+#define GPIO_PORTJ_AHB_DATA_R       (*((volatile uint32_t *)0x4006000C))            /*  pp759   GPIO Data >> PortJ[1..0] unmasked */
 #define GPIO_PORTJ_AHB_DIR_R        (*((volatile uint32_t *)0x40060400))            /*  pp760   GPIO Direction */
 #define GPIO_PORTJ_AHB_IS_R         (*((volatile uint32_t *)0x40060404))            /*  pp761   GPIO Interrupt Sense */
 #define GPIO_PORTJ_AHB_IBE_R        (*((volatile uint32_t *)0x40060408))            /*  pp762   GPIO Interrupt Both Edges */
@@ -67,7 +67,7 @@
 #define GPIO_PORTJ_AHB_DEN_R        (*((volatile uint32_t *)0x4006051C))            /*  pp781   GPIO Digital Enable */
 
     // GPIO Port N (PortN)
-#define GPIO_PORTN_DATA_R           (*((volatile uint32_t *)0x400643FC))            /*  pp759   GPIO Data >> PortN[7..0] unmasked */
+#define GPIO_PORTN_DATA_R           (*((volatile uint32_t *)0x4006400C))            /*  pp759   GPIO Data >> PortN[1..0] unmasked */
 #define GPIO_PORTN_DIR_R            (*((volatile uint32_t *)0x40064400))            /*  pp760   GPIO Direction */
 #define GPIO_PORTN_DEN_R            (*((volatile uint32_t *)0x4006451C))            /*  pp781   GPIO Digital Enable */
 
@@ -144,13 +144,18 @@
 #define GPIO_PIN_1                  0x00000002                                      /*  GPIO pin 1 */
 #define GPIO_PIN_0                  0x00000001                                      /*  GPIO pin 0 */
 
+    /*  Lectura del estado del SysTick */
 #define SysTick_wait()              while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}   /*  Esperar a que el SysTick termine la cuenta */
-#define SW1_Pressed                 (!(GPIO_PORTJ_AHB_DATA_R & GPIO_PIN_0))         /*  Lectura del SW1 (PortJ[0]) => Presionado */
-#define SW2_Pressed                 (!(GPIO_PORTJ_AHB_DATA_R & GPIO_PIN_1))         /*  Lectura del SW2 (PortJ[1]) => Presionado */
+
+    /*  Control de los LED de usuario (Dn) */
 #define LED_D1_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_1)               /*  Conmutación del LED D1 (PortN[1]) */
 #define LED_D2_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_0)               /*  Conmutación del LED D2 (PortN[0]) */
 #define LED_D3_Toggle()             (GPIO_PORTF_AHB_DATA_R ^= GPIO_PIN_4)           /*  Conmutación del LED D3 (PortF[4]) */
 #define LED_D4_Toggle()             (GPIO_PORTF_AHB_DATA_R ^= GPIO_PIN_0)           /*  Conmutación del LED D4 (PortF[0]) */
+
+    /*  Lectura de los botones de usuario (SWn) */
+#define SW1_Pressed                 (!(GPIO_PORTJ_AHB_DATA_R & GPIO_PIN_0))         /*  Lectura del SW1 (PortJ[0]) => Presionado */
+#define SW2_Pressed                 (!(GPIO_PORTJ_AHB_DATA_R & GPIO_PIN_1))         /*  Lectura del SW2 (PortJ[1]) => Presionado */
 
 
 /*********************************************************************************
@@ -167,14 +172,14 @@ int cuenta = 0;
 
 void GPIO_PortF_Init(void) {
 
-    /*  Paso 1: Habilitar la señal de reloj del GPIO (RCGCGPIO) */
+    /*  Paso 1: Habilitar la señal de reloj del GPIO (RCGCGPIO) y esperar a que se estabilice (PRGPIO) */
     SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R5;                                        /*  PortF => Habilitar y proveer de señal de reloj */
     while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R5)) {}                                /*  PortF => Esperar a que se estabilice la señal de reloj */
 
     /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
     GPIO_PORTF_AHB_DIR_R |= (GPIO_PIN_4 | GPIO_PIN_0);                              /*  PortF[4,0] => Data direction -> Output */
 
-    /*  Paso 9: Configurar las funciones digitales (GPIODEN) */
+    /*  Paso 9: Configurar las funciones digitales del GPIO (GPIODEN) */
     GPIO_PORTF_AHB_DEN_R |= (GPIO_PIN_4 | GPIO_PIN_0);                              /*  PortF[4,0] => Digital functions -> Enabled */
 
 }
@@ -192,7 +197,7 @@ void GPIO_PortJ_Init(void) {
     /*  Paso 8: Configurar las resistencias de Pull-Up (GPIOPUR) o Pull-Down (GPIOPDR), o la función de Open Drain (GPIOODR) del GPIO */
     GPIO_PORTJ_AHB_PUR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1..0] => Pull-Up resistors -> Enabled */
 
-    /*  Paso 9: Configurar las funciones digitales (GPIODEN) */
+    /*  Paso 9: Configurar las funciones digitales del GPIO (GPIODEN) */
     GPIO_PORTJ_AHB_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1..0] => Digital functions -> Enabled */
 
     /*  Paso 10: Configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV) y desenmascarar la interrupción (GPIOIM) */
@@ -213,14 +218,14 @@ void GPIO_PortJ_Init(void) {
 
 void GPIO_PortN_Init(void) {
 
-    /*  Paso 1: Habilitar la señal de reloj del GPIO (RCGCGPIO) */
+    /*  Paso 1: Habilitar la señal de reloj del GPIO (RCGCGPIO) y esperar a que se estabilice (PRGPIO) */
     SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R12;                                       /*  PortN => Habilitar y proveer de señal de reloj */
     while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R12)) {}                               /*  PortN => Esperar a que se estabilice la señal de reloj */
 
     /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
     GPIO_PORTN_DIR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1..0] => Data direction -> Output */
 
-    /*  Paso 9: Configurar las funciones digitales (GPIODEN) */
+    /*  Paso 9: Configurar las funciones digitales del GPIO (GPIODEN) */
     GPIO_PORTN_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1..0] => Digital functions -> Enabled */
 
 }
@@ -243,7 +248,7 @@ void SysTick_OneShot_Init(uint32_t SysTick_Reload) {
 }
 
 
-void GPIOPortJ_Handler (void) {
+void GPIOPortJ_Handler(void) {
 
     SysTick_OneShot_Init(Bounce_Delay);                                             /*  Inicialización del SysTick en modo OneShot para el retardo de rebote */
     SysTick_wait();                                                                 /*  Esperar a que el SysTick termine la cuenta */
