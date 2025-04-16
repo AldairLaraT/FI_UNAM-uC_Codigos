@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       15 de abril de 2025
+ * Fecha:       16 de abril de 2025
  * 
  * Tema 08:     Lenguaje C
  * Código 13:   GPIO: Output
@@ -117,7 +117,10 @@
 #define GPIO_PIN_1                  0x00000002                                      /*  GPIO pin 1 */
 #define GPIO_PIN_0                  0x00000001                                      /*  GPIO pin 0 */
 
+    /*  Lectura del estado del SysTick */
 #define SysTick_wait()              while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}   /*  Esperar a que el SysTick termine la cuenta */
+
+    /*  Control de los LED de usuario (Dn) */
 #define LED_D1_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_1)               /*  Conmutación del LED D1 (PortN[1]) */
 #define LED_D2_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_0)               /*  Conmutación del LED D2 (PortN[0]) */
 
@@ -142,7 +145,7 @@ void GPIO_PortN_Init(void) {
     /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
     GPIO_PORTN_DIR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1:0] => Data direction -> Output */
 
-    /*  Paso 9: Configurar las funciones digitales (GPIODEN) */
+    /*  Paso 9: Configurar las funciones digitales del GPIO (GPIODEN) */
     GPIO_PORTN_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1:0] => Digital functions -> Enabled */
 
 }
@@ -171,7 +174,7 @@ int main(void) {
     GPIO_PortN_Init();                                                              /*  Inicialización del GPIO PortN */
     SysTick_Init(4000000);                                                          /*  Inicialización del SysTick */
 
-    while(1) {
+    while (1) {
 
         SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
         LED_D1_Toggle();                                                            /*  Conmutación del LED D1 (PortN[1]) */
