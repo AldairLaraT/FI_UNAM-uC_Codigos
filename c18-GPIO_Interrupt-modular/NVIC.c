@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       15 de abril de 2025
+ * Fecha:       16 de abril de 2025
  * 
  * Código:      Archivo fuente del NVIC
  * 
