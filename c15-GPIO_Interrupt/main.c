@@ -51,12 +51,12 @@
  */
 
     // GPIO Port F (PortF)
-#define GPIO_PORTF_AHB_DATA_R       (*((volatile uint32_t *)0x4005D044))            /*  pp759   GPIO Data >> PortF[4,0] unmasked */
+#define GPIO_PORTF_AHB_DATA_R       (*((volatile uint32_t *)0x4005D044))            /*  pp759   GPIO Data >> PortF[4, 0] unmasked */
 #define GPIO_PORTF_AHB_DIR_R        (*((volatile uint32_t *)0x4005D400))            /*  pp760   GPIO Direction */
 #define GPIO_PORTF_AHB_DEN_R        (*((volatile uint32_t *)0x4005D51C))            /*  pp781   GPIO Digital Enable */
 
     // GPIO Port J (PortJ)
-#define GPIO_PORTJ_AHB_DATA_R       (*((volatile uint32_t *)0x4006000C))            /*  pp759   GPIO Data >> PortJ[1..0] unmasked */
+#define GPIO_PORTJ_AHB_DATA_R       (*((volatile uint32_t *)0x4006000C))            /*  pp759   GPIO Data >> PortJ[1:0] unmasked */
 #define GPIO_PORTJ_AHB_DIR_R        (*((volatile uint32_t *)0x40060400))            /*  pp760   GPIO Direction */
 #define GPIO_PORTJ_AHB_IS_R         (*((volatile uint32_t *)0x40060404))            /*  pp761   GPIO Interrupt Sense */
 #define GPIO_PORTJ_AHB_IBE_R        (*((volatile uint32_t *)0x40060408))            /*  pp762   GPIO Interrupt Both Edges */
@@ -67,7 +67,7 @@
 #define GPIO_PORTJ_AHB_DEN_R        (*((volatile uint32_t *)0x4006051C))            /*  pp781   GPIO Digital Enable */
 
     // GPIO Port N (PortN)
-#define GPIO_PORTN_DATA_R           (*((volatile uint32_t *)0x4006400C))            /*  pp759   GPIO Data >> PortN[1..0] unmasked */
+#define GPIO_PORTN_DATA_R           (*((volatile uint32_t *)0x4006400C))            /*  pp759   GPIO Data >> PortN[1:0] unmasked */
 #define GPIO_PORTN_DIR_R            (*((volatile uint32_t *)0x40064400))            /*  pp760   GPIO Direction */
 #define GPIO_PORTN_DEN_R            (*((volatile uint32_t *)0x4006451C))            /*  pp781   GPIO Digital Enable */
 
@@ -192,26 +192,30 @@ void GPIO_PortJ_Init(void) {
     while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R8)) {}                                /*  PortJ => Esperar a que se estabilice la señal de reloj */
 
     /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
-    GPIO_PORTJ_AHB_DIR_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1..0] => Data direction -> Input */
+    GPIO_PORTJ_AHB_DIR_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1:0] => Data direction -> Input */
 
     /*  Paso 8: Configurar las resistencias de Pull-Up (GPIOPUR) o Pull-Down (GPIOPDR), o la función de Open Drain (GPIOODR) del GPIO */
-    GPIO_PORTJ_AHB_PUR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1..0] => Pull-Up resistors -> Enabled */
+    GPIO_PORTJ_AHB_PUR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1:0] => Pull-Up resistors -> Enabled */
 
     /*  Paso 9: Configurar las funciones digitales del GPIO (GPIODEN) */
-    GPIO_PORTJ_AHB_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1..0] => Digital functions -> Enabled */
+    GPIO_PORTJ_AHB_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1:0] => Digital functions -> Enabled */
 
-    /*  Paso 10: Configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV) y desenmascarar la interrupción (GPIOIM) */
-    GPIO_PORTJ_AHB_IS_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1..0] => Interrupt sense -> Edge-sensitive */
-    GPIO_PORTJ_AHB_IBE_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1..0] => Interrupt both edges -> Controlled by the GPIOIEV register */
-    GPIO_PORTJ_AHB_IEV_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1..0] => Interrupt event -> Falling edge triggers an interrupt */
-    GPIO_PORTJ_AHB_ICR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1..0] => Interrupt is cleared (recomendado) */
-    GPIO_PORTJ_AHB_IM_R |= (GPIO_PIN_1 | GPIO_PIN_0);                               /*  PortJ[1..0] => Interrupt mask -> Unmasked */
+    /*  Paso 10: Para la interrupción, configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV), limpiar la bandera de interrupción (GPIOICR) y desenmascarar la interrupción (GPIOIM) */
+    GPIO_PORTJ_AHB_IS_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1:0] => Interrupt sense -> Edge-sensitive */
+    GPIO_PORTJ_AHB_IBE_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1:0] => Interrupt both edges -> Controlled by the GPIOIEV register */
+    GPIO_PORTJ_AHB_IEV_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1:0] => Interrupt event -> Falling edge triggers an interrupt */
+    GPIO_PORTJ_AHB_ICR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1:0] => Interrupt is cleared (recomendado) */
+    GPIO_PORTJ_AHB_IM_R |= (GPIO_PIN_1 | GPIO_PIN_0);                               /*  PortJ[1:0] => Interrupt mask -> Unmasked */
+
+    /**
+     * Configuración de la interrupción
+     */
 
     /*  Configurar el nivel de prioridad de la interrupción (PRIn) */
     NVIC_PRI12_R = (NVIC_PRI12_R & ~NVIC_PRI12_INT51_M) | (0 << NVIC_PRI12_INT51_S);    /*  PortJ => Interrupt priority -> 0 */
 
     /*  Habilitar la interrupción (ENn) */
-    NVIC_EN1_R |= 1 << (51 - 32);                                                   /*  Interrupt 51 (PortJ) => Enabled */
+    NVIC_EN1_R |= (1 << (51 - 32));                                                 /*  Interrupt 51 (PortJ) => Enabled */
 
 }
 
@@ -223,10 +227,10 @@ void GPIO_PortN_Init(void) {
     while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R12)) {}                               /*  PortN => Esperar a que se estabilice la señal de reloj */
 
     /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
-    GPIO_PORTN_DIR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1..0] => Data direction -> Output */
+    GPIO_PORTN_DIR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1:0] => Data direction -> Output */
 
     /*  Paso 9: Configurar las funciones digitales del GPIO (GPIODEN) */
-    GPIO_PORTN_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1..0] => Digital functions -> Enabled */
+    GPIO_PORTN_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1:0] => Digital functions -> Enabled */
 
 }
 
