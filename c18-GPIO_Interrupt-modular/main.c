@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       16 de abril de 2025
+ * Fecha:       17 de abril de 2025
  * 
  * Tema 07:     Interrupciones y resets
  * Código 18:   GPIO con interrupción (modular)

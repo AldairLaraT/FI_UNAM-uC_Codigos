@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       16 de abril de 2025
+ * Fecha:       17 de abril de 2025
  * 
  * Código:      Archivo fuente del NVIC
  * 
@@ -46,7 +46,7 @@ void GPIOPortJ_Handler(void) {
         cuenta -= 1;
     }
 
-    /*  Limpiar la bandera de interrupción */
-    GPIO_PORTJ_AHB_ICR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1,0] => Interrupt is cleared */
+    /*  Limpiar la bandera de interrupción (GPIOICR) */
+    GPIO_PORTJ_AHB_ICR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1:0] => IC: Interrupt Clear -> Interrupt cleared */
 
 }
