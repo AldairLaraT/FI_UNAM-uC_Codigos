@@ -50,7 +50,7 @@
  */
 
     // GPIO Port N (PortN)
-#define GPIO_PORTN_DATA_R           (*((volatile uint32_t *)0x4006400C))            /*  pp759   GPIO Data >> PortN[1..0] unmasked */
+#define GPIO_PORTN_DATA_R           (*((volatile uint32_t *)0x4006400C))            /*  pp759   GPIO Data >> PortN[1:0] unmasked */
 #define GPIO_PORTN_DIR_R            (*((volatile uint32_t *)0x40064400))            /*  pp760   GPIO Direction */
 #define GPIO_PORTN_DEN_R            (*((volatile uint32_t *)0x4006451C))            /*  pp781   GPIO Digital Enable */
 
@@ -106,7 +106,7 @@
 #define SYSCTL_PRGPIO_R2            0x00000004                                      /*  GPIO Port C Peripheral Ready */
 #define SYSCTL_PRGPIO_R1            0x00000002                                      /*  GPIO Port B Peripheral Ready */
 #define SYSCTL_PRGPIO_R0            0x00000001                                      /*  GPIO Port A Peripheral Ready */
-
+    
     // Bit fields for the GPIO pin
 #define GPIO_PIN_7                  0x00000080                                      /*  GPIO pin 7 */
 #define GPIO_PIN_6                  0x00000040                                      /*  GPIO pin 6 */
