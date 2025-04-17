@@ -194,7 +194,7 @@ void GPIO_PortJ_Init(void) {
     /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
     GPIO_PORTJ_AHB_DIR_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1:0] => Data direction -> Input */
 
-    /*  Paso 8: Configurar las resistencias de Pull-Up (GPIOPUR) o Pull-Down (GPIOPDR), o la función de Open Drain (GPIOODR) del GPIO */
+    /*  Paso 8: Configurar como Open Drain (GPIOODR) o las resistencias de Pull-Up (GPIOPUR) / Pull-Down (GPIOPDR) */
     GPIO_PORTJ_AHB_PUR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1:0] => Pull-Up resistors -> Enabled */
 
     /*  Paso 9: Configurar las funciones digitales del GPIO (GPIODEN) */
