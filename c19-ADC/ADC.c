@@ -72,24 +72,24 @@
     /*  Paso 4: Para cada muestra en el SS, configurar la fuente de entrada (ADCSSMUXn y ADCSSEMUXn) */
     reg = ADC0_SSMUX1_R;
     reg &= ~(ADC_SSMUX1_MUX3_M | ADC_SSMUX1_MUX2_M | ADC_SSMUX1_MUX1_M | ADC_SSMUX1_MUX0_M);
-    reg |= ((0 << ADC_SSMUX1_MUX3_S) |                                              /*  ADC0 => MUX3: 4th Sample Input Select -> AIN_0 */
-            (0 << ADC_SSMUX1_MUX2_S) |                                              /*  ADC0 => MUX2: 3rd Sample Input Select -> AIN_0 */
-            (0 << ADC_SSMUX1_MUX1_S) |                                              /*  ADC0 => MUX1: 2nd Sample Input Select -> AIN_0 */
-            (10 << ADC_SSMUX1_MUX0_S));                                             /*  ADC0 => MUX0: 1st Sample Input Select -> AIN_10 */
+    reg |= ((0 << ADC_SSMUX1_MUX3_S) |                                              /*  ADC0 => SS1 MUX3: 4th Sample Input Select -> AIN_0 */
+            (0 << ADC_SSMUX1_MUX2_S) |                                              /*  ADC0 => SS1 MUX2: 3rd Sample Input Select -> AIN_0 */
+            (0 << ADC_SSMUX1_MUX1_S) |                                              /*  ADC0 => SS1 MUX1: 2nd Sample Input Select -> AIN_0 */
+            (10 << ADC_SSMUX1_MUX0_S));                                             /*  ADC0 => SS1 MUX0: 1st Sample Input Select -> AIN_10 */
     ADC0_SSMUX1_R = reg;
 
     reg = ADC0_SSEMUX1_R;
-    reg &= ~ADC_SSEMUX1_EMUX3;                                                      /*  ADC0 => EMUX3: 4th Sample Input Select -> Selected from AIN[15:0] */
-    reg &= ~ADC_SSEMUX1_EMUX2;                                                      /*  ADC0 => EMUX2: 3rd Sample Input Select -> Selected from AIN[15:0] */
-    reg &= ~ADC_SSEMUX1_EMUX1;                                                      /*  ADC0 => EMUX1: 2nd Sample Input Select -> Selected from AIN[15:0] */
-    reg &= ~ADC_SSEMUX1_EMUX0;                                                      /*  ADC0 => EMUX0: 1st Sample Input Select -> Selected from AIN[15:0] */
+    reg &= ~ADC_SSEMUX1_EMUX3;                                                      /*  ADC0 => SS1 EMUX3: 4th Sample Input Select -> Selected from AIN[15:0] */
+    reg &= ~ADC_SSEMUX1_EMUX2;                                                      /*  ADC0 => SS1 EMUX2: 3rd Sample Input Select -> Selected from AIN[15:0] */
+    reg &= ~ADC_SSEMUX1_EMUX1;                                                      /*  ADC0 => SS1 EMUX1: 2nd Sample Input Select -> Selected from AIN[15:0] */
+    reg &= ~ADC_SSEMUX1_EMUX0;                                                      /*  ADC0 => SS1 EMUX0: 1st Sample Input Select -> Selected from AIN[15:0] */
     ADC0_SSEMUX1_R = reg;
 
     /*  Paso 5: Para cada muestra en el SS, configurar los bits de control (ADCSSCTLn), asegurando que el bit END de la última muestra esté habilitado */
     reg = ADC0_SSCTL1_R;
-    reg &= ~(0x0000FFFF);                                                           /*  ADC0 => 4th, 3rd, 2nd, 1st control -> Bits cleared */
-    reg |= (ADC_SSCTL1_IE0 | ADC_SSCTL1_END0);                                      /*  ADC0 => IE0: 1st Sample Interrupt Enable -> Raw interrupt is asserted at the end of the conversion
-                                                                                                END0: 1st Sample is End of Sequence -> Is the last sample of the sequence */
+    reg &= ~(0x0000FFFF);                                                           /*  ADC0 => SS1 4th, 3rd, 2nd, 1st control -> Bits cleared */
+    reg |= (ADC_SSCTL1_IE0 |                                                        /*  ADC0 => SS1 IE0: 1st Sample Interrupt Enable -> Raw interrupt is asserted at the end of the conversion */
+            ADC_SSCTL1_END0);                                                       /*          SS1 END0: 1st Sample is End of Sequence -> Is the last sample of the sequence */
     ADC0_SSCTL1_R = reg;
 
     /*  Paso 6: Para la interrupción, desenmascarar la interrupción (ADCIM) */

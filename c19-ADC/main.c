@@ -43,6 +43,11 @@ int main(void) {
     GPIO_PortN_Init();                                                              /*  Inicialización del GPIO PortN */
     ADC0_SS1_Init();                                                                /*  Inicialización del ADC0 SS1 */
 
+    uint16_t limit1 = 800;
+    uint16_t limit2 = 1600;
+    uint16_t limit3 = 2400;
+    uint16_t limit4 = 3200;
+
     while(1) {
 
         ADC0_SS1_Initiate();                                                        /*  ADC0 => SS1 Initiate -> Begin sampling on SS1 */
@@ -50,42 +55,35 @@ int main(void) {
         ADC0_SS1_ain10 = ADC0_SS1_FIFOread();                                       /*  ADC0 => SS1 -> Lectura del resultado de conversión */
         ADC0_SS1_ClearFlags();                                                      /*  ADC0 => Limpieza de las banderas IN1 (ADCISC) y INR1 (ADCRIS) */
 
-        switch (ADC0_SS1_ain10) {
-
-            case 0 ... 799:
-                LED_D1_Off();
-                LED_D2_Off();
-                LED_D3_Off();
-                LED_D4_Off();
-                break;
-
-            case 800 ... 1599:
-                LED_D1_On();
-                LED_D2_Off();
-                LED_D3_Off();
-                LED_D4_Off();
-                break;
-
-            case 1600 ... 2399:
-                LED_D1_On();
-                LED_D2_On();
-                LED_D3_Off();
-                LED_D4_Off();
-                break;
-
-            case 2400 ... 3199:
-                LED_D1_On();
-                LED_D2_On();
-                LED_D3_On();
-                LED_D4_Off();
-                break;
-
-            default:
-                LED_D1_On();
-                LED_D2_On();
-                LED_D3_On();
-                LED_D4_On();
-                break;
+        if (ADC0_SS1_ain10 < limit1) {
+            LED_D1_Off();
+            LED_D2_Off();
+            LED_D3_Off();
+            LED_D4_Off();
+        }
+        else if (ADC0_SS1_ain10 < limit2) {
+            LED_D1_On();
+            LED_D2_Off();
+            LED_D3_Off();
+            LED_D4_Off();
+        }
+        else if (ADC0_SS1_ain10 < limit3) {
+            LED_D1_On();
+            LED_D2_On();
+            LED_D3_Off();
+            LED_D4_Off();
+        }
+        else if (ADC0_SS1_ain10 < limit4) {
+            LED_D1_On();
+            LED_D2_On();
+            LED_D3_On();
+            LED_D4_Off();
+        }
+        else {
+            LED_D1_On();
+            LED_D2_On();
+            LED_D3_On();
+            LED_D4_On();
         }
     }
 }
