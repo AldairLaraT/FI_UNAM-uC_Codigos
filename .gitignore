@@ -16,7 +16,6 @@ Release/
 .jxbrowser.userdata/
 
 # Proyectos pendientes para subir al repositorio
-/c20-ADC_temp/
 /c21-ADC_JoyStick/
 /c22-GPTM_OneShot_Periodic/
 /c23-GPTM_Capture/
