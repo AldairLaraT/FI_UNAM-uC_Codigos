@@ -7,7 +7,7 @@
  * Fecha:       18 de abril de 2025
  * 
  * Tema 09:     Periféricos
- * Código 18:   ADC: Múltiples canales con interrupción
+ * Código 21:   ADC: Múltiples canales con interrupción
  * Descripción: Configuración del ADC0, empleando el secuenciador de muestras SS0
  *              para leer el valor de dos potenciómetros con las entradas analógicas
  *              AIN10 (PB4) y AIN17 (PK1) y el sensor de temperatura embebido en el
