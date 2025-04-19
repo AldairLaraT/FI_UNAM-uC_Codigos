@@ -13,7 +13,7 @@
 
 
 #ifndef GPIO_H                                                                      /*  Verificar si GPIO_H no ha sido definido previamente */
-#define GPIO_H                                                                      /*  Definir GPIO_H para evitar inclusiones mútliples del mismo archivo */
+#define GPIO_H                                                                      /*  Definir GPIO_H para evitar inclusiones múLTiples del mismo archivo */
 
 
 /*********************************************************************************

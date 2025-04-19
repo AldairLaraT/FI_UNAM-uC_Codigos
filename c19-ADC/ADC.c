@@ -39,7 +39,7 @@
     SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R1;                                        /*  R1: GPIO PortB Run Mode Clock Gating Control -> Enabled */
     while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R1)) {}                                /*  R1: GPIO PortB Peripheral Ready -> GPIO PortN is ready for access? */
 
-    /*  Paso 3: Habilitar la funcion alterna del GPIO (GPIOAFSEL) */
+    /*  Paso 3: Habilitar la función alterna del GPIO (GPIOAFSEL) */
     GPIO_PORTB_AHB_AFSEL_R |= GPIO_PIN_4;                                           /*  PortB[4] => AFSEL: Alternate Function Select -> Alternate hardware function */
 
     /*  Paso 4: Deshabilitar las funciones digitales del GPIO (GPIODEN) */

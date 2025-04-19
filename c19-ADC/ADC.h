@@ -13,7 +13,7 @@
 
 
 #ifndef ADC_H                                                                       /*  Verificar si ADC_H no ha sido definido previamente */
-#define ADC_H                                                                       /*  Definir ADC_H para evitar inclusiones mútliples del mismo archivo */
+#define ADC_H                                                                       /*  Definir ADC_H para evitar inclusiones múltiples del mismo archivo */
 
 
 /*********************************************************************************
