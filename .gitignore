@@ -1,4 +1,4 @@
-# Ignorar carpetas temporales, caches y binarios
+# Carpetas temporales, caches y binarios
 *.o
 *.d
 *.out
@@ -8,7 +8,7 @@
 *.launch
 *.tmp
 
-# Ignorar carpetas de build
+# Carpetas de build
 Debug/
 Release/
 RemoteSystemsTempFiles/
