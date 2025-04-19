@@ -33,7 +33,7 @@
 
     /*  Paso 1: Habilitar la señal de reloj del ADC (RCGCADC) y esperar a que se estabilice (PRADC) */
     SYSCTL_RCGCADC_R |= SYSCTL_RCGCADC_R1;                                          /*  R1: ADC1 Run Mode Clock Gating Control -> Enabled */
-    while (!(SYSCTL_PRADC_R & SYSCTL_PRADC_R1)) {}                                  /*  R1: ADC1 Peripheral Ready -> ADC1 is ready for access? */
+    while (!(SYSCTL_PRADC_R & SYSCTL_PRADC_R1)) {}                                  /*  R1: ADC1 Peripheral Ready -> Peripheral is ready for access? */
 
     /*  Paso 2: Habilitar la señal de reloj del GPIO (RCGCGPIO) y esperar a que se estabilice (PRGPIO) */
     /*  Paso 3: Habilitar la función alterna del GPIO (GPIOAFSEL) */
@@ -80,7 +80,7 @@
     /*  Paso 5: Para cada muestra en el SS, configurar los bits de control (ADCSSCTLn), asegurando que el bit END de la última muestra esté habilitado */
     reg = ADC1_SSCTL2_R;
     reg &= ~(0x0000FFFF);                                                           /*  ADC1 => 4th, 3rd, 2nd, 1st control -> Bits cleared */
-    reg |= (ADC_SSCTL2_TS0 |                                                        /*  ADC1 => SS2 TS0: 1st Sample Temp Sensor Select -> The temperature sensor ir read */
+    reg |= (ADC_SSCTL2_TS0 |                                                        /*  ADC1 => SS2 TS0: 1st Sample Temp Sensor Select -> The temperature sensor is read */
             ADC_SSCTL2_IE0 |                                                        /*          SS2 IE0: 1st Sample Interrupt Enable -> Raw interrupt is asserted at the end of the conversion */
             ADC_SSCTL2_END0);                                                       /*          SS2 END0: 1st Sample is End of Sequence -> Is the last sample of the sequence */
     ADC1_SSCTL2_R = reg;
