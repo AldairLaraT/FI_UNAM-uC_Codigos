@@ -41,8 +41,8 @@ Este repositorio contiene códigos de ejemplo y ejercicios relacionados con la a
 | c18    | T09 - Periféricos                                       | `c`      | GPIO con interrupción (modular)                      |
 | c19    | T09 - Periféricos                                       | `c`      | ADC: Potenciómetro                                   |
 | c20    | T09 - Periféricos                                       | `c`      | ADC: Sensor de temperatura del TIVA                  |
-| c21    | T09 - Periféricos                                       | `c`      | ADC: JoyStick (Proyecto 5)                           |
-| c22    | T09 - Periféricos                                       | `c`      | GPTM: Modos One-Shot y Periódico                     |
+| c21    | T09 - Periféricos                                       | `c`      | ADC: Múltiples canales                               |
+<!-- | c22    | T09 - Periféricos                                       | `c`      | GPTM: Modos One-Shot y Periódico                     |
 | c23    | T09 - Periféricos                                       | `c`      | GPTM: Modo Capture                                   |
 | c24    | T09 - Periféricos                                       | `c`      | GPTM: Modo PWM                                       |
 | c25    | T09 - Periféricos                                       | `c`      | UART: Tx                                             |
@@ -50,7 +50,7 @@ Este repositorio contiene códigos de ejemplo y ejercicios relacionados con la a
 | c27    | T09 - Periféricos                                       | `c`      | UART: Uso del terminal                               |
 | c28    | T09 - Periféricos                                       | `c`      | I2C: Reloj en tiempo real DS1307                     |
 | c29    | T09 - Periféricos                                       | `c`      | I2C: Reloj en tiempo real DS1307 con interrupciones  |
-| c30    | T09 - Periféricos                                       | `c`      | SSI: Potenciómetro digital MCP41010                  |
+| c30    | T09 - Periféricos                                       | `c`      | SSI: Potenciómetro digital MCP41010                  | -->
 
 # Uso del repositorio
 1. Descargar o clonar el repositorio.
