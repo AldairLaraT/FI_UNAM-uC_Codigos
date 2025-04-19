@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       17 de abril de 2025
+ * Fecha:       18 de abril de 2025
  * 
  * Código:      Header file del SysTick
  * 

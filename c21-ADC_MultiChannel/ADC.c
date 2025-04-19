@@ -18,6 +18,7 @@
 
 #include "ADC.h"                                                                    /*  Macros para el uso de ADC */
 #include "GPIO.h"                                                                   /*  Macros para el uso de GPIO */
+#include "NVIC.h"                                                                   /*  Macros para el uso de NVIC */
 #include "SYSCTL.h"                                                                 /*  Macros para el uso de SYSCTL */
 
 
@@ -108,17 +109,23 @@
     ADC0_SSCTL0_R = reg;
 
     /*  Paso 6: Para la interrupción, desenmascarar la interrupción (ADCIM) */
-    ADC0_IM_R &= ~ADC_IM_MASK0;                                                     /*  ADC0 => MASK0: SS0 Interrupt Mask -> Masked */
+    ADC0_IM_R |= ADC_IM_MASK0;                                                      /*  ADC0 => MASK0: SS0 Interrupt Mask -> Unmasked */
 
     /*  Paso 7: Habilitar el SS (ADCACTSS) */
     ADC0_ACTSS_R |= ADC_ACTSS_ASEN0;                                                /*  ADC0 => ASEN0: SS0 Enable -> Enabled */
-    
+
     /**
      * Configuración de la interrupción
      */
 
     /*  Paso 1: Configurar el nivel de prioridad de la interrupción (PRIn) */
+    reg = NVIC_PRI3_R;
+    reg &= ~NVIC_PRI3_INT14_M;                                                     /*  Interrupt 14 (ADC0 SS0) => INTC: Interrupt Priority -> Bits cleared */
+    reg |= (1 << NVIC_PRI3_INT14_S);                                               /*  Interrupt 14 (ADC0 SS0) => INTC: Interrupt Priority -> 1 */
+    NVIC_PRI3_R = reg;
+
     /*  Paso 2: Habilitar la interrupción (ENn) */
+    NVIC_EN0_R |= (1 << (14 - 0));                                                 /*  Interrupt 14 (ADC0 SS0) => INT: Interrupt Enable -> Enabled */
 
     /**
      * Habilitación del PLL

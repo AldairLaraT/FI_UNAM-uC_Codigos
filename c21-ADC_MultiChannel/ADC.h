@@ -30,7 +30,6 @@
 
     /*  ADC module 0 (ADC0) */
 #define ADC0_ACTSS_R                (*((volatile uint32_t *)0x40038000))            /*  pp1077  ADC Active Sample Sequencer */
-#define ADC0_RIS_R                  (*((volatile uint32_t *)0x40038004))            /*  pp1079  ADC Raw Interrupt Status */
 #define ADC0_IM_R                   (*((volatile uint32_t *)0x40038008))            /*  pp1082  ADC Interrupt Mask */
 #define ADC0_ISC_R                  (*((volatile uint32_t *)0x4003800C))            /*  pp1085  ADC Interrupt Status and Clear */
 #define ADC0_EMUX_R                 (*((volatile uint32_t *)0x40038014))            /*  pp1091  ADC Event Multiplexer Select */
@@ -57,17 +56,6 @@
 #define ADC_ACTSS_ASEN2             0x00000004                                      /*  ADC SS2 Enable */
 #define ADC_ACTSS_ASEN1             0x00000002                                      /*  ADC SS1 Enable */
 #define ADC_ACTSS_ASEN0             0x00000001                                      /*  ADC SS0 Enable */
-
-    // Bit fields in the ADC_RIS register                                               pp1079
-#define ADC_RIS_INRDC               0x00010000                                      /*  Digital Comparator Raw Interrupt Status */
-#define ADC_RIS_DMAINR3             0x00000800                                      /*  SS3 DMA Raw Interrupt Status */
-#define ADC_RIS_DMAINR2             0x00000400                                      /*  SS2 DMA Raw Interrupt Status */
-#define ADC_RIS_DMAINR1             0x00000200                                      /*  SS1 DMA Raw Interrupt Status */
-#define ADC_RIS_DMAINR0             0x00000100                                      /*  SS0 DMA Raw Interrupt Status */
-#define ADC_RIS_INR3                0x00000008                                      /*  SS3 Raw Interrupt Status */
-#define ADC_RIS_INR2                0x00000004                                      /*  SS2 Raw Interrupt Status */
-#define ADC_RIS_INR1                0x00000002                                      /*  SS1 Raw Interrupt Status */
-#define ADC_RIS_INR0                0x00000001                                      /*  SS0 Raw Interrupt Status */
 
     // Bit fields in the ADC_IM register                                                pp1082
 #define ADC_IM_DCONSS3              0x00080000                                      /*  Digital Comparator Interrupt on SS3 */
@@ -245,9 +233,6 @@
 
     /*  Habilitación del ADC */
 #define ADC0_SS0_Initiate()         (ADC0_PSSI_R |= ADC_PSSI_SS0)                   /*  ADC0 => SS0 Initiate -> Begin sampling on SS0 */
-
-    /*  Lectura del estado del ADC */
-#define ADC0_SS0_RawInterrupt_wait()    while (!(ADC0_RIS_R & ADC_RIS_INR0)) {}     /*  Esperar la interrupción cruda del ADC0 SS0 */
 
     /*  Lectura del resultado de conversión */
 #define ADC0_SS0_FIFOread()         (ADC0_SSFIFO0_R & ADC_SSFIFO0_DATA_M)           /*  ADC0 => SS0 -> Lectura del resultado de conversión */

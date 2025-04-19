@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       17 de abril de 2025
+ * Fecha:       18 de abril de 2025
  * 
  * Código:      Archivo fuente del NVIC
  * 
@@ -16,6 +16,7 @@
  * Archivos de cabecera
  */
 
+#include "ADC.h"                                                                    /*  Macros para el uso de ADC */
 #include "GPIO.h"                                                                   /*  Macros para el uso de GPIO */
 #include "NVIC.h"                                                                   /*  Macros para el uso de NVIC */
 #include "SysTick.h"                                                                /*  Macros para el uso de SysTick */
@@ -27,10 +28,26 @@
 
 extern uint32_t Bounce_Delay;
 extern uint8_t LED_control_flag;
+extern uint16_t ADC0_SS0_ain10;
+extern uint16_t ADC0_SS0_ain17;
+extern uint16_t temp_RawData;
+
 
 /*********************************************************************************
  * Funciones
  */
+
+void ADC0_SS0_Handler(void) {
+
+    ADC0_SS0_ain10 = ADC0_SS0_FIFOread();                                           /*  ADC0 => SS0 -> Lectura del resultado de conversión */
+    ADC0_SS0_ain17 = ADC0_SS0_FIFOread();                                           /*  ADC0 => SS0 -> Lectura del resultado de conversión */
+    temp_RawData = ADC0_SS0_FIFOread();                                             /*  ADC0 => SS0 -> Lectura del resultado de conversión */
+
+    ADC0_SS0_ClearFlags();                                                          /*  ADC0 => Limpieza de las banderas IN0 (ADCISC) y INR0 (ADCRIS) */
+    ADC0_SS0_Initiate();                                                            /*  ADC0 => SS0 Initiate -> Begin sampling on SS0 */
+
+}
+
 
 void GPIOPortJ_Handler(void) {
 

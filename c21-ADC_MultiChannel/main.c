@@ -35,6 +35,7 @@
 uint32_t Bounce_Delay = 100000;                                                     /*  Valor de carga del SysTick para un retardo de rebote de 25ms (f = 4MHz) */
 uint16_t ADC0_SS0_ain10;
 uint16_t ADC0_SS0_ain17;
+uint16_t temp_RawData;
 float temperature;
 uint8_t LED_control_flag = 0;
 uint16_t LED_control;
@@ -56,14 +57,9 @@ int main(void) {
     uint16_t limit3 = 2400;
     uint16_t limit4 = 3200;
 
-    while(1) {
+    ADC0_SS0_Initiate();                                                            /*  ADC0 => SS0 Initiate -> Begin sampling on SS0 */
 
-        ADC0_SS0_Initiate();                                                        /*  ADC0 => SS0 Initiate -> Begin sampling on SS0 */
-        ADC0_SS0_RawInterrupt_wait();                                               /*  Esperar la interrupción cruda del ADC0 SS0 */
-        ADC0_SS0_ain10 = ADC0_SS0_FIFOread();                                       /*  ADC0 => SS0 -> Lectura del resultado de conversión */
-        ADC0_SS0_ain17 = ADC0_SS0_FIFOread();                                       /*  ADC0 => SS0 -> Lectura del resultado de conversión */
-        uint16_t temp_RawData = ADC0_SS0_FIFOread();                                /*  ADC0 => SS0 -> Lectura del resultado de conversión */
-        ADC0_SS0_ClearFlags();                                                      /*  ADC0 => Limpieza de las banderas IN0 (ADCISC) y INR0 (ADCRIS) */
+    while(1) {
 
         temperature = 147.5 - ((75 * (3.3 - 0) * temp_RawData) / 4096);             /*  pp1068  Conversión de los datos crudos (raw data) a °C */
 
