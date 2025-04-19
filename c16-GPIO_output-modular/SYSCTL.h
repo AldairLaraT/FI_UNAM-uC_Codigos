@@ -13,7 +13,7 @@
 
 
 #ifndef SYSCTL_H                                                                    /*  Verificar si SYSCTL_H no ha sido definido previamente */
-#define SYSCTL_H                                                                    /*  Definir SYSCTL_H para evitar inclusiones mútliples del mismo archivo */
+#define SYSCTL_H                                                                    /*  Definir SYSCTL_H para evitar inclusiones múltiples del mismo archivo */
 
 
 /*********************************************************************************
