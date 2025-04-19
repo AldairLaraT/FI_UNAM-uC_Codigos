@@ -13,7 +13,7 @@
 
 
 #ifndef NVIC_H                                                                      /*  Verificar si NVIC_H no ha sido definido previamente */
-#define NVIC_H                                                                      /*  Definir NVIC_H para evitar inclusiones mútliples del mismo archivo */
+#define NVIC_H                                                                      /*  Definir NVIC_H para evitar inclusiones múltiples del mismo archivo */
 
 
 /*********************************************************************************
