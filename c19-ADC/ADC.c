@@ -33,11 +33,11 @@
 
     /*  Paso 1: Habilitar la señal de reloj del ADC (RCGCADC) y esperar a que se estabilice (PRADC) */
     SYSCTL_RCGCADC_R |= SYSCTL_RCGCADC_R0;                                          /*  R0: ADC0 Run Mode Clock Gating Control -> Enabled */
-    while (!(SYSCTL_PRADC_R & SYSCTL_PRADC_R0)) {}                                  /*  R0: ADC0 Peripheral Ready -> ADC0 is ready for access? */
+    while (!(SYSCTL_PRADC_R & SYSCTL_PRADC_R0)) {}                                  /*  R0: ADC0 Peripheral Ready -> Peripheral is ready for access? */
 
     /*  Paso 2: Habilitar la señal de reloj del GPIO (RCGCGPIO) y esperar a que se estabilice (PRGPIO) */
     SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R1;                                        /*  R1: GPIO PortB Run Mode Clock Gating Control -> Enabled */
-    while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R1)) {}                                /*  R1: GPIO PortB Peripheral Ready -> GPIO PortN is ready for access? */
+    while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R1)) {}                                /*  R1: GPIO PortB Peripheral Ready -> Peripheral is ready for access? */
 
     /*  Paso 3: Habilitar la función alterna del GPIO (GPIOAFSEL) */
     GPIO_PORTB_AHB_AFSEL_R |= GPIO_PIN_4;                                           /*  PortB[4] => AFSEL: Alternate Function Select -> Alternate hardware function */
