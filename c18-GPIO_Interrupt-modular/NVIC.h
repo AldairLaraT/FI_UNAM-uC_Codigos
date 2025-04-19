@@ -51,7 +51,7 @@
  * Prototipos de funciones públicas
  */
 
-void GPIOPortJ_Handler(void);                                                       /*  ISR del GPIO PortF */
+void GPIOPortJ_Handler(void);                                                       /*  ISR del GPIO PortJ */
 
 
 #endif
