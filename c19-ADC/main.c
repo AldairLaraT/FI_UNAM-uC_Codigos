@@ -7,7 +7,7 @@
  * Fecha:       18 de abril de 2025
  * 
  * Tema 09:     Periféricos
- * Código 16:   ADC: Potenciómetro
+ * Código 19:   ADC: Potenciómetro
  * Descripción: Configuración del ADC0, empleando el secuenciador de muestras SS1 
  *              para leer el valor de un potenciómetro con la entrada analógica 
  *              AIN10 (PB4) y encender los LED de la tarjeta de desarrollo.
