@@ -7,7 +7,7 @@
  * Fecha:       18 de abril de 2025
  * 
  * Tema 09:     Periféricos
- * Código 17:   ADC: Sensor de temperatura del TIVA
+ * Código 20:   ADC: Sensor de temperatura del TIVA
  * Descripción: Configuración del ADC1, empleando el secuenciador de muestras SS2
  *              para leer el valor del sensor de temperatura embebido en el TIVA.
  * 
