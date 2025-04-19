@@ -13,7 +13,7 @@
 
 
 #ifndef SysTick_H                                                                   /*  Verificar si SysTick_H no ha sido definido previamente */
-#define SysTick_H                                                                   /*  Definir SysTick_H para evitar inclusiones mútliples del mismo archivo */
+#define SysTick_H                                                                   /*  Definir SysTick_H para evitar inclusiones múltiples del mismo archivo */
 
 
 /*********************************************************************************
