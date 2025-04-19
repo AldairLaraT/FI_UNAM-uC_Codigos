@@ -32,7 +32,7 @@ void GPIO_PortN_Init(void) {
 
     /*  Paso 1: Habilitar la señal de reloj del GPIO (RCGCGPIO) y esperar a que se estabilice (PRGPIO) */
     SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R12;                                       /*  R12: GPIO PortN Run Mode Clock Gating Control -> Enabled */
-    while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R12)) {}                               /*  R12: GPIO PortN Peripheral Ready -> GPIO PortN is ready for access? */
+    while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R12)) {}                               /*  R12: GPIO PortN Peripheral Ready -> Peripheral is ready for access? */
 
     /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
     GPIO_PORTN_DIR_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1:0] => DIR: Data direction -> Output */
