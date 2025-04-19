@@ -33,7 +33,7 @@
 
     /*  Paso 1: Habilitar la señal de reloj del ADC (RCGCADC) y esperar a que se estabilice (PRADC) */
     SYSCTL_RCGCADC_R |= SYSCTL_RCGCADC_R0;                                          /*  R0: ADC0 Run Mode Clock Gating Control -> Enabled */
-    while (!(SYSCTL_PRADC_R & SYSCTL_PRADC_R0)) {}                                  /*  R0: ADC0 Peripheral Ready -> GPIO PortN is ready for access? */
+    while (!(SYSCTL_PRADC_R & SYSCTL_PRADC_R0)) {}                                  /*  R0: ADC0 Peripheral Ready -> ADC0 is ready for access? */
 
     /*  Paso 2: Habilitar la señal de reloj del GPIO (RCGCGPIO) y esperar a que se estabilice (PRGPIO) */
     SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R1;                                        /*  R1: GPIO PortB Run Mode Clock Gating Control -> Enabled */
