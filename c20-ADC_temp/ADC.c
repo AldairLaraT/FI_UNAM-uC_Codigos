@@ -36,7 +36,7 @@
     while (!(SYSCTL_PRADC_R & SYSCTL_PRADC_R1)) {}                                  /*  R1: ADC1 Peripheral Ready -> GPIO PortN is ready for access? */
 
     /*  Paso 2: Habilitar la señal de reloj del GPIO (RCGCGPIO) y esperar a que se estabilice (PRGPIO) */
-    /*  Paso 3: Habilitar la funcion alterna del GPIO (GPIOAFSEL) */
+    /*  Paso 3: Habilitar la función alterna del GPIO (GPIOAFSEL) */
     /*  Paso 4: Deshabilitar las funciones digitales del GPIO (GPIODEN) */
     /*  Paso 5: Deshabilitar el circuito de aislamiento analógico del GPIO (GPIOAMSEL) */
 

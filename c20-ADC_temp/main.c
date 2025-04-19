@@ -9,7 +9,7 @@
  * Tema 09:     Periféricos
  * Código 17:   ADC: Sensor de temperatura del TIVA
  * Descripción: Configuración del ADC1, empleando el secuenciador de muestras SS2
- *              para leer el valor del sensor de temperatuura embebido en el TIVA.
+ *              para leer el valor del sensor de temperatura embebido en el TIVA.
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
