@@ -55,6 +55,7 @@ extern uint32_t __STACK_TOP;
 //
 //*****************************************************************************
 // To be added by user
+extern void GPIOPortJ_Handler(void);
 
 //*****************************************************************************
 //
@@ -134,7 +135,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // ADC1 Sequence 2
     IntDefaultHandler,                      // ADC1 Sequence 3
     IntDefaultHandler,                      // External Bus Interface 0
-    IntDefaultHandler,                      // GPIO Port J
+    GPIOPortJ_Handler,                      // GPIO Port J
     IntDefaultHandler,                      // GPIO Port K
     IntDefaultHandler,                      // GPIO Port L
     IntDefaultHandler,                      // SSI2 Rx and Tx

@@ -51,6 +51,24 @@
 #define GPIO_PORTF_AHB_DR12R_R      (*((volatile uint32_t *)0x4005D53C))            /*  pp792   GPIO 12-mA Drive Select */
 #define GPIO_PORTF_AHB_PC_R         (*((volatile uint32_t *)0x4005DFC4))            /*  pp800   GPIO Peripheral Configuration */
 
+    /*  GPIO Port J (PortJ) */
+#define GPIO_PORTJ_AHB_DATA_R       (*((volatile uint32_t *)0x4006000C))            /*  pp759   GPIO Data >> PortJ[1..0] unmasked */
+#define GPIO_PORTJ_AHB_DIR_R        (*((volatile uint32_t *)0x40060400))            /*  pp760   GPIO Direction */
+#define GPIO_PORTJ_AHB_IS_R         (*((volatile uint32_t *)0x40060404))            /*  pp761   GPIO Interrupt Sense */
+#define GPIO_PORTJ_AHB_IBE_R        (*((volatile uint32_t *)0x40060408))            /*  pp762   GPIO Interrupt Both Edges */
+#define GPIO_PORTJ_AHB_IEV_R        (*((volatile uint32_t *)0x4006040C))            /*  pp763   GPIO Interrupt Event */
+#define GPIO_PORTJ_AHB_IM_R         (*((volatile uint32_t *)0x40060410))            /*  pp764   GPIO Interrupt Mask */
+#define GPIO_PORTJ_AHB_ICR_R        (*((volatile uint32_t *)0x4006041C))            /*  pp769   GPIO Interrupt Clear */
+#define GPIO_PORTJ_AHB_AFSEL_R      (*((volatile uint32_t *)0x40060420))            /*  pp770   GPIO Alternate Function Select */
+#define GPIO_PORTJ_AHB_DR4R_R       (*((volatile uint32_t *)0x40060504))            /*  pp773   GPIO 4-mA Drive Select */
+#define GPIO_PORTJ_AHB_DR8R_R       (*((volatile uint32_t *)0x40060508))            /*  pp774   GPIO 8-mA Drive Select */
+#define GPIO_PORTJ_AHB_ODR_R        (*((volatile uint32_t *)0x4006050C))            /*  pp775   GPIO Open Drain Select */
+#define GPIO_PORTJ_AHB_PUR_R        (*((volatile uint32_t *)0x40060510))            /*  pp776   GPIO Pull-Up Select */
+#define GPIO_PORTJ_AHB_PDR_R        (*((volatile uint32_t *)0x40060514))            /*  pp778   GPIO Pull-Down Select */
+#define GPIO_PORTJ_AHB_DEN_R        (*((volatile uint32_t *)0x4006051C))            /*  pp781   GPIO Digital Enable */
+#define GPIO_PORTJ_AHB_DR12R_R      (*((volatile uint32_t *)0x4006053C))            /*  pp792   GPIO 12-mA Drive Select */
+#define GPIO_PORTJ_AHB_PC_R         (*((volatile uint32_t *)0x40060FC4))            /*  pp800   GPIO Peripheral Configuration */
+
     /*  GPIO Port K (PortK) */
 #define GPIO_PORTK_AFSEL_R          (*((volatile uint32_t *)0x40061420))            /*  pp770   GPIO Alternate Function Select */
 #define GPIO_PORTK_DEN_R            (*((volatile uint32_t *)0x4006151C))            /*  pp781   GPIO Digital Enable */
@@ -108,18 +126,30 @@
 #define GPIO_PIN_0                  0x00000001                                      /*  GPIO pin 0 */
 
     /*  Control de los LED de usuario (Dn) */
-#define LED_D1_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_1)               /*  Conmutación del LED D1 (PortN[1]) */
-#define LED_D2_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_0)               /*  Conmutación del LED D2 (PortN[0]) */
-#define LED_D3_Toggle()             (GPIO_PORTF_AHB_DATA_R ^= GPIO_PIN_4)           /*  Conmutación del LED D3 (PortF[4]) */
-#define LED_D4_Toggle()             (GPIO_PORTF_AHB_DATA_R ^= GPIO_PIN_0)           /*  Conmutación del LED D4 (PortF[0]) */
+#define LED_D1_On()                 (GPIO_PORTN_DATA_R |= GPIO_PIN_1)               /*  Encendido del LED D1 (PortN[1]) */
+#define LED_D1_Off()                (GPIO_PORTN_DATA_R &= ~GPIO_PIN_1)              /*  Apagado del LED D1 (PortN[1]) */
+
+#define LED_D2_On()                 (GPIO_PORTN_DATA_R |= GPIO_PIN_0)               /*  Encendido del LED D2 (PortN[0]) */
+#define LED_D2_Off()                (GPIO_PORTN_DATA_R &= ~GPIO_PIN_0)              /*  Apagado del LED D2 (PortN[0]) */
+
+#define LED_D3_On()                 (GPIO_PORTF_AHB_DATA_R |= GPIO_PIN_4)           /*  Encendido del LED D3 (PortF[4]) */
+#define LED_D3_Off()                (GPIO_PORTF_AHB_DATA_R &= ~GPIO_PIN_4)          /*  Apagado del LED D3 (PortF[4]) */
+
+#define LED_D4_On()                 (GPIO_PORTF_AHB_DATA_R |= GPIO_PIN_0)           /*  Encendido del LED D4 (PortF[0]) */
+#define LED_D4_Off()                (GPIO_PORTF_AHB_DATA_R &= ~GPIO_PIN_0)          /*  Apagado del LED D4 (PortF[0]) */
+
+    /*  Lectura de los botones de usuario (SWn) */
+#define SW1_Pressed                 (!(GPIO_PORTJ_AHB_DATA_R & GPIO_PIN_0))         /*  Lectura del SW1 (PortJ[0]) => Presionado */
+#define SW2_Pressed                 (!(GPIO_PORTJ_AHB_DATA_R & GPIO_PIN_1))         /*  Lectura del SW2 (PortJ[1]) => Presionado */
 
 
 /*********************************************************************************
  * Prototipos de funciones públicas
  */
 
-void GPIO_PortF_Init();                                                             /*  Inicialización del GPIO PortF */
-void GPIO_PortN_Init();                                                             /*  Inicialización del GPIO PortN */
+void GPIO_PortF_Init(void);                                                         /*  Inicialización del GPIO PortF */
+void GPIO_PortJ_Init(void);                                                         /*  Inicialización del GPIO PortJ */
+void GPIO_PortN_Init(void);                                                         /*  Inicialización del GPIO PortN */
 
 
 #endif
