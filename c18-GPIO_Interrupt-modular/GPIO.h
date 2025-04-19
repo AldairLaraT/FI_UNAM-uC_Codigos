@@ -115,12 +115,6 @@
 #define GPIO_PIN_1                  0x00000002                                      /*  GPIO pin 1 */
 #define GPIO_PIN_0                  0x00000001                                      /*  GPIO pin 0 */
 
-    // Bit fields in the GPIO_IM register                                               pp764
-#define GPIO_IM_DMAIME              0x00000100                                      /*  GPIO uDMA Done Interrupt Mask Enable */
-
-    // Bit fields in the GPIO_ICR register                                              pp769
-#define GPIO_ICR_DMAIC              0x00000100                                      /*  GPIO uDMA Interrupt Clear */
-
     /*  Control de los LED de usuario (Dn) */
 #define LED_D1_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_1)               /*  Conmutación del LED D1 (PortN[1]) */
 #define LED_D2_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_0)               /*  Conmutación del LED D2 (PortN[0]) */
