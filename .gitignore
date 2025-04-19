@@ -11,6 +11,7 @@
 # Ignorar carpetas de build
 Debug/
 Release/
+RemoteSystemsTempFiles/
 .cache/
 .metadata/
 .jxbrowser.userdata/
