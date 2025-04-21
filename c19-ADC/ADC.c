@@ -16,9 +16,9 @@
  * Archivos de cabecera
  */
 
-#include "ADC.h"                                                                    /*  Macros para el uso de ADC */
-#include "GPIO.h"                                                                   /*  Macros para el uso de GPIO */
-#include "SYSCTL.h"                                                                 /*  Macros para el uso de SYSCTL */
+#include "ADC.h"                                                                    /*  Archivo de cabecera del ADC */
+#include "GPIO.h"                                                                   /*  Archivo de cabecera del GPIO */
+#include "SYSCTL.h"                                                                 /*  Archivo de cabecera del SYSCTL */
 
 
 /*********************************************************************************
@@ -110,7 +110,7 @@
      * NOTA: Si se utiliza el PIOSC de 16MHz como fuente de reloj, es necesario habilitar y deshabilitar el PLL.
      */
 
-    /*  Paso 1: Encender el PLL (PLLFREQ_0) y esperar a que esté encendido y retroalimentado () */
+    /*  Paso 1: Encender el PLL (PLLFREQ_0) y esperar a que esté encendido y retroalimentado (PLLSTAT) */
     SYSCTL_PLLFREQ0_R |= SYSCTL_PLLFREQ0_PLLPWR;                                    /*  PLL => PLLPWR: PLL Power -> Enabled and oscillate based on (PLLFREQ0, PLLFREQ1) */
     while (!(SYSCTL_PLLSTAT_R & SYSCTL_PLLSTAT_LOCK)) {}                            /*  PLL => LOCK: Lock -> PLL powered and locked */
 

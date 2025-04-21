@@ -21,9 +21,9 @@
  */
 
 #include <stdint.h>                                                                 /*  Definición de los tamaños de tipo entero */
-#include "ADC.h"                                                                    /*  Macros para el uso de ADC */
-#include "GPIO.h"                                                                   /*  Macros para el uso de GPIO */
-#include "SYSCTL.h"                                                                 /*  Macros para el uso de SYSCTL */
+#include "ADC.h"                                                                    /*  Archivo de cabecera del ADC */
+#include "GPIO.h"                                                                   /*  Archivo de cabecera del GPIO */
+#include "SYSCTL.h"                                                                 /*  Archivo de cabecera del SYSCTL */
 
 
 /*********************************************************************************
