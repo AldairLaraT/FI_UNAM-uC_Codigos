@@ -6,7 +6,7 @@
  * Profesor:    M.I. Christo Aldair Lara Tenorio
  * Fecha:       18 de abril de 2025
  * 
- * Código:      Header file del NVIC
+ * Código:      Archivo de cabecera del NVIC
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
@@ -35,7 +35,7 @@
 
 
 /*********************************************************************************
- * Macros de apoyo
+ * Macros auxiliares
  */
 
     // Bit fields in the NVIC_PRI3 register                                             pp159

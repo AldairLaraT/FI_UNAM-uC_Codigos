@@ -16,9 +16,9 @@
  * Archivos de cabecera
  */
 
-#include "GPIO.h"                                                                   /*  Macros para el uso de GPIO */
-#include "NVIC.h"                                                                   /*  Macros para el uso de NVIC */
-#include "SYSCTL.h"                                                                 /*  Macros para el uso de SYSCTL */
+#include "GPIO.h"                                                                   /*  Archivo de cabecera del GPIO */
+#include "NVIC.h"                                                                   /*  Archivo de cabecera del NVIC */
+#include "SYSCTL.h"                                                                 /*  Archivo de cabecera del SYSCTL */
 
 
 /*********************************************************************************

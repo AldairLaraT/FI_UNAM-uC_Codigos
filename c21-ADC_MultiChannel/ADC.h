@@ -6,7 +6,7 @@
  * Profesor:    M.I. Christo Aldair Lara Tenorio
  * Fecha:       18 de abril de 2025
  * 
- * Código:      Header file del ADC
+ * Código:      Archivo de cabecera del ADC
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
@@ -43,7 +43,7 @@
 
 
 /*********************************************************************************
- * Macros de apoyo
+ * Macros auxiliares
  */
 
     // Bit fields in the ADC_ACTSS register                                             pp1077
