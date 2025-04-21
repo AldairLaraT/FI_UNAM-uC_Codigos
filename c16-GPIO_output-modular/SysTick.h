@@ -6,7 +6,7 @@
  * Profesor:    M.I. Christo Aldair Lara Tenorio
  * Fecha:       17 de abril de 2025
  * 
- * Código:      Header file del SysTick
+ * Código:      Archivo de cabecera del SysTick
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
@@ -34,7 +34,7 @@
 
 
 /*********************************************************************************
- * Macros de apoyo
+ * Macros auxiliares
  */
 
     // Bit fields in the NVIC_ST_CTRL register                                          pp150
