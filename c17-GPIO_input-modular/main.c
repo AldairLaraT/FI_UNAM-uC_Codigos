@@ -20,9 +20,9 @@
  */
 
 #include <stdint.h>                                                                 /*  Definición de los tamaños de tipo entero */
-#include "GPIO.h"                                                                   /*  Macros para el uso de GPIO */
-#include "SYSCTL.h"                                                                 /*  Macros para el uso de SYSCTL */
-#include "SysTick.h"                                                                /*  Macros para el uso de SysTick */
+#include "GPIO.h"                                                                   /*  Archivo de cabecera del GPIO */
+#include "SYSCTL.h"                                                                 /*  Archivo de cabecera del SYSCTL */
+#include "SysTick.h"                                                                /*  Archivo de cabecera del SysTick */
 
 
 /*********************************************************************************

@@ -16,7 +16,7 @@
  * Archivos de cabecera
  */
 
-#include "SysTick.h"                                                                /*  Macros para el uso de SysTick */
+#include "SysTick.h"                                                                /*  Archivo de cabecera del SysTick */
 
 
 /*********************************************************************************

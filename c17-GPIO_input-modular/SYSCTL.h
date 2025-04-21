@@ -6,7 +6,7 @@
  * Profesor:    M.I. Christo Aldair Lara Tenorio
  * Fecha:       17 de abril de 2025
  * 
- * Código:      Header file del SYSCTL
+ * Código:      Archivo de cabecera del SYSCTL
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
@@ -33,7 +33,7 @@
 
 
 /*********************************************************************************
- * Macros de apoyo
+ * Macros auxiliares
  */
 
     // Bit fields in the SYSCTL_RCGCGPIO register                                       pp382
