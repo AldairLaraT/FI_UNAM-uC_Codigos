@@ -56,7 +56,7 @@
 
 
 /*********************************************************************************
- * Macros de apoyo
+ * Macros auxiliares
  */
 
     // Bit fields in the NVIC_ST_CTRL register                                          pp150
