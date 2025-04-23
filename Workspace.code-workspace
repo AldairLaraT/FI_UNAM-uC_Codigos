@@ -1,0 +1,50 @@
+{
+
+    // 📁 Estructura del workspace
+    "folders": [
+        { "name": "Códigos de clase",   "path": "../FI_UNAM-uC"},
+        { "name": "Carpeta local",      "path": "../FI_UNAM-uC/local"},
+    ],
+
+    "settings": {
+
+        // 🙈 Carpetas ocultas en el workspace
+        "files.exclude": {
+            "FI_UNAM-uC": true,
+            ".jxbrowser.userdata": true,
+            ".metadata": true,
+            "dvt": true,
+            "RemoteSystemsTempFiles": true,
+            "local": true,
+
+            // Carpetas/archivos del proyecto de CCS
+            "**/.launches": true,
+            "**/.settings": true,
+            "**/Debug": true,
+            "**/targetConfigs": true,
+            "**/.ccsproject": true,
+            "**/.cproject": true,
+            "**/.project": true,
+            "**/tm4c1294ncpdt.cmd": true,
+
+            // Tareas
+            "T03-CodigoBasico_asm": true,
+            "T04-Programa_asm": true,
+            "T05-GPIO_asm": true,
+            "T06-GPIO_c": true,
+            "T08-Temporizador": true,
+            "T09-UART_Chat": true,
+
+            // Proyectos
+            "P04-GPIO_Interrupt": true,
+            "P05-ADC_GPTM_UART": true,
+        },
+        
+        "files.associations": {
+            "gpio.h": "c",
+            "sysctl.h": "c",
+            "nvic.h": "c"
+        }
+    }
+  }
+  
