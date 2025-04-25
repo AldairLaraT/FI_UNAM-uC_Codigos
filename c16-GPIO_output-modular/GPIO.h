@@ -25,7 +25,7 @@
 
 /*********************************************************************************
  * Macros de apuntadores a registros
- * General-Purpose Input/Output (GPIO) registers                                        pp757   Register map
+ * General-Purpose Input/Output (GPIO) registers                                        pp755   Register map
  */
 
     /*  GPIO Port N (PortN) */
@@ -91,4 +91,4 @@
 void GPIO_PortN_Init(void);                                                         /*  Inicialización del GPIO PortN */
 
 
-#endif
+#endif                                                                              /*  GPIO_H */
