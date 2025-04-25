@@ -234,4 +234,4 @@
 void ADC1_SS2_Init();                                                               /*  Inicialización del ADC1 SS2 */
 
 
-#endif
+#endif                                                                              /*  ADC_H */
