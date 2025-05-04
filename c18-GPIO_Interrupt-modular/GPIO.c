@@ -32,8 +32,8 @@ void GPIO_PortF_Init(void) {
      */
 
     /*  Paso 1: Habilitar la señal de reloj del GPIO (RCGCGPIO) y esperar a que se estabilice (PRGPIO) */
-    SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R5;                                       /*  R5: GPIO PortF Run Mode Clock Gating Control -> Enabled */
-    while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R5)) {}                               /*  R5: GPIO PortF Peripheral Ready -> Peripheral is ready for access? */
+    SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R5;                                        /*  R5: GPIO PortF Run Mode Clock Gating Control -> Enabled */
+    while (!(SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R5)) {}                                /*  R5: GPIO PortF Peripheral Ready -> Peripheral is ready for access? */
 
     /*  Paso 2: Configurar la dirección del GPIO (GPIODIR) */
     GPIO_PORTF_AHB_DIR_R |= (GPIO_PIN_4 | GPIO_PIN_0);                              /*  PortF[4, 0] => DIR: Data direction -> Output */
