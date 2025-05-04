@@ -200,7 +200,7 @@ void GPIO_PortJ_Init(void) {
     /*  Paso 9: Configurar las funciones digitales del GPIO (GPIODEN) */
     GPIO_PORTJ_AHB_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1:0] => Digital functions -> Enabled */
 
-    /*  Paso 10: Para la interrupción, configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV), limpiar la bandera de interrupción (GPIOICR) y desenmascarar la interrupción (GPIOIM) */
+    /*  Paso 10: Para uso de interrupción, configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV), limpiar la bandera de interrupción (GPIOICR) y desenmascarar la interrupción (GPIOIM) */
     GPIO_PORTJ_AHB_IS_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1:0] => Interrupt sense -> Edge-sensitive */
     GPIO_PORTJ_AHB_IBE_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1:0] => Interrupt both edges -> Controlled by the GPIOIEV register */
     GPIO_PORTJ_AHB_IEV_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1:0] => Interrupt event -> Falling edge triggers an interrupt */
@@ -235,7 +235,7 @@ void GPIO_PortN_Init(void) {
 }
 
 
-void SysTick_OneShot_Init(uint32_t SysTick_Reload) {
+void SysTick_Init_OneShot(uint32_t SysTick_Reload) {
 
     /*  Paso 1: Cargar el valor de cuenta del SysTick (STRELOAD) */
     NVIC_ST_RELOAD_R = (SysTick_Reload & NVIC_ST_RELOAD_M);
@@ -246,7 +246,7 @@ void SysTick_OneShot_Init(uint32_t SysTick_Reload) {
     /*  Paso 3: Configurar el SysTick para la operación requerida (STCTRL) */
     NVIC_ST_CTRL_R |= NVIC_ST_CTRL_ENABLE;                                          /*  Fuente de reloj de 4 MHz, Interrupción deshabilitada, Habilitación del SysTick */
 
-    /*  Configurar el SysTick en modo OneShot */
+    /*  Configurar el SysTick en modo One-Shot */
     NVIC_ST_RELOAD_R = 0;                                                           /*  Limpiar el valor de cuenta del SysTick (STRELOAD) para deshabilitar al contador en el siguiente ciclo */
 
 }
@@ -254,7 +254,7 @@ void SysTick_OneShot_Init(uint32_t SysTick_Reload) {
 
 void GPIOPortJ_Handler(void) {
 
-    SysTick_OneShot_Init(Bounce_Delay);                                             /*  Inicialización del SysTick en modo OneShot para el retardo de rebote */
+    SysTick_Init_OneShot(Bounce_Delay);                                             /*  Inicialización del SysTick en modo One-Shot para el retardo de rebote */
     SysTick_wait();                                                                 /*  Esperar a que el SysTick termine la cuenta */
 
     if (SW1_Pressed) {                                                              /*  Validación del SW1 */
