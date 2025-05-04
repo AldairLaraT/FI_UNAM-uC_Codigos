@@ -124,7 +124,7 @@
 #define GPIO_PIN_0                  0x00000001                                      /*  GPIO pin 0 */
 
     /*  Lectura del estado del SysTick */
-#define SysTick_wait()              while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}   /*  Esperar a que el SysTick termine la cuenta */
+#define SysTick_wait()              while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}   /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
 
     /*  Control de los LED de usuario (Dn) */
 #define LED_D1_Toggle()             (GPIO_PORTN_DATA_R ^= GPIO_PIN_1)               /*  Conmutación del LED D1 (PortN[1]) */
@@ -208,13 +208,13 @@ int main(void) {
 
         while(SW1_Released) {}                                                      /*  Esperar mientras esté liberado el SW1 (PortJ[0]) */
         SysTick_Init_OneShot(Bounce_Delay);                                         /*  Inicialización del SysTick en modo One-Shot para el retardo de rebote */
-        SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
+        SysTick_wait();                                                             /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
 
         LED_D1_Toggle();                                                            /*  Conmutación del LED D1 (PortN[1]) */
 
         while(SW1_Pressed) {}                                                       /*  Esperar mientras esté presionado el SW1 (PortJ[0]) */
         SysTick_Init_OneShot(Bounce_Delay);                                         /*  Inicialización del SysTick en modo One-Shot para el retardo de rebote */
-        SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
+        SysTick_wait();                                                             /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
 
     }
 }
