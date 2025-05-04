@@ -52,10 +52,10 @@ int main(void) {
 
     while(1) {
 
-        ADC1_SS2_Initiate();                                                        /*  ADC1 => SS2 Initiate -> Begin sampling on SS2 */
-        ADC1_SS2_RawInterrupt_wait();                                               /*  Esperar la interrupción cruda del ADC1 SS2 */
-        uint16_t temp_RawData = ADC1_SS2_FIFOread();                                /*  ADC1 => SS2 -> Lectura del resultado de conversión */
-        ADC1_SS2_ClearFlags();                                                      /*  ADC1 => Limpieza de las banderas IN2 (ADCISC) y INR2 (ADCRIS) */
+        ADC1_SS2_Initiate();                                                        /*  ADC0 => SS2 Initiate -> Begin sampling on SS2 */
+        ADC1_SS2_RawInterrupt_wait();                                               /*  ADC1 => INR2: SS2 Raw Interrupt Status -> A sample has completed conversion */
+        uint16_t temp_RawData = ADC1_SS2_FIFOread();                                /*  ADC1 SS2 => DATA: Conversion Result Data */
+        ADC1_SS2_ClearFlags();                                                      /*  ADC1 => IN2: SS2 Interrupt Status and Clear -> IN2 bit (ADCISC) and INR2 bit (ADCRIS) cleared */
 
         temperature = 147.5 - ((75 * (3.3 - 0) * temp_RawData) / 4096);             /*  pp1068  Conversión de los datos crudos (raw data) a °C */
 
@@ -90,7 +90,7 @@ int main(void) {
             LED_D4_On();
         }
 
-        SysTick_wait()                                                              /*  Esperar a que el SysTick termine la cuenta */
+        SysTick_wait()                                                              /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
 
     }
 }

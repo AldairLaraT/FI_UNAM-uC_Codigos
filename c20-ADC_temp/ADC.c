@@ -25,7 +25,7 @@
  * Funciones
  */
 
- void ADC1_SS2_Init () {
+void ADC1_SS2_Init() {
 
     /**
      * Configuración del ADC
@@ -85,7 +85,7 @@
             ADC_SSCTL2_END0);                                                       /*          SS2 END0: 1st Sample is End of Sequence -> Is the last sample of the sequence */
     ADC1_SSCTL2_R = reg;
 
-    /*  Paso 6: Para la interrupción, desenmascarar la interrupción (ADCIM) */
+    /*  Paso 6: Para uso de interrupción, desenmascarar la interrupción (ADCIM) */
     ADC1_IM_R &= ~ADC_IM_MASK2;                                                     /*  ADC1 => MASK2: SS2 Interrupt Mask -> Masked */
 
     /*  Paso 7: Habilitar el SS (ADCACTSS) */
