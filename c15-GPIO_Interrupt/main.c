@@ -83,22 +83,22 @@
 #define NVIC_ST_CTRL_ENABLE         0x00000001                                      /*  Enable */
 
     // Bit fields in the NVIC_ST_RELOAD register                                        pp152
-#define NVIC_ST_RELOAD_M            0x00FFFFFF                                      /*  Reload Value Mask */
-#define NVIC_ST_RELOAD_S            0                                               /*  Reload Value Shift */
+#define NVIC_ST_RELOAD_M            0x00FFFFFF                                      /*  Reload Value mask */
+#define NVIC_ST_RELOAD_S            0                                               /*  Reload Value shift */
 
     // Bit fields in the NVIC_ST_CURRENT register                                       pp153
-#define NVIC_ST_CURRENT_M           0x00FFFFFF                                      /*  Current Value Mask */
-#define NVIC_ST_CURRENT_S           0                                               /*  Current Value Shift */
+#define NVIC_ST_CURRENT_M           0x00FFFFFF                                      /*  Current Value mask */
+#define NVIC_ST_CURRENT_S           0                                               /*  Current Value shift */
 
     // Bit fields in the NVIC_PRI12 register                                            pp159
-#define NVIC_PRI12_INT51_M          0xE0000000                                      /*  Interrupt 51 Priority Mask */
-#define NVIC_PRI12_INT50_M          0x00E00000                                      /*  Interrupt 50 Priority Mask */
-#define NVIC_PRI12_INT49_M          0x0000E000                                      /*  Interrupt 49 Priority Mask */
-#define NVIC_PRI12_INT48_M          0x000000E0                                      /*  Interrupt 48 Priority Mask */
-#define NVIC_PRI12_INT51_S          29                                              /*  Interrupt 51 Priority Shift */
-#define NVIC_PRI12_INT50_S          21                                              /*  Interrupt 50 Priority Shift */
-#define NVIC_PRI12_INT49_S          13                                              /*  Interrupt 49 Priority Shift */
-#define NVIC_PRI12_INT48_S          5                                               /*  Interrupt 48 Priority Shift */
+#define NVIC_PRI12_INT51_M          0xE0000000                                      /*  Interrupt 51 Priority mask */
+#define NVIC_PRI12_INT50_M          0x00E00000                                      /*  Interrupt 50 Priority mask */
+#define NVIC_PRI12_INT49_M          0x0000E000                                      /*  Interrupt 49 Priority mask */
+#define NVIC_PRI12_INT48_M          0x000000E0                                      /*  Interrupt 48 Priority mask */
+#define NVIC_PRI12_INT51_S          29                                              /*  Interrupt 51 Priority shift */
+#define NVIC_PRI12_INT50_S          21                                              /*  Interrupt 50 Priority shift */
+#define NVIC_PRI12_INT49_S          13                                              /*  Interrupt 49 Priority shift */
+#define NVIC_PRI12_INT48_S          5                                               /*  Interrupt 48 Priority shift */
 
     // Bit fields in the SYSCTL_RCGCGPIO register                                       pp382
 #define SYSCTL_RCGCGPIO_R14         0x00004000                                      /*  GPIO Port Q Run Mode Clock Gating Control */
