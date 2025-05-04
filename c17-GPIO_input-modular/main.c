@@ -44,14 +44,14 @@ int main(void) {
     while(1) {
 
         while(SW1_Released) {}                                                      /*  Esperar mientras esté liberado el SW1 (PortJ[0]) */
-        SysTick_OneShot_Init(Bounce_Delay);                                         /*  Inicialización del SysTick en modo OneShot para el retardo de rebote */
-        SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
+        SysTick_Init_OneShot(Bounce_Delay);                                         /*  Inicialización del SysTick en modo One-Shot para el retardo de rebote */
+        SysTick_wait();                                                             /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
 
         LED_D1_Toggle();                                                            /*  Conmutación del LED D1 (PortN[1]) */
 
         while(SW1_Pressed) {}                                                       /*  Esperar mientras esté presionado el SW1 (PortJ[0]) */
-        SysTick_OneShot_Init(Bounce_Delay);                                         /*  Inicialización del SysTick en modo OneShot para el retardo de rebote */
-        SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
+        SysTick_Init_OneShot(Bounce_Delay);                                         /*  Inicialización del SysTick en modo One-Shot para el retardo de rebote */
+        SysTick_wait();                                                             /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
 
     }
 }

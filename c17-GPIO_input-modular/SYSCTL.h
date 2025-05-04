@@ -75,5 +75,5 @@
  * Prototipos de funciones públicas
  */
 
-
+ 
 #endif                                                                              /*  SYSCTL_H */
