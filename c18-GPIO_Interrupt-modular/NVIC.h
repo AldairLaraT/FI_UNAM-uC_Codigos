@@ -37,21 +37,21 @@
  */
 
     // Bit fields in the NVIC_PRI12 register                                            pp159
-#define NVIC_PRI12_INT51_M          0xE0000000                                      /*  Interrupt 51 Priority Mask */
-#define NVIC_PRI12_INT50_M          0x00E00000                                      /*  Interrupt 50 Priority Mask */
-#define NVIC_PRI12_INT49_M          0x0000E000                                      /*  Interrupt 49 Priority Mask */
-#define NVIC_PRI12_INT48_M          0x000000E0                                      /*  Interrupt 48 Priority Mask */
-#define NVIC_PRI12_INT51_S          29                                              /*  Interrupt 51 Priority Shift */
-#define NVIC_PRI12_INT50_S          21                                              /*  Interrupt 50 Priority Shift */
-#define NVIC_PRI12_INT49_S          13                                              /*  Interrupt 49 Priority Shift */
-#define NVIC_PRI12_INT48_S          5                                               /*  Interrupt 48 Priority Shift */
+#define NVIC_PRI12_INT51_M          0xE0000000                                      /*  Interrupt 51 Priority mask */
+#define NVIC_PRI12_INT50_M          0x00E00000                                      /*  Interrupt 50 Priority mask */
+#define NVIC_PRI12_INT49_M          0x0000E000                                      /*  Interrupt 49 Priority mask */
+#define NVIC_PRI12_INT48_M          0x000000E0                                      /*  Interrupt 48 Priority mask */
+#define NVIC_PRI12_INT51_S          29                                              /*  Interrupt 51 Priority shift */
+#define NVIC_PRI12_INT50_S          21                                              /*  Interrupt 50 Priority shift */
+#define NVIC_PRI12_INT49_S          13                                              /*  Interrupt 49 Priority shift */
+#define NVIC_PRI12_INT48_S          5                                               /*  Interrupt 48 Priority shift */
 
 
 /*********************************************************************************
  * Prototipos de funciones públicas
  */
 
-void GPIOPortJ_Handler(void);                                                       /*  ISR del GPIO PortJ */
+void GPIO_PortJ_Handler(void);                                                      /*  Interrupt 51 -> GPIO PortJ */
 
 
 #endif                                                                              /*  NVIC_H */

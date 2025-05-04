@@ -33,10 +33,10 @@ extern int cuenta;
  * Funciones
  */
 
-void GPIOPortJ_Handler(void) {
+void GPIO_PortJ_Handler(void) {
 
     SysTick_OneShot_Init(Bounce_Delay);                                             /*  Inicialización del SysTick en modo OneShot para el retardo de rebote */
-    SysTick_wait();                                                                 /*  Esperar a que el SysTick termine la cuenta */
+    SysTick_wait();                                                                 /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
 
     if (SW1_Pressed) {                                                              /*  Validación del SW1 */
         cuenta += 1;

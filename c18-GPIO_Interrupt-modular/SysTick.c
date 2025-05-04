@@ -23,7 +23,7 @@
  * Funciones
  */
 
- void SysTick_OneShot_Init(uint32_t SysTick_Reload) {
+ void SysTick_Init_OneShot(uint32_t SysTick_Reload) {
 
     /*  Paso 1: Cargar el valor de cuenta del SysTick (STRELOAD) */
     NVIC_ST_RELOAD_R = (SysTick_Reload & NVIC_ST_RELOAD_M);                         /*  SysTick => RELOAD: Reload Value */
@@ -38,7 +38,7 @@
     reg |= NVIC_ST_CTRL_ENABLE;                                                     /*  SysTick => ENABLE: Enable -> Enabled in multi-shot mode */
     NVIC_ST_CTRL_R = reg;
 
-    /*  Configurar el SysTick en modo OneShot */
+    /*  Configurar el SysTick en modo One-Shot */
     NVIC_ST_RELOAD_R = 0;                                                           /*  Limpiar el valor de cuenta del SysTick (STRELOAD) para deshabilitar el contador en el siguiente ciclo */
 
 }
