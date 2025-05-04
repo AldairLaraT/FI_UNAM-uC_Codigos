@@ -44,15 +44,15 @@
 #define NVIC_ST_CTRL_ENABLE         0x00000001                                      /*  Enable */
 
     // Bit fields in the NVIC_ST_RELOAD register                                        pp152
-#define NVIC_ST_RELOAD_M            0x00FFFFFF                                      /*  Reload Value Mask */
-#define NVIC_ST_RELOAD_S            0                                               /*  Reload Value Shift */
+#define NVIC_ST_RELOAD_M            0x00FFFFFF                                      /*  Reload Value mask */
+#define NVIC_ST_RELOAD_S            0                                               /*  Reload Value shift */
 
     // Bit fields in the NVIC_ST_CURRENT register                                       pp153
-#define NVIC_ST_CURRENT_M           0x00FFFFFF                                      /*  Current Value Mask */
-#define NVIC_ST_CURRENT_S           0                                               /*  Current Value Shift */
+#define NVIC_ST_CURRENT_M           0x00FFFFFF                                      /*  Current Value mask */
+#define NVIC_ST_CURRENT_S           0                                               /*  Current Value shift */
 
     /*  Lectura del estado del SysTick */
-#define SysTick_wait()              while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}   /*  Esperar a que el SysTick termine la cuenta */
+#define SysTick_wait()              while (!(NVIC_ST_CTRL_R & NVIC_ST_CTRL_COUNT)) {}   /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
 
 
 /*********************************************************************************

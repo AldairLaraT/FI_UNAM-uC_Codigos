@@ -52,22 +52,22 @@
  */
 
     // Bit fields in the GPIO_PC register                                               pp800
-#define GPIO_PC_EDM7_M              0x0000C000                                      /*  Extended Drive Mode Bit 7 Mask */
-#define GPIO_PC_EDM6_M              0x00003000                                      /*  Extended Drive Mode Bit 6 Mask */
-#define GPIO_PC_EDM5_M              0x00000C00                                      /*  Extended Drive Mode Bit 5 Mask */
-#define GPIO_PC_EDM4_M              0x00000300                                      /*  Extended Drive Mode Bit 4 Mask */
-#define GPIO_PC_EDM3_M              0x000000C0                                      /*  Extended Drive Mode Bit 3 Mask */
-#define GPIO_PC_EDM2_M              0x00000030                                      /*  Extended Drive Mode Bit 2 Mask */
-#define GPIO_PC_EDM1_M              0x0000000C                                      /*  Extended Drive Mode Bit 1 Mask */
-#define GPIO_PC_EDM0_M              0x00000003                                      /*  Extended Drive Mode Bit 0 Mask */
-#define GPIO_PC_EDM7_S              14                                              /*  Extended Drive Mode Bit 7 Shift */
-#define GPIO_PC_EDM6_S              12                                              /*  Extended Drive Mode Bit 6 Shift */
-#define GPIO_PC_EDM5_S              10                                              /*  Extended Drive Mode Bit 5 Shift */
-#define GPIO_PC_EDM4_S              8                                               /*  Extended Drive Mode Bit 4 Shift */
-#define GPIO_PC_EDM3_S              6                                               /*  Extended Drive Mode Bit 3 Shift */
-#define GPIO_PC_EDM2_S              4                                               /*  Extended Drive Mode Bit 2 Shift */
-#define GPIO_PC_EDM1_S              2                                               /*  Extended Drive Mode Bit 1 Shift */
-#define GPIO_PC_EDM0_S              0                                               /*  Extended Drive Mode Bit 0 Shift */
+#define GPIO_PC_EDM7_M              0x0000C000                                      /*  Extended Drive Mode Bit 7 mask */
+#define GPIO_PC_EDM6_M              0x00003000                                      /*  Extended Drive Mode Bit 6 mask */
+#define GPIO_PC_EDM5_M              0x00000C00                                      /*  Extended Drive Mode Bit 5 mask */
+#define GPIO_PC_EDM4_M              0x00000300                                      /*  Extended Drive Mode Bit 4 mask */
+#define GPIO_PC_EDM3_M              0x000000C0                                      /*  Extended Drive Mode Bit 3 mask */
+#define GPIO_PC_EDM2_M              0x00000030                                      /*  Extended Drive Mode Bit 2 mask */
+#define GPIO_PC_EDM1_M              0x0000000C                                      /*  Extended Drive Mode Bit 1 mask */
+#define GPIO_PC_EDM0_M              0x00000003                                      /*  Extended Drive Mode Bit 0 mask */
+#define GPIO_PC_EDM7_S              14                                              /*  Extended Drive Mode Bit 7 shift */
+#define GPIO_PC_EDM6_S              12                                              /*  Extended Drive Mode Bit 6 shift */
+#define GPIO_PC_EDM5_S              10                                              /*  Extended Drive Mode Bit 5 shift */
+#define GPIO_PC_EDM4_S              8                                               /*  Extended Drive Mode Bit 4 shift */
+#define GPIO_PC_EDM3_S              6                                               /*  Extended Drive Mode Bit 3 shift */
+#define GPIO_PC_EDM2_S              4                                               /*  Extended Drive Mode Bit 2 shift */
+#define GPIO_PC_EDM1_S              2                                               /*  Extended Drive Mode Bit 1 shift */
+#define GPIO_PC_EDM0_S              0                                               /*  Extended Drive Mode Bit 0 shift */
 
     // Bit fields for the GPIO pin
 #define GPIO_PIN_7                  0x00000080                                      /*  GPIO pin 7 */

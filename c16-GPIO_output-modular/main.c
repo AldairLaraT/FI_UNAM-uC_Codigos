@@ -43,10 +43,10 @@ int main(void) {
 
     while (1) {
 
-        SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
+        SysTick_wait();                                                             /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
         LED_D1_Toggle();                                                            /*  Conmutación del LED D1 (PortN[1]) */
 
-        SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
+        SysTick_wait();                                                             /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
         LED_D2_Toggle();                                                            /*  Conmutación del LED D2 (PortN[0]) */
 
     }
