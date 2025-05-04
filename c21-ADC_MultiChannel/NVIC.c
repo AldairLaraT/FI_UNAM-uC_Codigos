@@ -26,11 +26,11 @@
  * Variables globales
  */
 
-extern uint32_t Bounce_Delay;
 extern uint8_t LED_control_flag;
 extern uint16_t ADC0_SS0_ain10;
 extern uint16_t ADC0_SS0_ain17;
 extern uint16_t temp_RawData;
+extern uint32_t Bounce_Delay;
 
 
 /*********************************************************************************
@@ -39,20 +39,20 @@ extern uint16_t temp_RawData;
 
 void ADC0_SS0_Handler(void) {
 
-    ADC0_SS0_ain10 = ADC0_SS0_FIFOread();                                           /*  ADC0 => SS0 -> Lectura del resultado de conversión */
-    ADC0_SS0_ain17 = ADC0_SS0_FIFOread();                                           /*  ADC0 => SS0 -> Lectura del resultado de conversión */
-    temp_RawData = ADC0_SS0_FIFOread();                                             /*  ADC0 => SS0 -> Lectura del resultado de conversión */
+    ADC0_SS0_ain10 = ADC0_SS0_FIFOread();                                           /*  ADC0 SS0 => DATA: Conversion Result Data */
+    ADC0_SS0_ain17 = ADC0_SS0_FIFOread();                                           /*  ADC0 SS0 => DATA: Conversion Result Data */
+    temp_RawData = ADC0_SS0_FIFOread();                                             /*  ADC0 SS0 => DATA: Conversion Result Data */
 
-    ADC0_SS0_ClearFlags();                                                          /*  ADC0 => Limpieza de las banderas IN0 (ADCISC) y INR0 (ADCRIS) */
+    ADC0_SS0_ClearFlags();                                                          /*  ADC0 => IN0: SS0 Interrupt Status and Clear -> IN0 bit (ADCISC) and INR0 bit (ADCRIS) cleared */
     ADC0_SS0_Initiate();                                                            /*  ADC0 => SS0 Initiate -> Begin sampling on SS0 */
 
 }
 
 
-void GPIOPortJ_Handler(void) {
+void GPIO_PortJ_Handler(void) {
 
-    SysTick_OneShot_Init(Bounce_Delay);                                             /*  Inicialización del SysTick en modo OneShot para el retardo de rebote */
-    SysTick_wait();                                                                 /*  Esperar a que el SysTick termine la cuenta */
+    SysTick_Init_OneShot(Bounce_Delay);                                             /*  Inicialización del SysTick en modo One-Shot para el retardo de rebote */
+    SysTick_wait();                                                                 /*  SysTick => COUNT: Count Flag -> The SysTick timer has counted to 0 */
 
     if (SW1_Pressed) {                                                              /*  Validación del SW1 */
         LED_control_flag = 0;

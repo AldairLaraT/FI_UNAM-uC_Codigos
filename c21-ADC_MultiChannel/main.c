@@ -33,13 +33,13 @@
  * Variables globales
  */
 
-uint32_t Bounce_Delay = 100000;                                                     /*  Valor de carga del SysTick para un retardo de rebote de 25ms (f = 4MHz) */
+uint8_t LED_control_flag = 0;
+uint16_t LED_control;
 uint16_t ADC0_SS0_ain10;
 uint16_t ADC0_SS0_ain17;
 uint16_t temp_RawData;
+uint32_t Bounce_Delay = 100000;                                                     /*  Valor de carga del SysTick para un retardo de rebote de 25ms (f = 4MHz) */
 float temperature;
-uint8_t LED_control_flag = 0;
-uint16_t LED_control;
 
 
 /*********************************************************************************

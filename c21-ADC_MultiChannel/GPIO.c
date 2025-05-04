@@ -64,7 +64,7 @@ void GPIO_PortF_Init(void) {
     /*  Paso 9: Habilitar las funciones digitales del GPIO (GPIODEN) */
     GPIO_PORTF_AHB_DEN_R |= (GPIO_PIN_4 | GPIO_PIN_0);                              /*  PortF[4, 0] => DEN: Digital Enable -> Enabled */
 
-    /*  Paso 10: Para la interrupción, configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV), limpiar la bandera de interrupción (GPIOICR) y desenmascarar la interrupción (GPIOIM) */
+    /*  Paso 10: Para uso de interrupción, configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV), limpiar la bandera de interrupción (GPIOICR) y desenmascarar la interrupción (GPIOIM) */
     GPIO_PORTF_AHB_IS_R &= ~(GPIO_PIN_4 | GPIO_PIN_0);                              /*  PortF[4, 0] => IS: Interrupt Sense -> Edge-sensitive */
     GPIO_PORTF_AHB_IBE_R &= ~(GPIO_PIN_4 | GPIO_PIN_0);                             /*  PortF[4, 0] => IBE: Interrupt Both Edges -> Controlled by GPIOIEV */
     GPIO_PORTF_AHB_IEV_R &= ~(GPIO_PIN_4 | GPIO_PIN_0);                             /*  PortF[4, 0] => IEV: Interrupt Event -> Falling edge */
@@ -120,7 +120,7 @@ void GPIO_PortJ_Init(void) {
     /*  Paso 9: Habilitar las funciones digitales del GPIO (GPIODEN) */
     GPIO_PORTJ_AHB_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1:0] => DEN: Digital Enable -> Enabled */
 
-    /*  Paso 10: Para la interrupción, configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV), limpiar la bandera de interrupción (GPIOICR) y desenmascarar la interrupción (GPIOIM) */
+    /*  Paso 10: Para uso de interrupción, configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV), limpiar la bandera de interrupción (GPIOICR) y desenmascarar la interrupción (GPIOIM) */
     GPIO_PORTJ_AHB_IS_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                              /*  PortJ[1:0] => IS: Interrupt Sense -> Edge-sensitive */
     GPIO_PORTJ_AHB_IBE_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1:0] => IBE: Interrupt Both Edges -> Controlled by GPIOIEV */
     GPIO_PORTJ_AHB_IEV_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortJ[1:0] => IEV: Interrupt Event -> Falling edge */
@@ -181,7 +181,7 @@ void GPIO_PortN_Init(void) {
     /*  Paso 9: Habilitar las funciones digitales del GPIO (GPIODEN) */
     GPIO_PORTN_DEN_R |= (GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1:0] => DEN: Digital Enable -> Enabled */
 
-    /*  Paso 10: Para la interrupción, configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV), limpiar la bandera de interrupción (GPIOICR) y desenmascarar la interrupción (GPIOIM) */
+    /*  Paso 10: Para uso de interrupción, configurar la sensibilidad (GPIOIS), el evento (GPIOIBE y GPIOIEV), limpiar la bandera de interrupción (GPIOICR) y desenmascarar la interrupción (GPIOIM) */
     GPIO_PORTN_IS_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                                  /*  PortN[1:0] => IS: Interrupt Sense -> Edge-sensitive */
     GPIO_PORTN_IBE_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                                 /*  PortN[1:0] => IBE: Interrupt Both Edges -> Controlled by GPIOIEV */
     GPIO_PORTN_IEV_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                                 /*  PortN[1:0] => IEV: Interrupt Event -> Falling edge */

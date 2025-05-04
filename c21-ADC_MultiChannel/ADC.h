@@ -86,7 +86,7 @@
 #define ADC_ISC_IN0                 0x00000001                                      /*  SS0 Interrupt Status and Clear */
 
     // Bit fields in the ADC_EMUX register                                              pp1091
-#define ADC_EMUX_EM3_M              0x0000F000                                      /*  SS3 Trigger Select Mask */
+#define ADC_EMUX_EM3_M              0x0000F000                                      /*  SS3 Trigger Select mask */
 #define ADC_EMUX_EM3_PROCESSOR      0x00000000                                      /*  Processor (default) */
 #define ADC_EMUX_EM3_COMP0          0x00001000                                      /*  Analog Comparator 0 */
 #define ADC_EMUX_EM3_COMP1          0x00002000                                      /*  Analog Comparator 1 */
@@ -99,7 +99,7 @@
 #define ADC_EMUX_EM3_PWM3           0x00009000                                      /*  PWM generator 3 */
 #define ADC_EMUX_EM3_NEVER          0x0000E000                                      /*  Never Trigger */
 #define ADC_EMUX_EM3_ALWAYS         0x0000F000                                      /*  Always (continuously sample) */
-#define ADC_EMUX_EM2_M              0x00000F00                                      /*  SS2 Trigger Select Mask */
+#define ADC_EMUX_EM2_M              0x00000F00                                      /*  SS2 Trigger Select mask */
 #define ADC_EMUX_EM2_PROCESSOR      0x00000000                                      /*  Processor (default) */
 #define ADC_EMUX_EM2_COMP0          0x00000100                                      /*  Analog Comparator 0 */
 #define ADC_EMUX_EM2_COMP1          0x00000200                                      /*  Analog Comparator 1 */
@@ -112,7 +112,7 @@
 #define ADC_EMUX_EM2_PWM3           0x00000900                                      /*  PWM generator 3 */
 #define ADC_EMUX_EM2_NEVER          0x00000E00                                      /*  Never Trigger */
 #define ADC_EMUX_EM2_ALWAYS         0x00000F00                                      /*  Always (continuously sample) */
-#define ADC_EMUX_EM1_M              0x000000F0                                      /*  SS1 Trigger Select Mask */
+#define ADC_EMUX_EM1_M              0x000000F0                                      /*  SS1 Trigger Select mask */
 #define ADC_EMUX_EM1_PROCESSOR      0x00000000                                      /*  Processor (default) */
 #define ADC_EMUX_EM1_COMP0          0x00000010                                      /*  Analog Comparator 0 */
 #define ADC_EMUX_EM1_COMP1          0x00000020                                      /*  Analog Comparator 1 */
@@ -125,7 +125,7 @@
 #define ADC_EMUX_EM1_PWM3           0x00000090                                      /*  PWM generator 3 */
 #define ADC_EMUX_EM1_NEVER          0x000000E0                                      /*  Never Trigger */
 #define ADC_EMUX_EM1_ALWAYS         0x000000F0                                      /*  Always (continuously sample) */
-#define ADC_EMUX_EM0_M              0x0000000F                                      /*  SS0 Trigger Select Mask */
+#define ADC_EMUX_EM0_M              0x0000000F                                      /*  SS0 Trigger Select mask */
 #define ADC_EMUX_EM0_PROCESSOR      0x00000000                                      /*  Processor (default) */
 #define ADC_EMUX_EM0_COMP0          0x00000001                                      /*  Analog Comparator 0 */
 #define ADC_EMUX_EM0_COMP1          0x00000002                                      /*  Analog Comparator 1 */
@@ -140,14 +140,14 @@
 #define ADC_EMUX_EM0_ALWAYS         0x0000000F                                      /*  Always (continuously sample) */
 
     // Bit fields in the ADC_SSPRI register                                             pp1099
-#define ADC_SSPRI_SS3_M             0x00003000                                      /*  SS3 Priority Mask */
-#define ADC_SSPRI_SS2_M             0x00000300                                      /*  SS2 Priority Mask */
-#define ADC_SSPRI_SS1_M             0x00000030                                      /*  SS1 Priority Mask */
-#define ADC_SSPRI_SS0_M             0x00000003                                      /*  SS0 Priority Mask */
-#define ADC_SSPRI_SS3_S             12                                              /*  SS3 Priority Shift */
-#define ADC_SSPRI_SS2_S             8                                               /*  SS2 Priority Shift */
-#define ADC_SSPRI_SS1_S             4                                               /*  SS1 Priority Shift */
-#define ADC_SSPRI_SS0_S             0                                               /*  SS0 Priority Shift */
+#define ADC_SSPRI_SS3_M             0x00003000                                      /*  SS3 Priority mask */
+#define ADC_SSPRI_SS2_M             0x00000300                                      /*  SS2 Priority mask */
+#define ADC_SSPRI_SS1_M             0x00000030                                      /*  SS1 Priority mask */
+#define ADC_SSPRI_SS0_M             0x00000003                                      /*  SS0 Priority mask */
+#define ADC_SSPRI_SS3_S             12                                              /*  SS3 Priority shift */
+#define ADC_SSPRI_SS2_S             8                                               /*  SS2 Priority shift */
+#define ADC_SSPRI_SS1_S             4                                               /*  SS1 Priority shift */
+#define ADC_SSPRI_SS0_S             0                                               /*  SS0 Priority shift */
 
     // Bit fields in the ADC_PSSI register                                              pp1103
 #define ADC_PSSI_GSYNC              0x80000000                                      /*  Global Synchronize */
@@ -158,22 +158,22 @@
 #define ADC_PSSI_SS0                0x00000001                                      /*  SS0 Initiate */
 
     // Bit fields in the ADC_SSMUX0 register                                            pp1109
-#define ADC_SSMUX0_MUX7_M           0xF0000000                                      /*  8th Sample Input Select Mask */
-#define ADC_SSMUX0_MUX6_M           0x0F000000                                      /*  7th Sample Input Select Mask */
-#define ADC_SSMUX0_MUX5_M           0x00F00000                                      /*  6th Sample Input Select Mask */
-#define ADC_SSMUX0_MUX4_M           0x000F0000                                      /*  5th Sample Input Select Mask */
-#define ADC_SSMUX0_MUX3_M           0x0000F000                                      /*  4th Sample Input Select Mask */
-#define ADC_SSMUX0_MUX2_M           0x00000F00                                      /*  3rd Sample Input Select Mask */
-#define ADC_SSMUX0_MUX1_M           0x000000F0                                      /*  2nd Sample Input Select Mask */
-#define ADC_SSMUX0_MUX0_M           0x0000000F                                      /*  1st Sample Input Select Mask */
-#define ADC_SSMUX0_MUX7_S           28                                              /*  8th Sample Input Select Shift */
-#define ADC_SSMUX0_MUX6_S           24                                              /*  7th Sample Input Select Shift */
-#define ADC_SSMUX0_MUX5_S           20                                              /*  6th Sample Input Select Shift */
-#define ADC_SSMUX0_MUX4_S           16                                              /*  5th Sample Input Select Shift */
-#define ADC_SSMUX0_MUX3_S           12                                              /*  4th Sample Input Select Shift */
-#define ADC_SSMUX0_MUX2_S           8                                               /*  3rd Sample Input Select Shift */
-#define ADC_SSMUX0_MUX1_S           4                                               /*  2nd Sample Input Select Shift */
-#define ADC_SSMUX0_MUX0_S           0                                               /*  1st Sample Input Select Shift */
+#define ADC_SSMUX0_MUX7_M           0xF0000000                                      /*  8th Sample Input Select mask */
+#define ADC_SSMUX0_MUX6_M           0x0F000000                                      /*  7th Sample Input Select mask */
+#define ADC_SSMUX0_MUX5_M           0x00F00000                                      /*  6th Sample Input Select mask */
+#define ADC_SSMUX0_MUX4_M           0x000F0000                                      /*  5th Sample Input Select mask */
+#define ADC_SSMUX0_MUX3_M           0x0000F000                                      /*  4th Sample Input Select mask */
+#define ADC_SSMUX0_MUX2_M           0x00000F00                                      /*  3rd Sample Input Select mask */
+#define ADC_SSMUX0_MUX1_M           0x000000F0                                      /*  2nd Sample Input Select mask */
+#define ADC_SSMUX0_MUX0_M           0x0000000F                                      /*  1st Sample Input Select mask */
+#define ADC_SSMUX0_MUX7_S           28                                              /*  8th Sample Input Select shift */
+#define ADC_SSMUX0_MUX6_S           24                                              /*  7th Sample Input Select shift */
+#define ADC_SSMUX0_MUX5_S           20                                              /*  6th Sample Input Select shift */
+#define ADC_SSMUX0_MUX4_S           16                                              /*  5th Sample Input Select shift */
+#define ADC_SSMUX0_MUX3_S           12                                              /*  4th Sample Input Select shift */
+#define ADC_SSMUX0_MUX2_S           8                                               /*  3rd Sample Input Select shift */
+#define ADC_SSMUX0_MUX1_S           4                                               /*  2nd Sample Input Select shift */
+#define ADC_SSMUX0_MUX0_S           0                                               /*  1st Sample Input Select shift */
 
     // Bit fields in the ADC_SSCTL0 register                                            pp1111
 #define ADC_SSCTL0_TS7              0x80000000                                      /*  8th Sample Temp Sensor Select */
@@ -210,8 +210,8 @@
 #define ADC_SSCTL0_D0               0x00000001                                      /*  1st Sample Differential Input Select */
     
     // Bit fields in the ADC_SSFIFO0 register                                           pp1118
-#define ADC_SSFIFO0_DATA_M          0x00000FFF                                      /*  Conversion Result Data Mask */
-#define ADC_SSFIFO0_DATA_S          0                                               /*  Conversion Result Data Shift */
+#define ADC_SSFIFO0_DATA_M          0x00000FFF                                      /*  Conversion Result Data mask */
+#define ADC_SSFIFO0_DATA_S          0                                               /*  Conversion Result Data shift */
 
     // Bit fields in the ADC_SSEMUX0 register                                           pp1125
 #define ADC_SSEMUX0_EMUX7           0x10000000                                      /*  8th Sample Input Select (Upper Bit) */
@@ -224,21 +224,21 @@
 #define ADC_SSEMUX0_EMUX0           0x00000001                                      /*  1st Sample Input Select (Upper Bit) */
 
     // Bit fields in the ADC_CC register                                                pp1160
-#define ADC_CC_CLKDIV_M             0x000003F0                                      /*  PLL VCO Clock Divisor Mask */
-#define ADC_CC_CS_M                 0x0000000F                                      /*  ADC Clock Source Mask */
+#define ADC_CC_CLKDIV_M             0x000003F0                                      /*  PLL VCO Clock Divisor mask */
+#define ADC_CC_CS_M                 0x0000000F                                      /*  ADC Clock Source mask */
 #define ADC_CC_CS_SYSPLL            0x00000000                                      /*  PLL VCO divided by CLKDIV */
 #define ADC_CC_CS_PIOSC             0x00000001                                      /*  PIOSC */
 #define ADC_CC_CS_MOSC              0x00000002                                      /*  MOSC */
-#define ADC_CC_CLKDIV_S             4                                               /*  PLL VCO Clock Divisor Shift */
+#define ADC_CC_CLKDIV_S             4                                               /*  PLL VCO Clock Divisor shift */
 
     /*  Habilitación del ADC */
 #define ADC0_SS0_Initiate()         (ADC0_PSSI_R |= ADC_PSSI_SS0)                   /*  ADC0 => SS0 Initiate -> Begin sampling on SS0 */
 
     /*  Lectura del resultado de conversión */
-#define ADC0_SS0_FIFOread()         (ADC0_SSFIFO0_R & ADC_SSFIFO0_DATA_M)           /*  ADC0 => SS0 -> Lectura del resultado de conversión */
+#define ADC0_SS0_FIFOread()         (ADC0_SSFIFO0_R & ADC_SSFIFO0_DATA_M)           /*  ADC0 SS0 => DATA: Conversion Result Data */
 
     /*  Limpieza de las banderas INn (ADCISC) y INRn (ADCRIS) */
-#define ADC0_SS0_ClearFlags()       (ADC0_ISC_R |= ADC_ISC_IN0)                     /*  ADC0 => Limpieza de las banderas IN0 (ADCISC) y INR0 (ADCRIS) */
+#define ADC0_SS0_ClearFlags()       (ADC0_ISC_R |= ADC_ISC_IN0)                     /*  ADC0 => IN0: SS0 Interrupt Status and Clear -> IN0 bit (ADCISC) and INR0 bit (ADCRIS) cleared */
 
 /*********************************************************************************
  * Prototipos de funciones públicas

@@ -42,10 +42,10 @@
 
     // Bit fields in the SYSCTL_PLLFREQ0 register                                       pp292
 #define SYSCTL_PLLFREQ0_PLLPWR      0x00800000                                      /*  PLL Power */
-#define SYSCTL_PLLFREQ0_MFRAC_M     0x000FFC00                                      /*  PLL M Fractional Value Mask */
-#define SYSCTL_PLLFREQ0_MINT_M      0x000003FF                                      /*  PLL M Integer Value Mask */
-#define SYSCTL_PLLFREQ0_MFRAC_S     10                                              /*  PLL M Fractional Value Shift */
-#define SYSCTL_PLLFREQ0_MINT_S      0                                               /*  PLL M Integer Value Shift */
+#define SYSCTL_PLLFREQ0_MFRAC_M     0x000FFC00                                      /*  PLL M Fractional Value mask */
+#define SYSCTL_PLLFREQ0_MINT_M      0x000003FF                                      /*  PLL M Integer Value mask */
+#define SYSCTL_PLLFREQ0_MFRAC_S     10                                              /*  PLL M Fractional Value shift */
+#define SYSCTL_PLLFREQ0_MINT_S      0                                               /*  PLL M Integer Value shift */
 
     // Bit fields in the SYSCTL_PLLSTAT register                                        pp294
 #define SYSCTL_PLLSTAT_LOCK         0x00000001                                      /*  PLL Lock */
