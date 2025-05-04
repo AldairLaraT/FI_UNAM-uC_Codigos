@@ -51,9 +51,9 @@ int main(void) {
     while(1) {
 
         ADC0_SS1_Initiate();                                                        /*  ADC0 => SS1 Initiate -> Begin sampling on SS1 */
-        ADC0_SS1_RawInterrupt_wait();                                               /*  Esperar la interrupción cruda del ADC0 SS1 */
-        ADC0_SS1_ain10 = ADC0_SS1_FIFOread();                                       /*  ADC0 => SS1 -> Lectura del resultado de conversión */
-        ADC0_SS1_ClearFlags();                                                      /*  ADC0 => Limpieza de las banderas IN1 (ADCISC) y INR1 (ADCRIS) */
+        ADC0_SS1_RawInterrupt_wait();                                               /*  ADC0 => INR1: SS1 Raw Interrupt Status -> A sample has completed conversion */
+        ADC0_SS1_ain10 = ADC0_SS1_FIFOread();                                       /*  ADC0 SS1 => DATA: Conversion Result Data */
+        ADC0_SS1_ClearFlags();                                                      /*  ADC0 => IN1: SS1 Interrupt Status and Clear -> IN1 bit (ADCISC) and INR1 bit (ADCRIS) cleared */
 
         if (ADC0_SS1_ain10 < limit1) {
             LED_D1_Off();
