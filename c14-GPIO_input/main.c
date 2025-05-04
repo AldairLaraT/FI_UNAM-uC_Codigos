@@ -178,7 +178,7 @@ void GPIO_PortN_Init(void) {
 }
 
 
-void SysTick_OneShot_Init(uint32_t SysTick_Reload) {
+void SysTick_Init_OneShot(uint32_t SysTick_Reload) {
 
     /*  Paso 1: Cargar el valor de cuenta del SysTick (STRELOAD) */
     NVIC_ST_RELOAD_R = (SysTick_Reload & NVIC_ST_RELOAD_M);
@@ -189,7 +189,7 @@ void SysTick_OneShot_Init(uint32_t SysTick_Reload) {
     /*  Paso 3: Configurar el SysTick para la operación requerida (STCTRL) */
     NVIC_ST_CTRL_R |= NVIC_ST_CTRL_ENABLE;                                          /*  Fuente de reloj de 4 MHz, Interrupción deshabilitada, Habilitación del SysTick */
 
-    /*  Configurar el SysTick en modo OneShot */
+    /*  Configurar el SysTick en modo One-Shot */
     NVIC_ST_RELOAD_R = 0;                                                           /*  Limpiar el valor de cuenta del SysTick (STRELOAD) para deshabilitar al contador en el siguiente ciclo */
 
 }
@@ -207,13 +207,13 @@ int main(void) {
     while(1) {
 
         while(SW1_Released) {}                                                      /*  Esperar mientras esté liberado el SW1 (PortJ[0]) */
-        SysTick_OneShot_Init(Bounce_Delay);                                         /*  Inicialización del SysTick en modo OneShot para el retardo de rebote */
+        SysTick_Init_OneShot(Bounce_Delay);                                         /*  Inicialización del SysTick en modo One-Shot para el retardo de rebote */
         SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
 
         LED_D1_Toggle();                                                            /*  Conmutación del LED D1 (PortN[1]) */
 
         while(SW1_Pressed) {}                                                       /*  Esperar mientras esté presionado el SW1 (PortJ[0]) */
-        SysTick_OneShot_Init(Bounce_Delay);                                         /*  Inicialización del SysTick en modo OneShot para el retardo de rebote */
+        SysTick_Init_OneShot(Bounce_Delay);                                         /*  Inicialización del SysTick en modo One-Shot para el retardo de rebote */
         SysTick_wait();                                                             /*  Esperar a que el SysTick termine la cuenta */
 
     }
