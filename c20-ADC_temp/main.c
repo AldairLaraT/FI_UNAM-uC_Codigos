@@ -30,7 +30,6 @@
  * Variables globales
  */
 
-uint32_t SysTick_Reload = 4000000;                                                  /*  Valor de carga del SysTick (f = 4MHz) */
 float temperature;
 
 
@@ -43,6 +42,8 @@ int main(void) {
     GPIO_PortF_Init();                                                              /*  Inicialización del GPIO PortF */
     GPIO_PortN_Init();                                                              /*  Inicialización del GPIO PortN */
     ADC1_SS2_Init();                                                                /*  Inicialización del ADC1 SS2 */
+
+    uint32_t SysTick_Reload = 4000000;                                              /*  Valor de carga del SysTick (f = 4MHz) */
     SysTick_Init(SysTick_Reload);                                                   /*  Inicialización del SysTick */
 
     float temp_limit1 = 36.0f;
