@@ -18,7 +18,7 @@
  * 
  *              Reglas del juego:
  *              1. SW1 para iniciar el juego (encenderá el LED D1).
- *              2. SW2 para medir el tiempo de reacción, en cuanto se apague el LED D1.
+ *              2. En cuanto se apague el LED D1, presionar el SW2 lo más rápido posible.
  *              3. Los LED de la tarjeta de desarrollo indican el tiempo de reacción
  *                 del usuario.
  *              * Si se enciende el LED D4 ocurrió un error que solo podrá ser corregido
