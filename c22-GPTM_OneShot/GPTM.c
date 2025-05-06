@@ -94,7 +94,7 @@ void GPTM1AB_Init_OneShot(uint32_t LoadValue){
     TIMER1_TAILR_R = (LoadValue & TIMER_TAILR_M);                                   /*  GPTM1 => TAILR: GPTM Timer A Interval Load */
 
     /*  Paso 6: Para uso de interrupción, desenmascarar la interrupción (GPTMIMR) */
-    TIMER1_IMR_R |= TIMER_IMR_TATOIM;                                              /*  GPTM1 => TATOIM: GPTM Timer A Time-Out Interrupt Mask -> Interrupt unmasked */
+    TIMER1_IMR_R |= TIMER_IMR_TATOIM;                                               /*  GPTM1 => TATOIM: GPTM Timer A Time-Out Interrupt Mask -> Interrupt unmasked */
 
     /**
      * Configuración de la interrupción
@@ -102,12 +102,12 @@ void GPTM1AB_Init_OneShot(uint32_t LoadValue){
 
     /*  Paso 1: Configurar el nivel de prioridad de la interrupción (PRIn) */
     reg = NVIC_PRI5_R;
-    reg &= ~NVIC_PRI5_INT21_M;
-    reg |= (1 << NVIC_PRI5_INT21_S);
+    reg &= ~NVIC_PRI5_INT21_M;                                                      /*  Interrupt 21 (TIMER 1 subtimer A) => INTD: Interrupt Priority -> Bits cleared */
+    reg |= (1 << NVIC_PRI5_INT21_S);                                                /*  Interrupt 21 (TIMER 1 subtimer A) => INTD: Interrupt Priority -> 1 */
     NVIC_PRI5_R = reg;
 
     /*  Paso 2: Habilitar la interrupción (ENn) */
-    NVIC_EN0_R |= (1 << (21 - 0));
+    NVIC_EN0_R |= (1 << (21 - 0));                                                  /*  Interrupt 21 (TIMER 1 subtimer A) => INT: Interrupt Enable -> Enabled */
 
 }
 
@@ -148,11 +148,11 @@ void GPTM2AB_Init_OneShot(uint32_t LoadValue){
 
     /*  Paso 1: Configurar el nivel de prioridad de la interrupción (PRIn) */
     reg = NVIC_PRI5_R;
-    reg &= ~NVIC_PRI5_INT23_M;
-    reg |= (2 << NVIC_PRI5_INT23_S);
+    reg &= ~NVIC_PRI5_INT23_M;                                                      /*  Interrupt 23 (TIMER 2 subtimer A) => INTD: Interrupt Priority -> Bits cleared */
+    reg |= (2 << NVIC_PRI5_INT23_S);                                                /*  Interrupt 23 (TIMER 2 subtimer A) => INTD: Interrupt Priority -> 2 */
     NVIC_PRI5_R = reg;
 
     /*  Paso 2: Habilitar la interrupción (ENn) */
-    NVIC_EN0_R |= (1 << (23 - 0));
+    NVIC_EN0_R |= (1 << (23 - 0));                                                  /*  Interrupt 23 (TIMER 2 subtimer A) => INT: Interrupt Enable -> Enabled */
 
 }
