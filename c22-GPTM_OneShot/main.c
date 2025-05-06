@@ -8,10 +8,22 @@
  * 
  * Tema 09:     Periféricos
  * Código 22:   GPTM: Modo One-Shot
- * Descripción: XXX.
- *              GPTM0 => Retardo de rebote (polling).
- *              GPTM1 => Retardo del LED indicador (interrupción).
- *              GPTM2 => Medición del tiempo de respuesta (interrupción).
+ * Descripción: Juego de reacción con temporizadores.
+ *              Periféricos utilizados:
+ *              - GPIO PortJ => Lectura de los SW de la tarjeta de desarrollo (interrupción).
+ *              - GPIO PortN => Control de los LED de la tarjeta de desarrollo.
+ *              - GPTM0 => Retardo de rebote (polling).
+ *              - GPTM1 => Retardo del LED indicador (interrupción).
+ *              - GPTM2 => Medición del tiempo de respuesta (interrupción).
+ * 
+ *              Reglas del juego:
+ *              1. SW1 para iniciar el juego (encenderá el LED D1).
+ *              2. SW2 para medir el tiempo de reacción, en cuanto se apague el LED D1.
+ *              3. Los LED de la tarjeta de desarrollo indican el tiempo de reacción
+ *                 del usuario.
+ *              * Si se enciende el LED D4 ocurrió un error que solo podrá ser corregido
+ *                con un RESET. Sucede si se presiona el SW2 antes de tiempo o si no se 
+ *                presiona el SW2 después de un time-out.
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
