@@ -43,7 +43,7 @@ Este repositorio contiene códigos de ejemplo y ejercicios relacionados con la a
 | c20    | T09 - Periféricos                                       | `c`      | ADC: Sensor de temperatura del TIVA                  |
 | c21    | T09 - Periféricos                                       | `c`      | ADC: Múltiples canales con interrupción              |
 | c22    | T09 - Periféricos                                       | `c`      | GPTM: Modo One-Shot                                  |
-<!-- | c23    | T09 - Periféricos                                       | `c`      | GPTM: Modo Periodic                                  | -->
+| c23    | T09 - Periféricos                                       | `c`      | GPTM: Modo Periodic                                  |
 <!-- | c24    | T09 - Periféricos                                       | `c`      | GPTM: Modo Edge-Count                                | -->
 <!-- | c25    | T09 - Periféricos                                       | `c`      | GPTM: Modo Edge-Time                                 | -->
 <!-- | c26    | T09 - Periféricos                                       | `c`      | GPTM: Modo PWM                                       | -->
