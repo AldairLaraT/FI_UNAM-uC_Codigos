@@ -12,9 +12,9 @@
  *              Periféricos utilizados:
  *              - GPIO PortJ => Lectura de los SW de la tarjeta de desarrollo (interrupción).
  *              - GPIO PortN => Control de los LED de la tarjeta de desarrollo.
- *              - GPTM0 => Retardo de rebote (polling).
- *              - GPTM1 => Retardo del LED indicador (interrupción).
- *              - GPTM2 => Medición del tiempo de respuesta (interrupción).
+ *              - GPTM0 (One-Shot) => Retardo de rebote (polling).
+ *              - GPTM1 (One-Shot) => Retardo del LED indicador (interrupción).
+ *              - GPTM2 (One-Shot) => Medición del tiempo de respuesta (interrupción).
  * 
  *              Reglas del juego:
  *              1. SW1 para iniciar el juego (encenderá el LED D1).
