@@ -66,6 +66,47 @@ void GPTM0A_Init_OneShot(uint32_t LoadValue){
 }
 
 
+void GPTM0B_Init_Periodic(uint32_t LoadValue){
+
+    /**
+     * Configuración del GPTM
+     */
+
+    /*  Habilitar la señal de reloj del GPTM (RCGCGPTM) y esperar a que se estabilice (PRGPTM) */
+    SYSCTL_RCGCTIMER_R |= SYSCTL_RCGCTIMER_R0;                                      /*  R0: GPTM0 Run Mode Clock Gating Control -> Enabled */
+    while (!(SYSCTL_PRTIMER_R & SYSCTL_PRTIMER_R0)) {}                              /*  R0: GPTM0 Peripheral Ready -> Peripheral is ready for access? */
+
+    /*  Paso 1: Deshabilitar el GPTM (GPTMCTL) */
+    TIMER0_CTL_R &= ~TIMER_CTL_TBEN;                                                /*  GPTM0 => TBEN: GPTM Timer B Enable -> Disabled */
+
+    /*  Paso 2: Configurar el modo de operación del GPTM (GPTMCFG) */
+    TIMER0_CFG_R = ((TIMER0_CFG_R & ~TIMER_CFG_M) | TIMER_CFG_16_BIT);              /*  GPTM0 => GPTMCFG: GPTM Configuration -> 16-bit timer */
+
+    /*  Paso 3: Configurar (GPTMTnMR) */
+    /*  Paso 4: Seleccionar el modo (GPTMTnMR) */
+    uint32_t reg = TIMER0_TBMR_R;
+    reg |= TIMER_TBMR_TBCDIR;                                                       /*  GPTM0 => TBCDIR: GPTM Timer B Count Direction -> The timer counts up */
+    reg = ((reg & ~TIMER_TBMR_TBMR_M) | TIMER_TBMR_TBMR_PERIOD);                    /*  GPTM0 => TBMR: GPTM Timer B Mode -> Periodic Timer mode */
+    TIMER0_TBMR_R = reg;
+
+    /*  Paso 5: Cargar el valor inicial del GPTM (GPTMTnILR) */
+    /*  Si se utiliza el preescalador, cargar el valor inicial del GPTM (GPTMTnPR) */
+    TIMER0_TBILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TBILR: GPTM Timer B Interval Load */
+    TIMER0_TBPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TBPSR: GPTM Timer B Prescale */
+
+    /*  Paso 6: Para uso de interrupción, desenmascarar la interrupción (GPTMIMR) */
+    TIMER0_IMR_R &= ~TIMER_IMR_TBTOIM;                                              /*  GPTM0 => TBTOIM: GPTM Timer B Time-Out Interrupt Mask -> Interrupt masked */
+
+    /**
+     * Configuración de la interrupción
+     */
+
+    /*  Paso 1: Configurar el nivel de prioridad de la interrupción (PRIn) */
+    /*  Paso 2: Habilitar la interrupción (ENn) */
+
+}
+
+
 void GPTM1AB_Init_OneShot(uint32_t LoadValue){
 
     /**

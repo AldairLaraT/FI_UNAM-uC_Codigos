@@ -7,14 +7,15 @@
  * Fecha:       03 de mayo de 2025
  * 
  * Tema 09:     Periféricos
- * Código 22:   GPTM: Modo Periodic
+ * Código 23:   GPTM: Modo Periodic
  * Descripción: Juego de reacción con temporizadores.
  *              Periféricos utilizados:
  *              - GPIO PortJ => Lectura de los SW de la tarjeta de desarrollo (interrupción).
  *              - GPIO PortN => Control de los LED de la tarjeta de desarrollo.
- *              - GPTM0 => Retardo de rebote (polling).
- *              - GPTM1 => Retardo del LED indicador (interrupción).
- *              - GPTM2 => Medición del tiempo de respuesta (interrupción).
+ *              - GPTM0A (One-Shot) => Retardo de rebote (polling).
+ *              - GPTM0B (Periódico) => Generación de un valor aleatorio.
+ *              - GPTM1 (One-Shot) => Retardo del LED indicador (interrupción).
+ *              - GPTM2 (One-Shot) => Medición del tiempo de respuesta (interrupción).
  * 
  *              Reglas del juego:
  *              1. SW1 para iniciar el juego (encenderá el LED D1).
@@ -44,7 +45,6 @@
  * Variables globales
  */
 
-uint16_t ReloadStep;                                                                /*  Valor para el retardo del LED indicador (TIMER1) */
 uint32_t TIMER2_TimeoutValue = 32000000;                                            /*  Valor de cuenta máximo => 2s (f = 16MHz) para medir el tiempo de respuesta del usuario */
 float ReactionTime_ms = 0;                                                          /*  Tiempo de reacción del usuario (ms) */
 
@@ -64,19 +64,10 @@ int main(void) {
 
     GPTM2AB_Init_OneShot(TIMER2_TimeoutValue);                                      /*  Inicialización del GPTM2 (subtimers A y B concatenados) en modo One-Shot */
 
-    uint8_t ReloadOffset = 16;                                                      /*  Incremento del valor de carga del TIMER1 */
-    const uint16_t ReloadStepMin = 160;                                             /*  Límite inferior del valor de carga del TIMER1 */
-    const uint16_t ReloadStepMax = 800;                                             /*  Límite superior del valor de carga del TIMER1 */
-
     GPTM1AB_Init_OneShot(0);                                                        /*  Inicialización del GPTM1 (subtimers A y B concatenados) en modo One-Shot */
-    ReloadStep = ReloadStepMin;
 
-    while(1) {
+    GPTM0B_Init_Periodic(16000000);                                                 /*  Inicialización del GPTM0 (subtimer B) en modo Periodic */
+    GPTM0_B_Initiate();                                                             /*  GPTM0 => TBEN: GPTM Timer B Enable -> Enabled and begins counting */
 
-        ReloadStep += ReloadOffset;
-
-        if (ReloadStep >= ReloadStepMax) {
-            ReloadStep = ReloadStepMin;
-        }
-    }
+    while(1) {}
 }

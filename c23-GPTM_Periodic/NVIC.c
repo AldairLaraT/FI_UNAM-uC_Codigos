@@ -25,7 +25,6 @@
  * Variables globales
  */
 
-extern uint16_t ReloadStep;
 extern uint32_t TIMER2_TimeoutValue;
 extern float ReactionTime_ms;
 
@@ -70,7 +69,8 @@ void GPIO_PortJ_Handler(void){
         LED_D3_Off();
         LED_D4_Off();
 
-        uint32_t TIMER1_Reload = ReloadStep * 100000;
+        uint32_t TIMER0B_CurrentValue = TIMER0_TBV_R;
+        uint32_t TIMER1_Reload = 16000000 + (TIMER0B_CurrentValue * 4);
         TIMER1_TAILR_R = (TIMER1_Reload & TIMER_TAILR_M);                           /*  GPTM1 => TAILR: GPTM Timer A Interval Load */
         GPTM1_A_Initiate();                                                         /*  GPTM1 => TAEN: GPTM Timer A Enable -> Enabled and begins counting */
     }
