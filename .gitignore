@@ -17,7 +17,6 @@ RemoteSystemsTempFiles/
 .jxbrowser.userdata/
 
 # Proyectos pendientes para subir al repositorio
-/c24-GPTM_EdgeCount/
 /c25-GPTM_EdgeTime/
 /c26-GPTM_PWM/
 /c25-UART_Tx/
