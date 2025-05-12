@@ -31,7 +31,7 @@ void GPTM0A_Init_OneShot(uint32_t LoadValue){
      * Configuración del GPTM
      */
 
-    /*  Habilitar la señal de reloj del GPTM (RCGCGPTM) y esperar a que se estabilice (PRGPTM) */
+    /*  Habilitar la señal de reloj del GPTM (RCGCTIMER) y esperar a que se estabilice (PRTIMER) */
     SYSCTL_RCGCTIMER_R |= SYSCTL_RCGCTIMER_R0;                                      /*  R0: GPTM0 Run Mode Clock Gating Control -> Enabled */
     while (!(SYSCTL_PRTIMER_R & SYSCTL_PRTIMER_R0)) {}                              /*  R0: GPTM0 Peripheral Ready -> Peripheral is ready for access? */
 
@@ -41,8 +41,8 @@ void GPTM0A_Init_OneShot(uint32_t LoadValue){
     /*  Paso 2: Configurar el modo de operación del GPTM (GPTMCFG) */
     TIMER0_CFG_R = ((TIMER0_CFG_R & ~TIMER_CFG_M) | TIMER_CFG_16_BIT);              /*  GPTM0 => GPTMCFG: GPTM Configuration -> 16-bit timer */
 
-    /*  Paso 3: Configurar (GPTMTnMR) */
-    /*  Paso 4: Seleccionar el modo (GPTMTnMR) */
+    /*  Paso 3: Seleccionar el modo one-shot o periódico (GPTMTnMR) */
+    /*  Paso 4: Configurar el modo de operación adecuado (GPTMTnMR) */
     uint32_t reg = TIMER0_TAMR_R;
     reg &= ~TIMER_TAMR_TACDIR;                                                      /*  GPTM0 => TACDIR: GPTM Timer A Count Direction -> The timer counts down */
     reg = ((reg & ~TIMER_TAMR_TAMR_M) | TIMER_TAMR_TAMR_1_SHOT);                    /*  GPTM0 => TAMR: GPTM Timer A Mode -> One-Shot Timer mode */
@@ -72,7 +72,7 @@ void GPTM0B_Init_Periodic(uint32_t LoadValue){
      * Configuración del GPTM
      */
 
-    /*  Habilitar la señal de reloj del GPTM (RCGCGPTM) y esperar a que se estabilice (PRGPTM) */
+    /*  Habilitar la señal de reloj del GPTM (RCGCTIMER) y esperar a que se estabilice (PRTIMER) */
     SYSCTL_RCGCTIMER_R |= SYSCTL_RCGCTIMER_R0;                                      /*  R0: GPTM0 Run Mode Clock Gating Control -> Enabled */
     while (!(SYSCTL_PRTIMER_R & SYSCTL_PRTIMER_R0)) {}                              /*  R0: GPTM0 Peripheral Ready -> Peripheral is ready for access? */
 
@@ -82,8 +82,8 @@ void GPTM0B_Init_Periodic(uint32_t LoadValue){
     /*  Paso 2: Configurar el modo de operación del GPTM (GPTMCFG) */
     TIMER0_CFG_R = ((TIMER0_CFG_R & ~TIMER_CFG_M) | TIMER_CFG_16_BIT);              /*  GPTM0 => GPTMCFG: GPTM Configuration -> 16-bit timer */
 
-    /*  Paso 3: Configurar (GPTMTnMR) */
-    /*  Paso 4: Seleccionar el modo (GPTMTnMR) */
+    /*  Paso 3: Seleccionar el modo one-shot o periódico (GPTMTnMR) */
+    /*  Paso 4: Configurar el modo de operación adecuado (GPTMTnMR) */
     uint32_t reg = TIMER0_TBMR_R;
     reg |= TIMER_TBMR_TBCDIR;                                                       /*  GPTM0 => TBCDIR: GPTM Timer B Count Direction -> The timer counts up */
     reg = ((reg & ~TIMER_TBMR_TBMR_M) | TIMER_TBMR_TBMR_PERIOD);                    /*  GPTM0 => TBMR: GPTM Timer B Mode -> Periodic Timer mode */
@@ -113,7 +113,7 @@ void GPTM1AB_Init_OneShot(uint32_t LoadValue){
      * Configuración del GPTM
      */
 
-    /*  Habilitar la señal de reloj del GPTM (RCGCGPTM) y esperar a que se estabilice (PRGPTM) */
+    /*  Habilitar la señal de reloj del GPTM (RCGCTIMER) y esperar a que se estabilice (PRTIMER) */
     SYSCTL_RCGCTIMER_R |= SYSCTL_RCGCTIMER_R1;                                      /*  R1: GPTM1 Run Mode Clock Gating Control -> Enabled */
     while (!(SYSCTL_PRTIMER_R & SYSCTL_PRTIMER_R1)) {}                              /*  R1: GPTM1 Peripheral Ready -> Peripheral is ready for access? */
 
@@ -123,8 +123,8 @@ void GPTM1AB_Init_OneShot(uint32_t LoadValue){
     /*  Paso 2: Configurar el modo de operación del GPTM (GPTMCFG) */
     TIMER1_CFG_R = ((TIMER1_CFG_R & ~TIMER_CFG_M) | TIMER_CFG_32_BIT_TIMER);        /*  GPTM1 => GPTMCFG: GPTM Configuration -> 32-bit timer */
 
-    /*  Paso 3: Configurar (GPTMTnMR) */
-    /*  Paso 4: Seleccionar el modo (GPTMTnMR) */
+    /*  Paso 3: Seleccionar el modo one-shot o periódico (GPTMTnMR) */
+    /*  Paso 4: Configurar el modo de operación adecuado (GPTMTnMR) */
     uint32_t reg = TIMER1_TAMR_R;
     reg |= TIMER_TAMR_TACDIR;                                                       /*  GPTM1 => TACDIR: GPTM Timer A Count Direction -> The timer counts up */
     reg = ((reg & ~TIMER_TAMR_TAMR_M) | TIMER_TAMR_TAMR_1_SHOT);                    /*  GPTM1 => TAMR: GPTM Timer A Mode -> One-Shot Timer mode */
@@ -159,7 +159,7 @@ void GPTM2AB_Init_OneShot(uint32_t LoadValue){
      * Configuración del GPTM
      */
 
-    /*  Habilitar la señal de reloj del GPTM (RCGCGPTM) y esperar a que se estabilice (PRGPTM) */
+    /*  Habilitar la señal de reloj del GPTM (RCGCTIMER) y esperar a que se estabilice (PRTIMER) */
     SYSCTL_RCGCTIMER_R |= SYSCTL_RCGCTIMER_R2;                                      /*  R2: GPTM2 Run Mode Clock Gating Control -> Enabled */
     while (!(SYSCTL_PRTIMER_R & SYSCTL_PRTIMER_R2)) {}                              /*  R2: GPTM2 Peripheral Ready -> Peripheral is ready for access? */
 
@@ -169,8 +169,8 @@ void GPTM2AB_Init_OneShot(uint32_t LoadValue){
     /*  Paso 2: Configurar el modo de operación del GPTM (GPTMCFG) */
     TIMER2_CFG_R = ((TIMER2_CFG_R & ~TIMER_CFG_M) | TIMER_CFG_32_BIT_TIMER);        /*  GPTM2 => GPTMCFG: GPTM Configuration -> 32-bit timer */
 
-    /*  Paso 3: Configurar (GPTMTnMR) */
-    /*  Paso 4: Seleccionar el modo (GPTMTnMR) */
+    /*  Paso 3: Seleccionar el modo one-shot o periódico (GPTMTnMR) */
+    /*  Paso 4: Configurar el modo de operación adecuado (GPTMTnMR) */
     uint32_t reg = TIMER2_TAMR_R;
     reg |= TIMER_TAMR_TACDIR;                                                       /*  GPTM2 => TACDIR: GPTM Timer A Count Direction -> The timer counts up */
     reg = ((reg & ~TIMER_TAMR_TAMR_M) | TIMER_TAMR_TAMR_1_SHOT);                    /*  GPTM2 => TAMR: GPTM Timer A Mode -> One-Shot Timer mode */
