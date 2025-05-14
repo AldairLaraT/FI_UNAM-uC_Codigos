@@ -22,11 +22,10 @@
  */
 
 #include <stdint.h>                                                                 /*  Definición de los tamaños de tipo entero */
-
-
-/*********************************************************************************
- * Variables globales
- */
+#include "GPIO.h"                                                                   /*  Archivo de cabecera del GPIO */
+#include "GPTM.h"                                                                   /*  Archivo de cabecera del GPTM */
+#include "NVIC.h"                                                                   /*  Archivo de cabecera del NVIC */
+#include "SYSCTL.h"                                                                 /*  Archivo de cabecera del SYSCTL */
 
 
 /*********************************************************************************
@@ -34,6 +33,14 @@
  */
 
 int main(void) {
+
+    GPIO_PortN_Init();                                                              /*  Inicialización del GPIO PortN */
+
+    GPTM0A_Init_EdgeCount(20, 5);                                                   /*  Inicialización del GPTM0 (subtimer A) en modo Edge-Count */
+    GPTM0_A_Initiate();                                                             /*  GPTM0 => TAEN: GPTM Timer A Enable -> Enabled and begins counting */
+
+    GPTM0B_Init_EdgeCount(20, 5);                                                   /*  Inicialización del GPTM0 (subtimer B) en modo Edge-Count */
+    GPTM0_B_Initiate();                                                             /*  GPTM0 => TBEN: GPTM Timer B Enable -> Enabled and begins counting */
 
     while(1) {}
 }
