@@ -35,7 +35,7 @@
 #define TIMER0_CTL_R                (*((volatile uint32_t *)0x4003000C))            /*  pp986   GPTM Control */
 #define TIMER0_IMR_R                (*((volatile uint32_t *)0x40030018))            /*  pp993   GPTM Interrupt Mask */
 // #define TIMER0_RIS_R                (*((volatile uint32_t *)0x4003001C))            /*  pp996   GPTM Raw Interrupt Status */
-// #define TIMER0_ICR_R                (*((volatile uint32_t *)0x40030024))            /*  pp1002  GPTM Interrupt Clear */
+#define TIMER0_ICR_R                (*((volatile uint32_t *)0x40030024))            /*  pp1002  GPTM Interrupt Clear */
 #define TIMER0_TAILR_R              (*((volatile uint32_t *)0x40030028))            /*  pp1004  GPTM Timer A Interval Load */
 #define TIMER0_TBILR_R              (*((volatile uint32_t *)0x4003002C))            /*  pp1005  GPTM Timer B Interval Load */
 #define TIMER0_TAMATCHR_R           (*((volatile uint32_t *)0x40030030))            /*  pp1006  GPTM Timer A Match */
@@ -153,18 +153,18 @@
 // #define TIMER_RIS_CAMRIS            0x00000002                                      /*  GPTM Timer A Capture Mode Match Raw Interrupt */
 // #define TIMER_RIS_TATORIS           0x00000001                                      /*  GPTM Timer A Time-Out Raw Interrupt */
 
-//     // Bit fields in the TIMER_ICR register                                             pp1002
-// #define TIMER_ICR_DMABINT           0x00002000                                      /*  GPTM Timer B DMA Done Interrupt Clear */
-// #define TIMER_ICR_TBMCINT           0x00000800                                      /*  GPTM Timer B Match Interrupt Clear */
-// #define TIMER_ICR_CBECINT           0x00000400                                      /*  GPTM Timer B Capture Mode Event Interrupt Clear */
-// #define TIMER_ICR_CBMCINT           0x00000200                                      /*  GPTM Timer B Capture Mode Match Interrupt Clear */
-// #define TIMER_ICR_TBTOCINT          0x00000100                                      /*  GPTM Timer B Time-Out Interrupt Clear */
-// #define TIMER_ICR_DMAAINT           0x00000020                                      /*  GPTM Timer A DMA Done Interrupt Clear */
-// #define TIMER_ICR_TAMCINT           0x00000010                                      /*  GPTM Timer A Match Interrupt Clear */
-// #define TIMER_ICR_RTCCINT           0x00000008                                      /*  GPTM RTC Interrupt Clear */
-// #define TIMER_ICR_CAECINT           0x00000004                                      /*  GPTM Timer A Capture Mode Event Interrupt Clear */
-// #define TIMER_ICR_CAMCINT           0x00000002                                      /*  GPTM Timer A Capture Mode Match Interrupt Clear */
-// #define TIMER_ICR_TATOCINT          0x00000001                                      /*  GPTM Timer A Time-Out Raw Interrupt */
+    // Bit fields in the TIMER_ICR register                                             pp1002
+#define TIMER_ICR_DMABINT           0x00002000                                      /*  GPTM Timer B DMA Done Interrupt Clear */
+#define TIMER_ICR_TBMCINT           0x00000800                                      /*  GPTM Timer B Match Interrupt Clear */
+#define TIMER_ICR_CBECINT           0x00000400                                      /*  GPTM Timer B Capture Mode Event Interrupt Clear */
+#define TIMER_ICR_CBMCINT           0x00000200                                      /*  GPTM Timer B Capture Mode Match Interrupt Clear */
+#define TIMER_ICR_TBTOCINT          0x00000100                                      /*  GPTM Timer B Time-Out Interrupt Clear */
+#define TIMER_ICR_DMAAINT           0x00000020                                      /*  GPTM Timer A DMA Done Interrupt Clear */
+#define TIMER_ICR_TAMCINT           0x00000010                                      /*  GPTM Timer A Match Interrupt Clear */
+#define TIMER_ICR_RTCCINT           0x00000008                                      /*  GPTM RTC Interrupt Clear */
+#define TIMER_ICR_CAECINT           0x00000004                                      /*  GPTM Timer A Capture Mode Event Interrupt Clear */
+#define TIMER_ICR_CAMCINT           0x00000002                                      /*  GPTM Timer A Capture Mode Match Interrupt Clear */
+#define TIMER_ICR_TATOCINT          0x00000001                                      /*  GPTM Timer A Time-Out Raw Interrupt */
 
     // Bit fields in the TIMER_TAILR register                                           pp1004
 #define TIMER_TAILR_M               0xFFFFFFFF                                      /*  GPTM Timer A Interval Load Register mask */
@@ -203,7 +203,8 @@
 #define GPTM0_B_Initiate()          (TIMER0_CTL_R |= TIMER_CTL_TBEN)                /*  GPTM0 => TBEN: GPTM Timer B Enable -> Enabled and begins counting */
 
     /*  Limpieza de las banderas del TIMER */
-// #define GPTM0_A_ClearFlags_TimeOut()    (TIMER0_ICR_R |= TIMER_ICR_TATOCINT)        /*  GPTM0 => TATOCINT: GPTM Timer A Time-Out Raw Interrupt -> TATORIS bit (GPTMRIS) and TATOMIS bit (GPTMMIS) cleared */
+#define GPTM0_A_ClearFlags_EdgeCount()  (TIMER0_ICR_R |= TIMER_ICR_CAMCINT)         /*  GPTM0 => CAMCINT: GPTM Timer A Capture Mode Match Interrupt Clear -> CAMRIS bit (GPTMRIS) and CAMMIS bit (GPTMMIS) cleared */
+#define GPTM0_B_ClearFlags_EdgeCount()  (TIMER0_ICR_R |= TIMER_ICR_CBMCINT)         /*  GPTM0 => CBMCINT: GPTM Timer B Capture Mode Match Interrupt Clear -> CBMRIS bit (GPTMRIS) and CBMMIS bit (GPTMMIS) cleared */
 
 /*********************************************************************************
  * Prototipos de funciones públicas
