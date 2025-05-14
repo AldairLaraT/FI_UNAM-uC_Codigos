@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       03 de mayo de 2025
+ * Fecha:       09 de mayo de 2025
  * 
  * Código:      Archivo de cabecera del GPTM
  * 
@@ -34,7 +34,6 @@
 #define TIMER0_TBMR_R               (*((volatile uint32_t *)0x40030008))            /*  pp982   GPTM Timer B Mode */
 #define TIMER0_CTL_R                (*((volatile uint32_t *)0x4003000C))            /*  pp986   GPTM Control */
 #define TIMER0_IMR_R                (*((volatile uint32_t *)0x40030018))            /*  pp993   GPTM Interrupt Mask */
-// #define TIMER0_RIS_R                (*((volatile uint32_t *)0x4003001C))            /*  pp996   GPTM Raw Interrupt Status */
 #define TIMER0_ICR_R                (*((volatile uint32_t *)0x40030024))            /*  pp1002  GPTM Interrupt Clear */
 #define TIMER0_TAILR_R              (*((volatile uint32_t *)0x40030028))            /*  pp1004  GPTM Timer A Interval Load */
 #define TIMER0_TBILR_R              (*((volatile uint32_t *)0x4003002C))            /*  pp1005  GPTM Timer B Interval Load */
@@ -139,19 +138,6 @@
 #define TIMER_IMR_CAEIM             0x00000004                                      /*  GPTM Timer A Capture Mode Event Interrupt Mask */
 #define TIMER_IMR_CAMIM             0x00000002                                      /*  GPTM Timer A Capture Mode Match Interrupt Mask */
 #define TIMER_IMR_TATOIM            0x00000001                                      /*  GPTM Timer A Time-Out Interrupt Mask */
-
-//     // Bit fields in the TIMER_RIS register                                             pp996
-// #define TIMER_RIS_DMABRIS           0x00002000                                      /*  GPTM Timer B DMA Done Raw Interrupt Status */
-// #define TIMER_RIS_TBMRIS            0x00000800                                      /*  GPTM Timer B Match Raw Interrupt */
-// #define TIMER_RIS_CBERIS            0x00000400                                      /*  GPTM Timer B Capture Mode Event Raw Interrupt */
-// #define TIMER_RIS_CBMRIS            0x00000200                                      /*  GPTM Timer B Capture Mode Match Raw Interrupt */
-// #define TIMER_RIS_TBTORIS           0x00000100                                      /*  GPTM Timer B Time-Out Raw Interrupt */
-// #define TIMER_RIS_DMAARIS           0x00000020                                      /*  GPTM Timer A DMA Done Raw Interrupt Status */
-// #define TIMER_RIS_TAMRIS            0x00000010                                      /*  GPTM Timer A Match Raw Interrupt */
-// #define TIMER_RIS_RTCRIS            0x00000008                                      /*  GPTM RTC Raw Interrupt */
-// #define TIMER_RIS_CAERIS            0x00000004                                      /*  GPTM Timer A Capture Mode Event Raw Interrupt */
-// #define TIMER_RIS_CAMRIS            0x00000002                                      /*  GPTM Timer A Capture Mode Match Raw Interrupt */
-// #define TIMER_RIS_TATORIS           0x00000001                                      /*  GPTM Timer A Time-Out Raw Interrupt */
 
     // Bit fields in the TIMER_ICR register                                             pp1002
 #define TIMER_ICR_DMABINT           0x00002000                                      /*  GPTM Timer B DMA Done Interrupt Clear */

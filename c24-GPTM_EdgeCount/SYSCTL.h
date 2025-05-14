@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       03 de mayo de 2025
+ * Fecha:       09 de mayo de 2025
  * 
  * Código:      Archivo de cabecera del SYSCTL
  * 

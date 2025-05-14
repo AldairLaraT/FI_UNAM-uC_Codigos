@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       03 de mayo de 2025
+ * Fecha:       09 de mayo de 2025
  * 
  * Código:      Archivo fuente del NVIC
  * 
@@ -30,6 +30,8 @@ void TIMER0_A_Handler(void){
     GPTM0_A_ClearFlags_EdgeCount();                                                 /*  GPTM0 => CAMCINT: GPTM Timer A Capture Mode Match Interrupt Clear -> CAMRIS bit (GPTMRIS) and CAMMIS bit (GPTMMIS) cleared */
 
     LED_D1_Toggle();
+
+    GPTM0_A_Initiate();                                                             /*  GPTM0 => TAEN: GPTM Timer A Enable -> Enabled and begins counting */
 
 }
 
