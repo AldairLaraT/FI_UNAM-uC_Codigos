@@ -42,4 +42,6 @@ void TIMER0_B_Handler(void){
 
     LED_D2_Toggle();
 
+    GPTM0_B_Initiate();                                                             /*  GPTM0 => TBEN: GPTM Timer B Enable -> Enabled and begins counting */
+
 }
