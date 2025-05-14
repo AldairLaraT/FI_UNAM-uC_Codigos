@@ -45,7 +45,7 @@ Este repositorio contiene códigos de ejemplo y ejercicios relacionados con la a
 | c22    | T09 - Periféricos                                       | `c`      | GPTM: Modo One-Shot                                  |
 | c23    | T09 - Periféricos                                       | `c`      | GPTM: Modo Periodic                                  |
 | c24    | T09 - Periféricos                                       | `c`      | GPTM: Modo Edge-Count                                |
-<!-- | c25    | T09 - Periféricos                                       | `c`      | GPTM: Modo Edge-Time                                 | -->
+| c25    | T09 - Periféricos                                       | `c`      | GPTM: Modo Edge-Time                                 |
 | c26    | T09 - Periféricos                                       | `c`      | GPTM: Modo PWM                                       |
 <!-- | c25    | T09 - Periféricos                                       | `c`      | UART: Tx                                             | -->
 <!-- | c26    | T09 - Periféricos                                       | `c`      | UART: Rx                                             | -->
