@@ -10,8 +10,10 @@
  * Código 24:   GPTM: Modo Edge-Count
  * Descripción: XXX.
  *              Periféricos utilizados:
+ *              TIMER0A => PL4
+ *              TIMER0B => PL5
  * 
- * Tarjeta de desarrollo:	EK-TM4C1294XL Evaluation board
+ * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
 
 
