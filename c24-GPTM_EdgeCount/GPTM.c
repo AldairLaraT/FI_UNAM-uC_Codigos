@@ -125,11 +125,11 @@ void GPTM0B_Init_EdgeCount(uint32_t LoadValue, uint32_t MatchValue){
 
     /*  Paso 1: Configurar el nivel de prioridad de la interrupción (PRIn) */
     reg = NVIC_PRI5_R;
-    reg &= ~NVIC_PRI5_INT20_M;                                                      /*  Interrupt 20 (TIMER 0 subtimer B) => INTD: Interrupt Priority -> Bits cleared */
-    reg |= (0 << NVIC_PRI5_INT20_S);                                                /*  Interrupt 20 (TIMER 0 subtimer B) => INTD: Interrupt Priority -> 0 */
+    reg &= ~NVIC_PRI5_INT20_M;                                                      /*  Interrupt 20 (TIMER 0 subtimer B) => INTA: Interrupt Priority -> Bits cleared */
+    reg |= (0 << NVIC_PRI5_INT20_S);                                                /*  Interrupt 20 (TIMER 0 subtimer B) => INTA: Interrupt Priority -> 0 */
     NVIC_PRI5_R = reg;
 
     /*  Paso 2: Habilitar la interrupción (ENn) */
-    NVIC_EN0_R |= (1 << (20 - 0));                                                  /*  Interrupt 20 (TIMER 0 subtimer B) => INT: Interrupt Enable -> Enabled */
+    NVIC_EN0_R |= (1 << (20 - 0));                                                  /*  Interrupt 20 (TIMER 0 subtimer B) => INTA Interrupt Enable -> Enabled */
 
 }
