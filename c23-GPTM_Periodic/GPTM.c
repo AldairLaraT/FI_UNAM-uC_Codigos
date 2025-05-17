@@ -143,8 +143,8 @@ void GPTM1AB_Init_OneShot(uint32_t LoadValue){
 
     /*  Paso 1: Configurar el nivel de prioridad de la interrupción (PRIn) */
     reg = NVIC_PRI5_R;
-    reg &= ~NVIC_PRI5_INT21_M;                                                      /*  Interrupt 21 (TIMER 1 subtimer A) => INTD: Interrupt Priority -> Bits cleared */
-    reg |= (1 << NVIC_PRI5_INT21_S);                                                /*  Interrupt 21 (TIMER 1 subtimer A) => INTD: Interrupt Priority -> 1 */
+    reg &= ~NVIC_PRI5_INT21_M;                                                      /*  Interrupt 21 (TIMER 1 subtimer A) => INTB: Interrupt Priority -> Bits cleared */
+    reg |= (1 << NVIC_PRI5_INT21_S);                                                /*  Interrupt 21 (TIMER 1 subtimer A) => INTB: Interrupt Priority -> 1 */
     NVIC_PRI5_R = reg;
 
     /*  Paso 2: Habilitar la interrupción (ENn) */
