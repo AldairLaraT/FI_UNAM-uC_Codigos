@@ -34,6 +34,7 @@
 #define TIMER0_TBMR_R               (*((volatile uint32_t *)0x40030008))            /*  pp982   GPTM Timer B Mode */
 #define TIMER0_CTL_R                (*((volatile uint32_t *)0x4003000C))            /*  pp986   GPTM Control */
 #define TIMER0_IMR_R                (*((volatile uint32_t *)0x40030018))            /*  pp993   GPTM Interrupt Mask */
+#define TIMER0_RIS_R                (*((volatile uint32_t *)0x4003001C))            /*  pp996   GPTM Raw Interrupt Status */
 #define TIMER0_ICR_R                (*((volatile uint32_t *)0x40030024))            /*  pp1002  GPTM Interrupt Clear */
 #define TIMER0_TAILR_R              (*((volatile uint32_t *)0x40030028))            /*  pp1004  GPTM Timer A Interval Load */
 #define TIMER0_TBILR_R              (*((volatile uint32_t *)0x4003002C))            /*  pp1005  GPTM Timer B Interval Load */
@@ -43,6 +44,40 @@
 #define TIMER0_TBPR_R               (*((volatile uint32_t *)0x4003003C))            /*  pp1009  GPTM Timer B Prescale */
 #define TIMER0_TAPMR_R              (*((volatile uint32_t *)0x40030040))            /*  pp1010  GPTM Timer A Prescale Match */
 #define TIMER0_TBPMR_R              (*((volatile uint32_t *)0x40030044))            /*  pp1011  GPTM Timer B Prescale Match */
+#define TIMER0_TBR_R                (*((volatile uint32_t *)0x4003004C))            /*  pp1013  GPTM Timer B */
+#define TIMER0_TBV_R                (*((volatile uint32_t *)0x40030054))            /*  pp1015  GPTM Timer B Value */
+#define TIMER0_TBPS_R               (*((volatile uint32_t *)0x40030060))            /*  pp1018  GPTM Timer B Prescale Snapshot */
+
+
+    /*  GPTM module 1 (TIMER1) */
+#define TIMER1_CFG_R                (*((volatile uint32_t *)0x40031000))            /*  pp976   GPTM Configuration */
+#define TIMER1_TAMR_R               (*((volatile uint32_t *)0x40031004))            /*  pp977   GPTM Timer A Mode */
+#define TIMER1_TBMR_R               (*((volatile uint32_t *)0x40031008))            /*  pp982   GPTM Timer B Mode */
+#define TIMER1_CTL_R                (*((volatile uint32_t *)0x4003100C))            /*  pp986   GPTM Control */
+#define TIMER1_SYNC_R               (*((volatile uint32_t *)0x40031010))            /*  pp990   GPTM Synchronize */
+#define TIMER1_IMR_R                (*((volatile uint32_t *)0x40031018))            /*  pp993   GPTM Interrupt Mask */
+#define TIMER1_RIS_R                (*((volatile uint32_t *)0x4003101C))            /*  pp996   GPTM Raw Interrupt Status */
+#define TIMER1_MIS_R                (*((volatile uint32_t *)0x40031020))            /*  pp999   GPTM Masked Interrupt Status */
+#define TIMER1_ICR_R                (*((volatile uint32_t *)0x40031024))            /*  pp1002  GPTM Interrupt Clear */
+#define TIMER1_TAILR_R              (*((volatile uint32_t *)0x40031028))            /*  pp1004  GPTM Timer A Interval Load */
+#define TIMER1_TBILR_R              (*((volatile uint32_t *)0x4003102C))            /*  pp1005  GPTM Timer B Interval Load */
+#define TIMER1_TAMATCHR_R           (*((volatile uint32_t *)0x40031030))            /*  pp1006  GPTM Timer A Match */
+#define TIMER1_TBMATCHR_R           (*((volatile uint32_t *)0x40031034))            /*  pp1007  GPTM Timer B Match */
+#define TIMER1_TAPR_R               (*((volatile uint32_t *)0x40031038))            /*  pp1008  GPTM Timer A Prescale */
+#define TIMER1_TBPR_R               (*((volatile uint32_t *)0x4003103C))            /*  pp1009  GPTM Timer B Prescale */
+#define TIMER1_TAPMR_R              (*((volatile uint32_t *)0x40031040))            /*  pp1010  GPTM Timer A Prescale Match */
+#define TIMER1_TBPMR_R              (*((volatile uint32_t *)0x40031044))            /*  pp1011  GPTM Timer B Prescale Match */
+#define TIMER1_TAR_R                (*((volatile uint32_t *)0x40031048))            /*  pp1012  GPTM Timer A */
+#define TIMER1_TBR_R                (*((volatile uint32_t *)0x4003104C))            /*  pp1013  GPTM Timer B */
+#define TIMER1_TAV_R                (*((volatile uint32_t *)0x40031050))            /*  pp1014  GPTM Timer A Value */
+#define TIMER1_TBV_R                (*((volatile uint32_t *)0x40031054))            /*  pp1015  GPTM Timer B Value */
+#define TIMER1_RTCPD_R              (*((volatile uint32_t *)0x40031058))            /*  pp1016  GPTM RTC Predivide */
+#define TIMER1_TAPS_R               (*((volatile uint32_t *)0x4003105C))            /*  pp1017  GPTM Timer A Prescale Snapshot */
+#define TIMER1_TBPS_R               (*((volatile uint32_t *)0x40031060))            /*  pp1018  GPTM Timer B Prescale Snapshot */
+#define TIMER1_DMAEV_R              (*((volatile uint32_t *)0x4003106C))            /*  pp1019  GPTM DMA Event */
+#define TIMER1_ADCEV_R              (*((volatile uint32_t *)0x40031070))            /*  pp1022  GPTM ADC Event */
+#define TIMER1_PP_R                 (*((volatile uint32_t *)0x40031FC0))            /*  pp1025  GPTM Peripheral Properties */
+#define TIMER1_CC_R                 (*((volatile uint32_t *)0x40031FC8))            /*  pp1027  GPTM Clock Configuration */
 
 
 /*********************************************************************************
@@ -139,6 +174,19 @@
 #define TIMER_IMR_CAMIM             0x00000002                                      /*  GPTM Timer A Capture Mode Match Interrupt Mask */
 #define TIMER_IMR_TATOIM            0x00000001                                      /*  GPTM Timer A Time-Out Interrupt Mask */
 
+    // Bit fields in the TIMER_RIS register                                             pp996
+#define TIMER_RIS_DMABRIS           0x00002000                                      /*  GPTM Timer B DMA Done Raw Interrupt Status */
+#define TIMER_RIS_TBMRIS            0x00000800                                      /*  GPTM Timer B Match Raw Interrupt */
+#define TIMER_RIS_CBERIS            0x00000400                                      /*  GPTM Timer B Capture Mode Event Raw Interrupt */
+#define TIMER_RIS_CBMRIS            0x00000200                                      /*  GPTM Timer B Capture Mode Match Raw Interrupt */
+#define TIMER_RIS_TBTORIS           0x00000100                                      /*  GPTM Timer B Time-Out Raw Interrupt */
+#define TIMER_RIS_DMAARIS           0x00000020                                      /*  GPTM Timer A DMA Done Raw Interrupt Status */
+#define TIMER_RIS_TAMRIS            0x00000010                                      /*  GPTM Timer A Match Raw Interrupt */
+#define TIMER_RIS_RTCRIS            0x00000008                                      /*  GPTM RTC Raw Interrupt */
+#define TIMER_RIS_CAERIS            0x00000004                                      /*  GPTM Timer A Capture Mode Event Raw Interrupt */
+#define TIMER_RIS_CAMRIS            0x00000002                                      /*  GPTM Timer A Capture Mode Match Raw Interrupt */
+#define TIMER_RIS_TATORIS           0x00000001                                      /*  GPTM Timer A Time-Out Raw Interrupt */
+
     // Bit fields in the TIMER_ICR register                                             pp1002
 #define TIMER_ICR_DMABINT           0x00002000                                      /*  GPTM Timer B DMA Done Interrupt Clear */
 #define TIMER_ICR_TBMCINT           0x00000800                                      /*  GPTM Timer B Match Interrupt Clear */
@@ -188,16 +236,27 @@
 #define GPTM0_A_Initiate()          (TIMER0_CTL_R |= TIMER_CTL_TAEN)                /*  GPTM0 => TAEN: GPTM Timer A Enable -> Enabled and begins counting */
 #define GPTM0_B_Initiate()          (TIMER0_CTL_R |= TIMER_CTL_TBEN)                /*  GPTM0 => TBEN: GPTM Timer B Enable -> Enabled and begins counting */
 
+#define GPTM1_A_Initiate()          (TIMER1_CTL_R |= TIMER_CTL_TAEN)                /*  GPTM1 => TAEN: GPTM Timer A Enable -> Enabled and begins counting */
+
+    /*  Lectura del estado del TIMER (Time-Out) */
+#define GPTM0_A_RawInterrupt_TimeOut_wait()     while (!(TIMER0_RIS_R & TIMER_RIS_TATORIS)) {}  /*  GPTM0 => TATORIS: GPTM Timer A Time-Out Raw Interrupt -> Timer A has timed out */
+
+#define GPTM1_A_RawInterrupt_TimeOut_wait()     while (!(TIMER1_RIS_R & TIMER_RIS_TATORIS)) {}  /*  GPTM1 => TATORIS: GPTM Timer A Time-Out Raw Interrupt -> Timer A has timed out */
+
     /*  Limpieza de las banderas del TIMER */
-#define GPTM0_A_ClearFlags_EdgeCount()  (TIMER0_ICR_R |= TIMER_ICR_CAMCINT)         /*  GPTM0 => CAMCINT: GPTM Timer A Capture Mode Match Interrupt Clear -> CAMRIS bit (GPTMRIS) and CAMMIS bit (GPTMMIS) cleared */
-#define GPTM0_B_ClearFlags_EdgeCount()  (TIMER0_ICR_R |= TIMER_ICR_CBMCINT)         /*  GPTM0 => CBMCINT: GPTM Timer B Capture Mode Match Interrupt Clear -> CBMRIS bit (GPTMRIS) and CBMMIS bit (GPTMMIS) cleared */
+#define GPTM0_A_ClearFlags_TimeOut()    (TIMER0_ICR_R |= TIMER_ICR_TATOCINT)        /*  GPTM0 => TATOCINT: GPTM Timer A Time-Out Raw Interrupt -> TATORIS bit (GPTMRIS) and TATOMIS bit (GPTMMIS) cleared */
+#define GPTM0_B_ClearFlags_EdgeTime()   (TIMER0_ICR_R |= TIMER_ICR_CBECINT)         /*  GPTM0 => CBECINT: GPTM Timer B Capture Mode Event Interrupt Clear -> CBERIS bit (GPTMRIS) and CBEMIS bit (GPTMMIS) cleared */
+
+#define GPTM1_A_ClearFlags_TimeOut()    (TIMER1_ICR_R |= TIMER_ICR_TATOCINT)        /*  GPTM1 => TATOCINT: GPTM Timer A Time-Out Raw Interrupt -> TATORIS bit (GPTMRIS) and TATOMIS bit (GPTMMIS) cleared */
+
 
 /*********************************************************************************
  * Prototipos de funciones públicas
  */
 
-void GPTM0A_Init_EdgeCount(uint32_t LoadValue, uint32_t MatchValue);                /*  Inicialización del GPTM0 (subtimer A) en modo Edge-Count */
-void GPTM0B_Init_EdgeCount(uint32_t LoadValue, uint32_t MatchValue);                /*  Inicialización del GPTM0 (subtimer B) en modo Edge-Count */
+void GPTM0A_Init_OneShot(uint32_t LoadValue);                                       /*  Inicialización del GPTM0 (subtimer A) en modo One-Shot */
+void GPTM0B_Init_EdgeTime(uint32_t LoadValue);                                      /*  Inicialización del GPTM0 (subtimer B) en modo Edge-Time */
+void GPTM1A_Init_OneShot(uint32_t LoadValue);                                       /*  Inicialización del GPTM1 (subtimer A) en modo One-Shot */
 
 
 #endif                                                                              /*  GPTM_H */
