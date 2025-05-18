@@ -50,8 +50,8 @@ void GPTM0A_Init_OneShot(uint32_t LoadValue){
 
     /*  Paso 5: Cargar el valor inicial del GPTM (GPTMTnILR) */
     /*  Si se utiliza el preescalador, cargar el valor inicial del GPTM (GPTMTnPR) */
-    TIMER0_TAILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TAILR: GPTM Timer A Interval Load */
-    TIMER0_TAPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TAPSR: GPTM Timer A Prescale */
+    TIMER0_TAILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TAILR: GPTM Timer A Interval Load Register -> Loads the counter for Timer A */
+    TIMER0_TAPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TAPSR: GPTM Timer A Prescale -> Loads the prescaler for Timer A */
 
     /*  Paso 6: Para uso de interrupción, desenmascarar la interrupción (GPTMIMR) */
     TIMER0_IMR_R &= ~TIMER_IMR_TATOIM;                                              /*  GPTM0 => TATOIM: GPTM Timer A Time-Out Interrupt Mask -> Interrupt masked */
@@ -91,7 +91,7 @@ void GPTM1AB_Init_OneShot(uint32_t LoadValue){
 
     /*  Paso 5: Cargar el valor inicial del GPTM (GPTMTnILR) */
     /*  Si se utiliza el preescalador, cargar el valor inicial del GPTM (GPTMTnPR) */
-    TIMER1_TAILR_R = (LoadValue & TIMER_TAILR_M);                                   /*  GPTM1 => TAILR: GPTM Timer A Interval Load */
+    TIMER1_TAILR_R = (LoadValue & TIMER_TAILR_M);                                   /*  GPTM1 => TAILR: GPTM Timer A Interval Load Register -> Loads the counter for Timer A */
 
     /*  Paso 6: Para uso de interrupción, desenmascarar la interrupción (GPTMIMR) */
     TIMER1_IMR_R |= TIMER_IMR_TATOIM;                                               /*  GPTM1 => TATOIM: GPTM Timer A Time-Out Interrupt Mask -> Interrupt unmasked */
@@ -137,7 +137,7 @@ void GPTM2AB_Init_OneShot(uint32_t LoadValue){
 
     /*  Paso 5: Cargar el valor inicial del GPTM (GPTMTnILR) */
     /*  Si se utiliza el preescalador, cargar el valor inicial del GPTM (GPTMTnPR) */
-    TIMER2_TAILR_R = (LoadValue & TIMER_TAILR_M);                                   /*  GPTM2 => TAILR: GPTM Timer A Interval Load */
+    TIMER2_TAILR_R = (LoadValue & TIMER_TAILR_M);                                   /*  GPTM2 => TAILR: GPTM Timer A Interval Load Register -> Loads the counter for Timer A */
 
     /*  Paso 6: Para uso de interrupción, desenmascarar la interrupción (GPTMIMR) */
     TIMER2_IMR_R |= TIMER_IMR_TATOIM;                                               /*  GPTM2 => TATOIM: GPTM Timer A Time-Out Interrupt Mask -> Interrupt unmasked */
