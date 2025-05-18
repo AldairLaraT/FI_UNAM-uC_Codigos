@@ -6,10 +6,7 @@
  * Profesor:    M.I. Christo Aldair Lara Tenorio
  * Fecha:       18 de mayo de 2025
  * 
- * Tema 09:     Periféricos
- * Código 26:   GPTM: Modo PWM
- * Descripción: XXX.
- *              Periféricos utilizados:
+ * Código:      Archivo fuente del NVIC
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
@@ -19,11 +16,9 @@
  * Archivos de cabecera
  */
 
-#include <stdint.h>                                                                 /*  Definición de los tamaños de tipo entero */
 #include "GPIO.h"                                                                   /*  Archivo de cabecera del GPIO */
 #include "GPTM.h"                                                                   /*  Archivo de cabecera del GPTM */
 #include "NVIC.h"                                                                   /*  Archivo de cabecera del NVIC */
-#include "SYSCTL.h"                                                                 /*  Archivo de cabecera del SYSCTL */
 
 
 /*********************************************************************************
@@ -33,10 +28,6 @@
 
 
 /*********************************************************************************
- * Función principal
+ * Funciones
  */
 
-int main(void) {
-
-    while(1) {}
-}

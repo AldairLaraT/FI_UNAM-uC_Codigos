@@ -6,13 +6,14 @@
  * Profesor:    M.I. Christo Aldair Lara Tenorio
  * Fecha:       18 de mayo de 2025
  * 
- * Tema 09:     Periféricos
- * Código 26:   GPTM: Modo PWM
- * Descripción: XXX.
- *              Periféricos utilizados:
+ * Código:      Archivo de cabecera del GPIO
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
+
+
+#ifndef GPIO_H                                                                      /*  Verificar si GPIO_H no ha sido definido previamente */
+#define GPIO_H                                                                      /*  Definir GPIO_H para evitar inclusiones múLTiples del mismo archivo */
 
 
 /*********************************************************************************
@@ -20,23 +21,25 @@
  */
 
 #include <stdint.h>                                                                 /*  Definición de los tamaños de tipo entero */
-#include "GPIO.h"                                                                   /*  Archivo de cabecera del GPIO */
-#include "GPTM.h"                                                                   /*  Archivo de cabecera del GPTM */
-#include "NVIC.h"                                                                   /*  Archivo de cabecera del NVIC */
-#include "SYSCTL.h"                                                                 /*  Archivo de cabecera del SYSCTL */
 
 
 /*********************************************************************************
- * Variables globales
+ * Macros de apuntadores a registros
+ * General-Purpose Input/Output (GPIO) registers                                        pp755   Register map
  */
 
 
 
 /*********************************************************************************
- * Función principal
+ * Macros auxiliares
  */
 
-int main(void) {
 
-    while(1) {}
-}
+
+/*********************************************************************************
+ * Prototipos de funciones públicas
+ */
+
+
+
+#endif                                                                              /*  GPIO_H */
