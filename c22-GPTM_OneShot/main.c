@@ -12,7 +12,7 @@
  *              Periféricos utilizados:
  *              - GPIO PortJ => Lectura de los SW de la tarjeta de desarrollo (interrupción).
  *              - GPIO PortN => Control de los LED de la tarjeta de desarrollo.
- *              - GPTM0 (One-Shot) => Retardo de rebote (polling).
+ *              - GPTM0A (One-Shot) => Retardo de rebote (polling).
  *              - GPTM1 (One-Shot) => Retardo del LED indicador (interrupción).
  *              - GPTM2 (One-Shot) => Medición del tiempo de respuesta (interrupción).
  * 
