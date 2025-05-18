@@ -7,7 +7,7 @@
  * Fecha:       17 de mayo de 2025
  * 
  * Tema 09:     Periféricos
- * Código 24:   GPTM: Modo Edge-Time
+ * Código 25:   GPTM: Modo Edge-Time
  * Descripción: Medición del tiempo entre dos eventos.
  *              Periféricos utilizados:
  *              - GPTM0A (One-Shot) => Time-out (interrupción).
