@@ -39,7 +39,7 @@ void TIMER1_A_Handler(void){
 
     LED_D1_Off();
 
-    TIMER2_TAILR_R = (TIMER2_TimeoutValue);                                         /*  GPTM2 => TAILR: GPTM Timer A Interval Load */
+    TIMER2_TAILR_R = TIMER2_TimeoutValue;                                           /*  GPTM2 => TAILR: GPTM Timer A Interval Load Register -> Loads the counter for Timer A */
     GPTM2_A_Initiate();                                                             /*  GPTM2 => TAEN: GPTM Timer A Enable -> Enabled and begins counting */
 }
 
@@ -69,16 +69,16 @@ void GPIO_PortJ_Handler(void){
         LED_D3_Off();
         LED_D4_Off();
 
-        uint32_t TIMER0B_CurrentValue = TIMER0_TBV_R;
+        uint32_t TIMER0B_CurrentValue = TIMER0_TBV_R;                               /*  GPTM0 => GPTM Timer B Value -> Returns the current, free-running value of Timer A */
         uint32_t TIMER1_Reload = 16000000 + (TIMER0B_CurrentValue * 4);
-        TIMER1_TAILR_R = (TIMER1_Reload & TIMER_TAILR_M);                           /*  GPTM1 => TAILR: GPTM Timer A Interval Load */
+        TIMER1_TAILR_R = (TIMER1_Reload & TIMER_TAILR_M);                           /*  GPTM1 => TAILR: GPTM Timer A Interval Load Register -> Loads the counter for Timer A */
         GPTM1_A_Initiate();                                                         /*  GPTM1 => TAEN: GPTM Timer A Enable -> Enabled and begins counting */
     }
 
     if (SW2_Pressed) {                                                              /*  Validación del SW2 */
         GPTM2_A_Stop();                                                             /*  GPTM2 => TAEN: GPTM Timer A Enable -> Disabled */
-        uint32_t TIMER2_CurrentValue = TIMER2_TAR_R;                                /*  GPTM2 => TAR: Return of the current value */
-        TIMER2_TAV_R = 0;                                                           /*  GPTM2 => TAV: GPTM Timer A Value -> Load the GPTMTAR on the next clock cycle */
+        uint32_t TIMER2_CurrentValue = TIMER2_TAR_R;                                /*  GPTM2 => TAR: GPTM Timer A Register -> Returns the current value of the GPTM Timer A Count Register */
+        TIMER2_TAV_R = 0;                                                           /*  GPTM2 => TAV: GPTM Timer A Value -> Loads the GPTMTAR on the next clock cycle */
 
         ReactionTime_ms = (float)TIMER2_CurrentValue / 16000;
 
