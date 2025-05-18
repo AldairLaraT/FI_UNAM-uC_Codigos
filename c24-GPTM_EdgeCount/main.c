@@ -10,8 +10,8 @@
  * Código 24:   GPTM: Modo Edge-Count
  * Descripción: Captura de eventos con interrupción a través de dos botones.
  *              Periféricos utilizados:
- *              - GPIO PortL[4] => TIMER0A
- *              - GPIO PortL[5] => TIMER0B
+ *              - TIMER0A (Edge-Count) => GPIO PortL[4] (interrupción)
+ *              - TIMER0B (Edge-Count) => GPIO PortL[5] (interrupción)
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/

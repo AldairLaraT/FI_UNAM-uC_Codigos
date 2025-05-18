@@ -55,8 +55,8 @@ void GPTM0A_Init_EdgeCount(uint32_t LoadValue, uint32_t MatchValue){
     /*  Paso 5: Dependiendo de la dirección de cuenta:
             -> Down-count mode: Cargar el valor inicial (GPTMTnPR y GPTMTnILR) y el valor de comparación (GPTMTnPMR y GPTMTnMATCH).
             -> Up-count mode: Cargar el valor de comparación (GPTMTnPMR y GPTMTnMATCH) y un valor mayor en (GPTMTnPR y GPTMTnILR). */
-    TIMER0_TAILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TAILR: GPTM Timer A Interval Load */
-    TIMER0_TAPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TAPSR: GPTM Timer A Prescale */
+    TIMER0_TAILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TAILR: GPTM Timer A Interval Load Register -> Loads the counter for Timer A */
+    TIMER0_TAPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TAPSR: GPTM Timer A Prescale -> Loads the prescaler for Timer A */
 
     TIMER0_TAMATCHR_R = (MatchValue & 0x0000FFFF);                                  /*  GPTM0 => TAMR: GPTM Timer A Match Register */
     TIMER0_TAPMR_R = ((MatchValue & 0x00FF0000) >> 16);                             /*  GPTM0 => TAPSMR: GPTM Timer A Prescale Match */
@@ -110,8 +110,8 @@ void GPTM0B_Init_EdgeCount(uint32_t LoadValue, uint32_t MatchValue){
     /*  Paso 5: Dependiendo de la dirección de cuenta:
         -> Down-count mode: Cargar el valor inicial (GPTMTnPR y GPTMTnILR) y el valor de comparación (GPTMTnPMR y GPTMTnMATCH).
         -> Up-count mode: Cargar el valor de comparación (GPTMTnPMR y GPTMTnMATCH) y un valor mayor en (GPTMTnPR y GPTMTnILR). */
-    TIMER0_TBILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TBILR: GPTM Timer B Interval Load */
-    TIMER0_TBPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TBPSR: GPTM Timer B Prescale */
+    TIMER0_TBILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TBILR: GPTM Timer B Interval Load Register -> Loads the counter for Timer B */
+    TIMER0_TBPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TBPSR: GPTM Timer B Prescale -> Loads the prescaler for Timer B */
 
     TIMER0_TBMATCHR_R = (MatchValue & 0x0000FFFF);                                  /*  GPTM0 => TBMR: GPTM Timer B Match Register */
     TIMER0_TBPMR_R = ((MatchValue & 0x00FF0000) >> 16);                             /*  GPTM0 => TBPSMR: GPTM Timer B Prescale Match */
