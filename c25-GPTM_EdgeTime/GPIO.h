@@ -29,7 +29,6 @@
  */
 
     /*  GPIO Port J (PortJ) */
-#define GPIO_PORTJ_AHB_DATA_R       (*((volatile uint32_t *)0x40060004))            /*  pp759   GPIO Data >> PortJ[0] unmasked */
 #define GPIO_PORTJ_AHB_DIR_R        (*((volatile uint32_t *)0x40060400))            /*  pp760   GPIO Direction */
 #define GPIO_PORTJ_AHB_IS_R         (*((volatile uint32_t *)0x40060404))            /*  pp761   GPIO Interrupt Sense */
 #define GPIO_PORTJ_AHB_IBE_R        (*((volatile uint32_t *)0x40060408))            /*  pp762   GPIO Interrupt Both Edges */

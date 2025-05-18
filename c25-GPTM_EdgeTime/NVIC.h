@@ -81,6 +81,7 @@
  * Prototipos de funciones públicas
  */
 
+void TIMER0_A_Handler(void);                                                        /*  Interrupt 19 -> TIMER o subtimer A */
 void TIMER0_B_Handler(void);                                                        /*  Interrupt 20 -> TIMER 0 subtimer B */
 void GPIO_PortJ_Handler(void);                                                      /*  Interrupt 51 -> GPIO PortJ */
 

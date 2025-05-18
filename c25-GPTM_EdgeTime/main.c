@@ -8,10 +8,11 @@
  * 
  * Tema 09:     Periféricos
  * Código 24:   GPTM: Modo Edge-Time
- * Descripción: xxx.
+ * Descripción: Medición del tiempo entre dos eventos.
  *              Periféricos utilizados:
- *              - GPTM0A (One-Shot) => Retardo de rebote (polling).
- *              - GPIO PortL[5] => TIMER0B
+ *              - GPTM0A (One-Shot) => Time-out (interrupción).
+ *              - GPTM0B (Edge-Time) => GPIO PortL[5] (interrupción).
+ *              - GPTM1A (One-Shot) => Retardo de rebote (polling).
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/

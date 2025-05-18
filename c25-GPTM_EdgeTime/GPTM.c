@@ -50,8 +50,8 @@ void GPTM0A_Init_OneShot(uint32_t LoadValue){
 
     /*  Paso 5: Cargar el valor inicial del GPTM (GPTMTnILR) */
     /*  Si se utiliza el preescalador, cargar el valor inicial del GPTM (GPTMTnPR) */
-    TIMER0_TAILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TAILR: GPTM Timer A Interval Load */
-    TIMER0_TAPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TAPSR: GPTM Timer A Prescale */
+    TIMER0_TAILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TAILR: GPTM Timer A Interval Load Register -> Loads the counter for Timer A */
+    TIMER0_TAPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TAPSR: GPTM Timer A Prescale -> Loads the prescaler for Timer A */
 
     /*  Paso 6: Para uso de interrupción, desenmascarar la interrupción (GPTMIMR) */
     TIMER0_IMR_R |= TIMER_IMR_TATOIM;                                               /*  GPTM0 => TATOIM: GPTM Timer A Time-Out Interrupt Mask -> Interrupt masked */
@@ -100,10 +100,10 @@ void GPTM0B_Init_EdgeTime(uint32_t LoadValue){
     TIMER0_CTL_R = ((TIMER0_CTL_R & ~TIMER_CTL_TBEVENT_M) | TIMER_CTL_TBEVENT_NEG); /*  GPTM0 => TBEVENT: GPTM Timer B Event Mode -> Negative edge */
 
     /*  Paso 5: Cargar el valor del preescalador (GPTMTnPR) */
-    TIMER0_TBPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TBPSR: GPTM Timer B Prescale */
+    TIMER0_TBPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM0 => TBPSR: GPTM Timer B Prescale -> Loads the prescaler for Timer B */
 
     /*  Paso 6: Cargar el valor inicial (GPTMTnILR) */
-    TIMER0_TBILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TBILR: GPTM Timer B Interval Load */
+    TIMER0_TBILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM0 => TBILR: GPTM Timer B Interval Load Register -> Loads the counter for Timer B */
 
     /*  Paso 7: Para uso de interrupción, desenmascarar la interrupción (GPTMIMR) */
     TIMER0_IMR_R |= TIMER_IMR_CBEIM;                                                /*  GPTM0 => CBEIM: GPTM Timer B Capture Mode Event Interrupt Mask -> Interrupt unmasked */
@@ -149,8 +149,8 @@ void GPTM1A_Init_OneShot(uint32_t LoadValue){
 
     /*  Paso 5: Cargar el valor inicial del GPTM (GPTMTnILR) */
     /*  Si se utiliza el preescalador, cargar el valor inicial del GPTM (GPTMTnPR) */
-    TIMER1_TAILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM1 => TAILR: GPTM Timer A Interval Load */
-    TIMER1_TAPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM1 => TAPSR: GPTM Timer A Prescale */
+    TIMER1_TAILR_R = (LoadValue & 0x0000FFFF);                                      /*  GPTM1 => TAILR: GPTM Timer A Interval Load Register -> Loads the counter for Timer A */
+    TIMER1_TAPR_R = ((LoadValue & 0x00FF0000) >> 16);                               /*  GPTM1 => TAPSR: GPTM Timer A Prescale -> Loads the prescaler for Timer A */
 
     /*  Paso 6: Para uso de interrupción, desenmascarar la interrupción (GPTMIMR) */
     TIMER1_IMR_R &= ~TIMER_IMR_TATOIM;                                              /*  GPTM1 => TATOIM: GPTM Timer A Time-Out Interrupt Mask -> Interrupt masked */

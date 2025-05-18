@@ -40,7 +40,7 @@ void TIMER0_A_Handler(void){
     GPTM0_A_ClearFlags_TimeOut();                                                   /*  GPTM0 => TATOCINT: GPTM Timer A Time-Out Raw Interrupt -> TATORIS bit (GPTMRIS) and TATOMIS bit (GPTMMIS) cleared */
 
     TIMER0_CTL_R &= ~TIMER_CTL_TBEN;                                                /*  GPTM0 => TBEN: GPTM Timer B Enable -> Disabled */
-    TIMER0_TBV_R = 0;
+    TIMER0_TBV_R = 0;                                                               /*  GPTM0 => GPTM Timer B Value -> Loads the GPTMTAR register on the next clock cycle */
 
     LED_D1_Off();
 
@@ -57,10 +57,10 @@ void TIMER0_B_Handler(void){
     GPTM0_B_ClearFlags_EdgeTime();                                                  /*  GPTM0 => CBECINT: GPTM Timer B Capture Mode Event Interrupt Clear -> CBERIS bit (GPTMRIS) and CBEMIS bit (GPTMMIS) cleared */
 
     if (TIMER0B_Flag == 0) {
-        TIMER0B_InitialValue = TIMER0_TBR_R;
+        TIMER0B_InitialValue = TIMER0_TBR_R;                                        /*  GPTM0 => TBR: GPTM Timer B Register -> Returns the time at which the last edge event took place */
         TIMER0B_Flag = 1;
     } else {
-        TIMER0B_FinalValue = TIMER0_TBR_R;
+        TIMER0B_FinalValue = TIMER0_TBR_R;                                          /*  GPTM0 => TBR: GPTM Timer B Register -> Returns the time at which the last edge event took place */
         Time_ms = ((TIMER0B_FinalValue - TIMER0B_InitialValue) * (62.5)) / 1000000;
         TIMER0B_Flag = 0;
     }
