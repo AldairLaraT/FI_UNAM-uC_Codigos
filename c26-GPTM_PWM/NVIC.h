@@ -28,18 +28,33 @@
  * Nested Vectored Interrupt Controller (NVIC) registers                                pp146   Register map
  */
 
+#define NVIC_EN1_R                  (*((volatile uint32_t *)0xE000E104))            /*  pp154   Interrupt 32-63 Set Enable */
+#define NVIC_PRI12_R                (*((volatile uint32_t *)0xE000E430))            /*  pp159   Interrupt 48-51 Priority */
 
 
 /*********************************************************************************
  * Macros auxiliares
  */
 
+    // Bit fields in the NVIC_EN1 register                                              pp154
+#define NVIC_EN1_INT_M              0xFFFFFFFF                                      /*  Interrupt Enable mask */
+
+    // Bit fields in the NVIC_PRI12 register                                            pp159
+#define NVIC_PRI12_INT51_M          0xE0000000                                      /*  Interrupt 51 Priority mask */
+#define NVIC_PRI12_INT50_M          0x00E00000                                      /*  Interrupt 50 Priority mask */
+#define NVIC_PRI12_INT49_M          0x0000E000                                      /*  Interrupt 49 Priority mask */
+#define NVIC_PRI12_INT48_M          0x000000E0                                      /*  Interrupt 48 Priority mask */
+#define NVIC_PRI12_INT51_S          29                                              /*  Interrupt 51 Priority shift */
+#define NVIC_PRI12_INT50_S          21                                              /*  Interrupt 50 Priority shift */
+#define NVIC_PRI12_INT49_S          13                                              /*  Interrupt 49 Priority shift */
+#define NVIC_PRI12_INT48_S          5                                               /*  Interrupt 48 Priority shift */
 
 
 /*********************************************************************************
  * Prototipos de funciones públicas
  */
 
+void GPIO_PortJ_Handler(void);                                                      /*  Interrupt 51 -> GPIO PortJ */
 
 
 #endif                                                                              /*  NVIC_H */
