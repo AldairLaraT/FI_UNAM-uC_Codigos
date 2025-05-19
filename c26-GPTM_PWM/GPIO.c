@@ -105,7 +105,7 @@ void GPIO_PortM0_Init_T2CCP0(void) {
     /*  Paso 4: Seleccionar la función alterna de hardware (GPIOPCTL) */
     GPIO_PORTM_PCTL_R = ((GPIO_PORTM_PCTL_R & ~0x0000000F) | (3 << 0));             /*  PortM[0] => PMC0: Port Mux Control 5 -> T2CCP0 */
 
-    /*  Paso 5: Configurar como Open Drain (GPIOODR) o las resistencias de Pull-Up (GPIOPUR) / Pull-Down (GPIOPDR) */
+    /*  Paso 5: Deshabilitar las funciones de Open Drain (GPIOODR) y las resistencias de Pull-Up (GPIOPUR) / Pull-Down (GPIOPDR) */
     GPIO_PORTM_ODR_R &= ~GPIO_PIN_0;                                                /*  PortM[0] => ODE: Output Pad Open Drain Enable -> Disabled */
     GPIO_PORTM_PUR_R &= ~GPIO_PIN_0;                                                /*  PortM[0] => PUE: Pad Weak Pull-Up Enable -> Disabled */
     GPIO_PORTM_PDR_R &= ~GPIO_PIN_0;                                                /*  PortM[0] => PDE: Pad Weak Pull-Down Enable -> Disabled */
