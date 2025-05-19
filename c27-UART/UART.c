@@ -43,7 +43,7 @@ void UART0_Init() {
     /*  Paso 3: Habilitar la función alterna del GPIO (GPIOAFSEL) */
     GPIO_PORTA_AHB_AFSEL_R |= (GPIO_PIN_1 | GPIO_PIN_0);                            /*  PortA[1:0] => AFSEL: Alternate Function Select -> Alternate hardware function */
 
-    /*  Paso 4: Configurar el nivel de corriente (GPIODR2R) y/o el slew rate () del GPIO */
+    /*  Paso 4: Configurar el nivel de corriente (GPIODR2R) y/o el slew rate (GPIOSLR) del GPIO */
     GPIO_PORTA_AHB_DR2R_R |= (GPIO_PIN_1 | GPIO_PIN_0);                             /*  PortA[1:0] => DRV2: Output Pad 2mA Drive Enable -> GPIO pin has 2-mA drive */
     GPIO_PORTA_AHB_SLR_R &= ~(GPIO_PIN_1 | GPIO_PIN_0);                             /*  PartA[1:0] => SRL: Slew Rate Limit Enable (8-mA, 10-mA and 12-mA drive only) -> Slew rate control is disabled */
 
