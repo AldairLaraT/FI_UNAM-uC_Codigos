@@ -10,6 +10,8 @@
  * Código 25:   GPTM: Modo Edge-Time
  * Descripción: Medición del tiempo entre dos eventos.
  *              Periféricos utilizados:
+ *              - GPIO PortJ[0] => Lectura del SW1 de la tarjeta de desarrollo (interrupción).
+ *              - GPIO PortN[1] => Control del LED D1 de la tarjeta de desarrollo.
  *              - GPTM0A (One-Shot) => Time-out (interrupción).
  *              - GPTM0B (Edge-Time) => GPIO PortL[5] (interrupción).
  *              - GPTM1A (One-Shot) => Retardo de rebote (polling).
