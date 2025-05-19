@@ -47,9 +47,7 @@ Este repositorio contiene códigos de ejemplo y ejercicios relacionados con la a
 | c24    | T09 - Periféricos                                       | `c`      | GPTM: Modo Edge-Count                                |
 | c25    | T09 - Periféricos                                       | `c`      | GPTM: Modo Edge-Time                                 |
 | c26    | T09 - Periféricos                                       | `c`      | GPTM: Modo PWM                                       |
-<!-- | c25    | T09 - Periféricos                                       | `c`      | UART: Tx                                             | -->
-<!-- | c26    | T09 - Periféricos                                       | `c`      | UART: Rx                                             | -->
-<!-- | c27    | T09 - Periféricos                                       | `c`      | UART: Uso del terminal                               | -->
+| c25    | T09 - Periféricos                                       | `c`      | UART                                                 |
 <!-- | c28    | T09 - Periféricos                                       | `c`      | I2C: Reloj en tiempo real DS1307                     | -->
 <!-- | c29    | T09 - Periféricos                                       | `c`      | I2C: Reloj en tiempo real DS1307 con interrupciones  | -->
 <!-- | c30    | T09 - Periféricos                                       | `c`      | SSI: Potenciómetro digital MCP41010                  | -->
