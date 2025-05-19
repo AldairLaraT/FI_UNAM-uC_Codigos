@@ -11,9 +11,9 @@
  * Descripción: Configuración del PWM con temporizadores, ajustando el ciclo de trabajo
  *              a partir de los botones SW1 y SW2 de la tarjeta de desarrollo.
  *              Periféricos utilizados:
- *              - GPIO PortJ => Lectura de los SW de la tarjeta de desarrollo (interrupción).
+ *              - GPIO PortJ[1:0] => Lectura de los SW SW1 y SW2 de la tarjeta de desarrollo (interrupción).
  *              - GPTM0A (One-Shot) => Retardo de rebote (polling).
- *              - GPTM2A (PWM) => GPIO PortM[0].
+ *              - GPTM2A (PWM) => Salida de la señal PWM en GPIO PortM[0].
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
