@@ -10,8 +10,9 @@
  * Código 22:   GPTM: Modo One-Shot
  * Descripción: Juego de reacción con temporizadores.
  *              Periféricos utilizados:
- *              - GPIO PortJ => Lectura de los SW de la tarjeta de desarrollo (interrupción).
- *              - GPIO PortN => Control de los LED de la tarjeta de desarrollo.
+ *              - GPIO PortF[4,0] => Control de los LED D3 y D4 de la tarjeta de desarrollo.
+ *              - GPIO PortJ[1:0] => Lectura de los SW SW1 y SW2 de la tarjeta de desarrollo (interrupción).
+ *              - GPIO PortN[1:0] => Control de los LED D1 y D2 de la tarjeta de desarrollo.
  *              - GPTM0A (One-Shot) => Retardo de rebote (polling).
  *              - GPTM1 (One-Shot) => Retardo del LED indicador (interrupción).
  *              - GPTM2 (One-Shot) => Medición del tiempo de respuesta (interrupción).
@@ -22,7 +23,7 @@
  *              3. Los LED de la tarjeta de desarrollo indican el tiempo de reacción
  *                 del usuario.
  *              * Si se enciende el LED D4 ocurrió un error que solo podrá ser corregido
- *                con un RESET. Sucede si se presiona el SW2 antes de tiempo o si no se 
+ *                con un RESET. Sucede cuando se presiona el SW2 antes de tiempo o si no se 
  *                presiona el SW2 después de un time-out.
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
