@@ -15,7 +15,7 @@
  *              - GPIO PortJ[1:0] => Lectura de los SW SW1 y SW2 de la tarjeta de desarrollo (interrupción).
  *              - GPIO PortN[1:0] => Control de los LED D1 y D2 de la tarjeta de desarrollo.
  *              - GPTM0A (One-Shot) => Retardo de rebote (polling).
- *              - UART0 =>  PA1 -> Rx | PA0 -> Tx (interrupción).
+ *              - UART0 => PA1 -> Rx | PA0 -> Tx (interrupción).
  * 
  * Tarjeta de desarrollo:   EK-TM4C1294XL Evaluation board
  *********************************************************************************/
