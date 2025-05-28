@@ -4,7 +4,7 @@
  * 
  * Asignatura:  Microprocesadores y Microcontroladores
  * Profesor:    M.I. Christo Aldair Lara Tenorio
- * Fecha:       18 de mayo de 2025
+ * Fecha:       27 de mayo de 2025
  * 
  * Código:      Archivo de cabecera del SYSCTL
  * 
@@ -28,27 +28,15 @@
  * System Control (SYSCTL) registers                                                    pp247   Register map
  */
 
-#define SYSCTL_RCGCTIMER_R          (*((volatile uint32_t *)0x400FE604))            /*  pp380   16/32-Bit General-Purpose Timer Run Mode Clock Gating Control */
 #define SYSCTL_RCGCGPIO_R           (*((volatile uint32_t *)0x400FE608))            /*  pp382   General-Purpose Input/Output Run Mode Clock Gating Control */
-#define SYSCTL_RCGCUART_R           (*((volatile uint32_t *)0x400FE618))            /*  pp388   Universal Asynchronous Receiver/Transmitter Run Mode Clock Gating Control */
-#define SYSCTL_PRTIMER_R            (*((volatile uint32_t *)0x400FEA04))            /*  pp497   16/32-Bit General-Purpose Timer Peripheral Ready */
+#define SYSCTL_RCGCI2C_R            (*((volatile uint32_t *)0x400FE620))            /*  pp391   Inter-Integrated Circuit Run Mode Clock Gating Control */
 #define SYSCTL_PRGPIO_R             (*((volatile uint32_t *)0x400FEA08))            /*  pp499   General-Purpose Input/Output Peripheral Ready */
-#define SYSCTL_PRUART_R             (*((volatile uint32_t *)0x400FEA18))            /*  pp505   Universal Asynchronous Receiver/Transmitter Peripheral Ready */
+#define SYSCTL_PRI2C_R              (*((volatile uint32_t *)0x400FEA20))            /*  pp509   Inter-Integrated Circuit Peripheral Ready */
 
 
 /*********************************************************************************
  * Macros auxiliares
  */
-
-    // Bit fields in the SYSCTL_RCGCTIMER register                                      pp380
-#define SYSCTL_RCGCTIMER_R7         0x00000080                                      /*  16/32-Bit General-Purpose Timer 7 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCTIMER_R6         0x00000040                                      /*  16/32-Bit General-Purpose Timer 6 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCTIMER_R5         0x00000020                                      /*  16/32-Bit General-Purpose Timer 5 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCTIMER_R4         0x00000010                                      /*  16/32-Bit General-Purpose Timer 4 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCTIMER_R3         0x00000008                                      /*  16/32-Bit General-Purpose Timer 3 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCTIMER_R2         0x00000004                                      /*  16/32-Bit General-Purpose Timer 2 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCTIMER_R1         0x00000002                                      /*  16/32-Bit General-Purpose Timer 1 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCTIMER_R0         0x00000001                                      /*  16/32-Bit General-Purpose Timer 0 Run Mode Clock Gating Control */
 
     // Bit fields in the SYSCTL_RCGCGPIO register                                       pp382
 #define SYSCTL_RCGCGPIO_R14         0x00004000                                      /*  GPIO Port Q Run Mode Clock Gating Control */
@@ -67,25 +55,17 @@
 #define SYSCTL_RCGCGPIO_R1          0x00000002                                      /*  GPIO Port B Run Mode Clock Gating Control */
 #define SYSCTL_RCGCGPIO_R0          0x00000001                                      /*  GPIO Port A Run Mode Clock Gating Control */
 
-    // Bit fields in the SYSCTL_RCGCUART register                                       pp388
-#define SYSCTL_RCGCUART_R7          0x00000080                                      /*  UART Module 7 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCUART_R6          0x00000040                                      /*  UART Module 6 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCUART_R5          0x00000020                                      /*  UART Module 5 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCUART_R4          0x00000010                                      /*  UART Module 4 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCUART_R3          0x00000008                                      /*  UART Module 3 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCUART_R2          0x00000004                                      /*  UART Module 2 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCUART_R1          0x00000002                                      /*  UART Module 1 Run Mode Clock Gating Control */
-#define SYSCTL_RCGCUART_R0          0x00000001                                      /*  UART Module 0 Run Mode Clock Gating Control */
-
-    // Bit fields in the SYSCTL_PRTIMER register                                        pp497
-#define SYSCTL_PRTIMER_R7           0x00000080                                      /*  16/32-Bit General-Purpose Timer 7 Peripheral Ready */
-#define SYSCTL_PRTIMER_R6           0x00000040                                      /*  16/32-Bit General-Purpose Timer 6 Peripheral Ready */
-#define SYSCTL_PRTIMER_R5           0x00000020                                      /*  16/32-Bit General-Purpose Timer 5 Peripheral Ready */
-#define SYSCTL_PRTIMER_R4           0x00000010                                      /*  16/32-Bit General-Purpose Timer 4 Peripheral Ready */
-#define SYSCTL_PRTIMER_R3           0x00000008                                      /*  16/32-Bit General-Purpose Timer 3 Peripheral Ready */
-#define SYSCTL_PRTIMER_R2           0x00000004                                      /*  16/32-Bit General-Purpose Timer 2 Peripheral Ready */
-#define SYSCTL_PRTIMER_R1           0x00000002                                      /*  16/32-Bit General-Purpose Timer 1 Peripheral Ready */
-#define SYSCTL_PRTIMER_R0           0x00000001                                      /*  16/32-Bit General-Purpose Timer 0 Peripheral Ready */
+    // Bit fields in the SYSCTL_RCGCI2C register                                        pp391
+#define SYSCTL_RCGCI2C_R9           0x00000200                                      /*  I2C Module 9 Run Mode Clock Gating Control */
+#define SYSCTL_RCGCI2C_R8           0x00000100                                      /*  I2C Module 8 Run Mode Clock Gating Control */
+#define SYSCTL_RCGCI2C_R7           0x00000080                                      /*  I2C Module 7 Run Mode Clock Gating Control */
+#define SYSCTL_RCGCI2C_R6           0x00000040                                      /*  I2C Module 6 Run Mode Clock Gating Control */
+#define SYSCTL_RCGCI2C_R5           0x00000020                                      /*  I2C Module 5 Run Mode Clock Gating Control */
+#define SYSCTL_RCGCI2C_R4           0x00000010                                      /*  I2C Module 4 Run Mode Clock Gating Control */
+#define SYSCTL_RCGCI2C_R3           0x00000008                                      /*  I2C Module 3 Run Mode Clock Gating Control */
+#define SYSCTL_RCGCI2C_R2           0x00000004                                      /*  I2C Module 2 Run Mode Clock Gating Control */
+#define SYSCTL_RCGCI2C_R1           0x00000002                                      /*  I2C Module 1 Run Mode Clock Gating Control */
+#define SYSCTL_RCGCI2C_R0           0x00000001                                      /*  I2C Module 0 Run Mode Clock Gating Control */
 
     // Bit fields in the SYSCTL_PRGPIO register                                         pp499
 #define SYSCTL_PRGPIO_R14           0x00004000                                      /*  GPIO Port Q Peripheral Ready */
@@ -104,15 +84,17 @@
 #define SYSCTL_PRGPIO_R1            0x00000002                                      /*  GPIO Port B Peripheral Ready */
 #define SYSCTL_PRGPIO_R0            0x00000001                                      /*  GPIO Port A Peripheral Ready */
 
-    // Bit fields in the SYSCTL_PRUART register                                         pp505
-#define SYSCTL_PRUART_R7            0x00000080                                      /*  UART Module 7 Peripheral Ready */
-#define SYSCTL_PRUART_R6            0x00000040                                      /*  UART Module 6 Peripheral Ready */
-#define SYSCTL_PRUART_R5            0x00000020                                      /*  UART Module 5 Peripheral Ready */
-#define SYSCTL_PRUART_R4            0x00000010                                      /*  UART Module 4 Peripheral Ready */
-#define SYSCTL_PRUART_R3            0x00000008                                      /*  UART Module 3 Peripheral Ready */
-#define SYSCTL_PRUART_R2            0x00000004                                      /*  UART Module 2 Peripheral Ready */
-#define SYSCTL_PRUART_R1            0x00000002                                      /*  UART Module 1 Peripheral Ready */
-#define SYSCTL_PRUART_R0            0x00000001                                      /*  UART Module 0 Peripheral Ready */
+    // Bit fields in the SYSCTL_PRI2C register                                          pp509
+#define SYSCTL_PRI2C_R9             0x00000200                                      /*  I2C Module 9 Peripheral Ready */
+#define SYSCTL_PRI2C_R8             0x00000100                                      /*  I2C Module 8 Peripheral Ready */
+#define SYSCTL_PRI2C_R7             0x00000080                                      /*  I2C Module 7 Peripheral Ready */
+#define SYSCTL_PRI2C_R6             0x00000040                                      /*  I2C Module 6 Peripheral Ready */
+#define SYSCTL_PRI2C_R5             0x00000020                                      /*  I2C Module 5 Peripheral Ready */
+#define SYSCTL_PRI2C_R4             0x00000010                                      /*  I2C Module 4 Peripheral Ready */
+#define SYSCTL_PRI2C_R3             0x00000008                                      /*  I2C Module 3 Peripheral Ready */
+#define SYSCTL_PRI2C_R2             0x00000004                                      /*  I2C Module 2 Peripheral Ready */
+#define SYSCTL_PRI2C_R1             0x00000002                                      /*  I2C Module 1 Peripheral Ready */
+#define SYSCTL_PRI2C_R0             0x00000001                                      /*  I2C Module 0 Peripheral Ready */
 
 
 /*********************************************************************************
