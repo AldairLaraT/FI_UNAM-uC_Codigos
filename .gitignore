@@ -17,8 +17,6 @@ RemoteSystemsTempFiles/
 .jxbrowser.userdata/
 
 # Proyectos pendientes para subir al repositorio
-/c28-I2C/
-/c29-I2C_Interrupt/
 /c30-SSI/
 
 # Proyectos
